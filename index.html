@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Software Engineer Portfolio — minimal, aesthetic one-page showcasing skills, experience, education, and projects." />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Portfolio — Killian Chandeze</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/additions.css" />
+
+    <!-- Favicons (optional) -->
+    <!-- <link rel="icon" href="assets/img/favicon.ico" /> -->
+
+    <!-- Open Graph (optional) -->
+    <meta property="og:title" content="Killian Chandeze — Software Engineer" />
+    <meta property="og:description" content="Minimal one-page portfolio with skills, experience, education, and projects." />
+    <meta property="og:type" content="website" />
+  </head>
+
+  <body data-theme="dark">
+    <header class="site-header" role="banner">
+      <div class="container nav">
+        <a href="#top" class="brand" aria-label="Go to top">Killian Chandeze</a>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+        <nav id="site-nav" class="site-nav" role="navigation" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#education">Education</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+          <button id="theme-toggle" class="btn btn-small ghost" type="button" aria-label="Toggle theme">Light</button>
+          <a class="btn btn-small btn-download" href="CV_Killian_Chandeze_Sofware_Engineer.pdf" download="CV_Killian_Chandeze_Sofware_Engineer.pdf" target="_blank" rel="noopener">Download CV</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero section container" aria-label="Introduction">
+        <div class="hero-content">
+          <div class="hero-tagline reveal">
+            <p class="hero-quote lead-quote design-quote">
+              <span class="quote-mark open">“</span><span id="quote-text">Form follows function.</span><span class="quote-mark close">”</span>
+            </p>
+
+          </div>
+          <h1 class="reveal defer-on-scroll">Hi, I’m Killian Chandeze</h1>
+          <div class="hero-role reveal delay-1" aria-live="polite">
+            <span id="role-typer"></span><span id="role-cursor" aria-hidden="true">|</span>
+          </div>
+          <p class="muted reveal delay-2">3+ years building robust, scalable, and data-driven solutions in IT, supply chain, and finance. Skilled in RESTful APIs, SQL/NoSQL, cloud-native applications, and performance optimization.</p>
+          <div class="hero-cta reveal delay-3">
+            <a class="btn" href="#projects">View Projects</a>
+            <a class="btn ghost btn-download" href="CV_Killian_Chandeze_Sofware_Engineer.pdf" download="CV_Killian_Chandeze_Sofware_Engineer.pdf" target="_blank" rel="noopener">Download CV</a>
+          </div>
+          <a class="scroll-down" href="#about" aria-label="Go to About section">↓</a>
+        </div>
+      </section>
+
+      <section id="about" class="section container" aria-labelledby="about-title">
+        <h2 id="about-title" class="section-title reveal">About</h2>
+        <div class="about-grid reveal delay-1">
+          <div class="about-text">
+            <p class="lead">Hi, I’m Killian — a Software Engineer from France, currently based in Malaysia. My goal is to build collaborative and impactful solutions that address real-world and future challenges.</p>
+            <p>I specialize in .NET technologies and work across the full stack, though I have a strong preference for backend development — where I find the real art and enjoyment of programming. I also have a data analyst background from my studies, and I enjoy combining both skill sets in projects.</p>
+            <p>Beyond coding, I’m passionate about <span class="hilite">finance</span>, <span class="hilite">problem‑solving</span>, <span class="hilite">new technologies</span>, and <span class="hilite">exploring anything that sparks curiosity</span>.</p>
+            <div class="about-strengths">
+              <div class="about-strengths-title">Key strengths</div>
+              <div class="kw-list">
+                <span class="kw-badge">Adaptability</span>
+                <span class="kw-badge">Analytical Thinking</span>
+                <span class="kw-badge">Resilience</span>
+                <span class="kw-badge">Collaboration</span>
+                <span class="kw-badge">Continuous Learning</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-photo">
+            <img src="assets/img/profile.jpg" alt="Portrait of Killian Chandeze" />
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section container" aria-labelledby="skills-title">
+        <h2 id="skills-title" class="section-title reveal">Technical Skills</h2>
+
+        <div class="skills-grid reveal delay-1" role="list">
+          <article class="skill-cat" role="listitem">
+            <header class="skill-head">
+              <span class="skill-icon" aria-hidden="true"><i class="fa-solid fa-code"></i></span>
+              <h3>Languages</h3>
+            </header>
+            <ul class="chip-list">
+              <li class="chip">C# (.NET, ASP.NET Core)</li>
+              <li class="chip">Python</li>
+              <li class="chip">Java</li>
+              <li class="chip">R</li>
+              <li class="chip">JavaScript (React)</li>
+              <li class="chip">TypeScript (Angular)</li>
+              <li class="chip">Bash</li>
+              <li class="chip">PowerShell</li>
+            </ul>
+          </article>
+
+          <article class="skill-cat" role="listitem">
+            <header class="skill-head">
+              <span class="skill-icon" aria-hidden="true"><i class="fa-solid fa-database"></i></span>
+              <h3>Databases</h3>
+            </header>
+            <ul class="chip-list">
+              <li class="chip">SQL (MS SQL, MySQL, PostgreSQL)</li>
+              <li class="chip">NoSQL (Redis, MongoDB)</li>
+            </ul>
+          </article>
+
+          <article class="skill-cat" role="listitem">
+            <header class="skill-head">
+              <span class="skill-icon" aria-hidden="true"><i class="fa-solid fa-plug"></i></span>
+              <h3>Backend & APIs</h3>
+            </header>
+            <ul class="chip-list">
+              <li class="chip">RESTful APIs</li>
+              <li class="chip">OpenAPI</li>
+              <li class="chip">Swagger</li>
+              <li class="chip">Entity Framework</li>
+              <li class="chip">Dapper</li>
+              <li class="chip">LINQ</li>
+              <li class="chip">RabbitMQ</li>
+            </ul>
+          </article>
+
+          <article class="skill-cat" role="listitem">
+            <header class="skill-head">
+              <span class="skill-icon" aria-hidden="true"><i class="fa-solid fa-server"></i></span>
+              <h3>Infrastructure</h3>
+            </header>
+            <ul class="chip-list">
+              <li class="chip">Docker</li>
+              <li class="chip">Kubernetes</li>
+              <li class="chip">KVM</li>
+              <li class="chip">VMWare</li>
+              <li class="chip">NGINX</li>
+              <li class="chip">TCP/IP</li>
+              <li class="chip">Networking</li>
+              <li class="chip">Terraform</li>
+              <li class="chip">SOPS</li>
+            </ul>
+          </article>
+
+          <article class="skill-cat" role="listitem">
+            <header class="skill-head">
+              <span class="skill-icon" aria-hidden="true"><i class="fa-solid fa-cloud"></i></span>
+              <h3>Cloud & DevOps</h3>
+            </header>
+            <ul class="chip-list">
+              <li class="chip">AWS</li>
+              <li class="chip">Azure DevOps</li>
+              <li class="chip">Git</li>
+              <li class="chip">CI/CD</li>
+              <li class="chip">Jenkins</li>
+              <li class="chip">Prometheus</li>
+              <li class="chip">Grafana</li>
+              <li class="chip">ELK Stack</li>
+            </ul>
+          </article>
+
+          <article class="skill-cat" role="listitem">
+            <header class="skill-head">
+              <span class="skill-icon" aria-hidden="true"><i class="fa-solid fa-wrench"></i></span>
+              <h3>Other</h3>
+            </header>
+            <ul class="chip-list">
+              <li class="chip">Talend, SSIS, ETL</li>
+              <li class="chip">Tableau, Power BI</li>
+              <li class="chip">xUnit, Moq, Postman</li>
+              <li class="chip">SDLC, TDD, UML</li>
+              <li class="chip">Agile/Scrum</li>
+              <li class="chip">WPF</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+
+
+      <section id="experience" class="section container" aria-labelledby="exp-title">
+        <h2 id="exp-title" class="section-title reveal">Professional Experience</h2>
+
+        <article class="card reveal delay-1">
+          <header class="card-head meta-row">
+            <div class="meta-left">
+              <h3>Software Engineer</h3>
+
+              <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Kuala Lumpur, Malaysia</div>
+            </div>
+            <div class="meta-right"><div class="org-badge">Self-Employed</div><div class="meta-date">Dec 2023 — Present</div></div>
+          </header>
+          <ul class="card-list">
+            <li>Developed scalable backends in C# (.NET Core), Java, and Python with clean architecture.</li>
+            <li>Designed RESTful APIs with ASP.NET Core; built normalized SQL Server models (3NF) and optimized indexing.</li>
+            <li>Deployed infrastructure with Docker, Kubernetes, and cloud services; automated CI/CD.</li>
+            <li>Integrated Stripe and crypto payment gateways for secure transactions.</li>
+            <li>Built a crypto analytics platform (market trends, fundamentals, technical indicators).</li>
+          </ul>
+          <div class="kw-list">
+            <span class="kw-badge">C# / .NET</span>
+            <span class="kw-badge">ASP.NET Core</span>
+            <span class="kw-badge">REST APIs</span>
+            <span class="kw-badge">SQL Server (Indexing/3NF)</span>
+            <span class="kw-badge">Docker</span>
+            <span class="kw-badge">Kubernetes</span>
+            <span class="kw-badge">Azure</span>
+            <span class="kw-badge">CI/CD</span>
+            <span class="kw-badge">Python</span>
+            <span class="kw-badge">Stripe/Crypto</span>
+          </div>
+        </article>
+
+        <article class="card reveal delay-2">
+          <header class="card-head meta-row">
+            <div class="meta-left">
+              <h3>Software Engineer</h3>
+
+              <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Lorient, France</div>
+            </div>
+            <div class="meta-right"><div class="org-badge">AUSY</div><div class="meta-date">Feb 2023 — Nov 2023</div></div>
+          </header>
+          <ul class="card-list">
+            <li>Engineered a supply chain optimization algorithm, reducing delivery times by ~30%.</li>
+            <li>Developed a C# WPF (MVVM) app for production tracking with EF and LINQ.</li>
+            <li>Designed and deployed ASP.NET microservices containerized with Docker.</li>
+            <li>Managed SDLC with Azure DevOps: planning, versioning, tests, and pipelines.</li>
+            <li>Refactored/optimized legacy codebase to improve stability and performance.</li>
+          </ul>
+          <div class="kw-list">
+            <span class="kw-badge">C# / .NET</span>
+            <span class="kw-badge">WPF (MVVM)</span>
+            <span class="kw-badge">Entity Framework</span>
+            <span class="kw-badge">LINQ</span>
+            <span class="kw-badge">ASP.NET Microservices</span>
+            <span class="kw-badge">Docker</span>
+            <span class="kw-badge">Azure DevOps (SDLC)</span>
+            <span class="kw-badge">Optimization</span>
+          </div>
+        </article>
+
+        <article class="card reveal delay-3">
+          <header class="card-head meta-row">
+            <div class="meta-left">
+              <h3>Software Developer & Data Analyst</h3>
+
+              <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Clermont-Ferrand, France</div>
+            </div>
+            <div class="meta-right"><div class="org-badge">Michelin</div><div class="meta-date">Apr 2022 — Jul 2022</div></div>
+          </header>
+          <ul class="card-list">
+            <li>Optimized Oracle PL/SQL scripts, improving log processing reliability by ~45%.</li>
+            <li>Built a C# WPF dashboard for real-time machine monitoring.</li>
+            <li>Automated AD and DB management with C# (.NET Framework) and PowerShell.</li>
+            <li>Developed tools for contact export (CSV/VCF) from SQL Server; ensured sync via PowerShell.</li>
+            <li>Designed ETL pipelines and Power BI dashboards to surface operational KPIs and actionable insights.</li>
+          </ul>
+          <div class="kw-list">
+            <span class="kw-badge">Oracle PL/SQL</span>
+            <span class="kw-badge">SQL Server</span>
+            <span class="kw-badge">ETL</span>
+            <span class="kw-badge">Power BI</span>
+            <span class="kw-badge">C# / .NET Framework</span>
+            <span class="kw-badge">PowerShell</span>
+            <span class="kw-badge">Automation</span>
+            <span class="kw-badge">Data Quality</span>
+            <span class="kw-badge">KPIs / DAX</span>
+          </div>
+        </article>
+
+        <article class="card reveal delay-4">
+          <header class="card-head meta-row">
+            <div class="meta-left">
+              <h3>Local Area Network Technician</h3>
+
+              <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Clermont-Ferrand, France</div>
+            </div>
+            <div class="meta-right"><div class="org-badge">Michelin</div><div class="meta-date">Mar 2019 — Jun 2019</div></div>
+          </header>
+          <ul class="card-list">
+            <li>Automated server tasks to ensure smooth operation of critical production software.</li>
+            <li>Configured Synology NAS for various management and production servers, enhancing data storage and accessibility.</li>
+            <li>Created VBS scripts for deploying new machines, streamlining the setup process.</li>
+            <li>Administered AD DS (Active Directory Domain Services), ensuring robust user management and network security.</li>
+            <li>Configured DNS, TCP/IP, VNC, and RDP to optimize network performance and accessibility.</li>
+          </ul>
+          <div class="kw-list">
+            <span class="kw-badge">ClickShare</span>
+            <span class="kw-badge">Automation</span>
+            <span class="kw-badge">Synology NAS</span>
+            <span class="kw-badge">VBS</span>
+            <span class="kw-badge">AD DS</span>
+            <span class="kw-badge">DNS</span>
+            <span class="kw-badge">TCP/IP</span>
+            <span class="kw-badge">VNC</span>
+            <span class="kw-badge">RDP</span>
+            <span class="kw-badge">Network Administration</span>
+          </div>
+        </article>
+
+        <article class="card reveal delay-5">
+          <header class="card-head meta-row">
+            <div class="meta-left">
+              <h3>Computer Repair Technician</h3>
+
+              <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Clermont-Ferrand, France</div>
+            </div>
+            <div class="meta-right"><div class="org-badge">MediaPC</div><div class="meta-date">Apr 2018</div></div>
+          </header>
+          <ul class="card-list">
+            <li>Diagnosed and repaired desktops/laptops (hardware and software issues).</li>
+            <li>Reinstalled operating systems, configured drivers, and performed system tuning.</li>
+            <li>Removed malware, secured systems, and handled data backup/recovery.</li>
+            <li>Provided customer support and clear documentation for handover.</li>
+          </ul>
+          <div class="kw-list">
+            <span class="kw-badge">Diagnostics</span>
+            <span class="kw-badge">Hardware Repair</span>
+            <span class="kw-badge">Troubleshooting</span>
+            <span class="kw-badge">OS Installation</span>
+            <span class="kw-badge">Drivers</span>
+            <span class="kw-badge">Malware Removal</span>
+            <span class="kw-badge">Data Recovery</span>
+            <span class="kw-badge">Customer Support</span>
+          </div>
+        </article>
+      </section>
+
+      <section id="education" class="section container" aria-labelledby="edu-title">
+        <h2 id="edu-title" class="section-title reveal">Education</h2>
+        
+        <article class="card reveal delay-1">
+          <header class="card-head meta-row">
+            <div class="meta-left">
+              <h3>PGCert Software Development and Algorithms</h3>
+
+              <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i>Lorient, France</div>
+            </div>
+            <div class="meta-right"><div class="org-badge">Microsoft</div><div class="meta-date">Sep 2022 — Feb 2023</div></div>
+          </header>
+          <ul class="edu-bullets">
+            <li>Proficient in OOP principles (encapsulation, inheritance, polymorphism) to build scalable and maintainable .NET solutions.</li>
+            <li>Strong problem-solving and algorithm design skills, optimizing performance and resource usage.</li>
+            <li>Experience with autonomous agent systems and complex interactions.</li>
+            <li>Knowledge of optimization techniques to improve scalability, reliability, and efficiency.</li>
+            <li>Delivered projects using .NET / ASP.NET Core, applying OOP and algorithmic optimization.</li>
+          </ul>
+          <div class="kw-list">
+            <span class="kw-badge">Data Structures</span>
+            <span class="kw-badge">Algorithms (DP/Graphs)</span>
+            <span class="kw-badge">Complexity (Big‑O)</span>
+            <span class="kw-badge">.NET / C#</span>
+            <span class="kw-badge">ASP.NET Core</span>
+            <span class="kw-badge">Clean Architecture</span>
+            <span class="kw-badge">Unit Testing (xUnit)</span>
+            <span class="kw-badge">Debug</span>
+          </div>
+        </article>
+
+        <article class="card reveal delay-2" data-gpa="3.6">
+          <header class="card-head meta-row">
+            <div class="meta-left">
+              <h3>B.S. Computer Science (Statistics & Business Intelligence)</h3>
+
+              <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Aurillac, France</div>
+            </div>
+            <div class="meta-right"><div class="org-badge">University Clermont Auvergne</div><div class="meta-date">Sep 2020 — Jun 2022</div></div>
+          </header>
+          <ul class="edu-bullets">
+            <li>Proficient in Python, R, Java, and SQL (relational databases) to build data-driven solutions and optimize decision-making processes.</li>
+            <li>Skilled in statistical and probabilistic analysis and financial/epidemic modeling (Monte Carlo, Martingale processes, predictive models).</li>
+            <li>Expertise in ETL and data visualization with Power BI, transforming complex datasets into actionable insights.</li>
+            <li>Experience in cryptography (RSA, AES, Diffie-Hellman) to ensure secure and reliable data handling.</li>
+            <li>Completed a final year project (Guessing Game) demonstrating applied skills in software development and modeling.</li>
+          </ul>
+          <div class="kw-list">
+            <span class="kw-badge">Python</span>
+            <span class="kw-badge">Java</span>
+            <span class="kw-badge">R</span>
+            <span class="kw-badge">SQL</span>
+            <span class="kw-badge">Database Design</span>
+            <span class="kw-badge">ETL</span>
+            <span class="kw-badge">Power BI</span>
+            <span class="kw-badge">Data Modeling / Visualization</span>
+            <span class="kw-badge">Cryptography (RSA/AES)</span>
+          </div>
+        </article>
+
+        <article class="card reveal delay-3" data-gpa="3.7">
+          <header class="card-head meta-row">
+            <div class="meta-left">
+              <h3>S.H.S. Computer Networking & Communication Systems</h3>
+
+              <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Clermont-Ferrand, France</div>
+            </div>
+            <div class="meta-right"><div class="org-badge">Lycée Professionnel Camille Claudel</div><div class="meta-date">Sep 2017 — Jun 2020</div></div>
+          </header>
+          <ul class="edu-bullets">
+            <li>Mastery of IPv4 and IPv6 protocols, including subnetting (CIDR/VLSM) and advanced IP address management.</li>
+            <li>Strong knowledge of the OSI model and TCP/UDP transport protocols for reliable and efficient data communication.</li>
+            <li>Experience with MPLS, VPNs, and tunneling protocols (GRE, IPSec, L2TP) to enable secure and scalable network architectures.</li>
+            <li>Familiarity with firewalls, ACLs, and NAT/PAT for network security and traffic control.</li>
+            <li>Experience in configuring and maintaining switches, routers, and load balancers, ensuring secure and efficient communication.</li>
+          </ul>
+          <div class="kw-list">
+            <span class="kw-badge">IPv4/IPv6</span>
+            <span class="kw-badge">CIDR/VLSM</span>
+            <span class="kw-badge">TCP/UDP</span>
+            <span class="kw-badge">Routing (OSPF/BGP)</span>
+            <span class="kw-badge">VLANs/STP</span>
+            <span class="kw-badge">VPN (IPSec/GRE)</span>
+            <span class="kw-badge">Firewall/ACL/NAT</span>
+            <span class="kw-badge">QoS</span>
+          </div>
+        </article>
+      </section>
+
+      <section id="projects" class="section container" aria-labelledby="proj-title" style="
+    padding-bottom: 0px;">
+        <h2 id="proj-title" class="section-title reveal">Projects</h2>
+
+        <div class="proj-carousel reveal delay-1" aria-roledescription="carousel">
+          <button class="proj-arrow prev" aria-label="Previous projects" type="button">‹</button>
+          <div class="proj-viewport">
+            <div class="proj-track">
+              
+              <article class="tile reveal" data-oss="true">
+                <div class="tile-body">
+                  <h3>Winget Update Tools</h3>
+                  <p class="muted">Automates and simplifies Windows app updates via WinGet with flexible modes and exclusions.</p>
+                  <div class="proj-details is-collapsed">
+                    <ul>
+                      <li>PowerShell-based automation to update installed apps using Windows Package Manager (winget).</li>
+                      <li>Supports flexible update modes (all apps, specific lists) and exclusion lists for fine-grained control.</li>
+                      <li>Improves maintenance efficiency with clear logging and safe fallbacks.</li>
+                      <li>Handles edge cases (missing manifests, interactive installers) to keep runs reliable.</li>
+                      <li>Designed for scheduled use to keep systems consistently up to date.</li>
+                    </ul>
+                  </div>
+                  <div class="kw-list">
+                    <span class="kw-badge">PowerShell</span>
+                    <span class="kw-badge">WinGet</span>
+                    <span class="kw-badge">Automation</span>
+                    <span class="kw-badge">Windows</span>
+                  </div>
+                </div>
+                <div class="tile-foot">
+                  <a class="link" href="https://github.com/Sterbweise/winget-update" target="_blank" rel="noopener">Code</a>
+                </div>
+              </article>
+
+              <article class="tile">
+                <div class="tile-body">
+                  <h3>Supply Chain Optimization Engine</h3>
+                  <p class="muted">Optimization engine for planning and inventory, enabling real‑time, scalable operations.</p>
+                  <div class="proj-details" hidden>
+                    <ul class="card-list">
+                      <li>Contributed to the development of optimization algorithms to streamline production planning and inventory management, improving efficiency and delivery times.</li>
+                      <li>Enabled seamless communication between C# and JavaScript subprograms, facilitating comprehensive data retrieval and integration across systems.</li>
+                      <li>Utilized containerization (Docker, Kubernetes) to ensure efficient deployment and scalability, supporting high availability and performance.</li>
+                      <li>Implemented real‑time data processing for dynamic adjustments and responsive decision‑making based on current production and inventory data.</li>
+                      <li>Participated in thorough testing and validation to ensure reliable algorithm performance under varied conditions.</li>
+                      <li>Collaborated with cross‑functional teams to gather requirements and ensure alignment with business needs and client expectations.</li>
+                    </ul>
+                  </div>
+                  <div class="kw-list">
+                    <span class="kw-badge">C# / .NET</span>
+                    <span class="kw-badge">ASP.NET</span>
+                    <span class="kw-badge">Docker</span>
+                    <span class="kw-badge">Kubernetes</span>
+                    <span class="kw-badge">Real‑time Processing</span>
+                    <span class="kw-badge">Interop (C# ⇄ JS)</span>
+                    <span class="kw-badge">Inventory / Planning</span>
+                    <span class="kw-badge">Testing / Validation</span>
+                    <span class="kw-badge">Scalability / HA</span>
+                  </div>
+                </div>
+                <div class="tile-foot">
+                  <a class="link" href="https://www.syleps.com/" target="_blank" rel="noopener">Website</a>
+                </div>
+              </article>
+
+              <article class="tile">
+                <div class="tile-body">
+                  <h3>Real-time Production Dashboard</h3>
+                  <p class="muted">WPF dashboard for live production tracking and actionable shop‑floor insights.</p>
+                  <div class="proj-details" hidden>
+                    <ul class="card-list">
+                      <li>Contributed to a C# WPF (MVVM) production app, improving tracking accuracy and inventory visibility.</li>
+                      <li>Enabled end‑to‑end flow tracking to identify bottlenecks and optimize throughput.</li>
+                      <li>Implemented clear data visualizations for actionable insights and faster decision‑making.</li>
+                      <li>Collaborated with stakeholders to align features with business requirements and operator needs.</li>
+                      <li>Performed testing and debugging to ensure reliability and performance in varied shop‑floor conditions.</li>
+                    </ul>
+                  </div>
+                  <div class="kw-list">
+                    <span class="kw-badge">C# / .NET</span>
+                    <span class="kw-badge">WPF (MVVM)</span>
+                    <span class="kw-badge">Entity Framework</span>
+                    <span class="kw-badge">LINQ</span>
+                    <span class="kw-badge">SQL Server</span>
+                    <span class="kw-badge">Data Visualization</span>
+                    <span class="kw-badge">Live Monitoring</span>
+                    <span class="kw-badge">Performance</span>
+                    <span class="kw-badge">Testing / Debugging</span>
+                  </div>
+                </div>
+                <div class="tile-foot">
+                  <a class="link" href="https://www.syleps.com/" target="_blank" rel="noopener">Website</a>
+                </div>
+              </article>
+              
+              <article class="tile">
+                <div class="tile-body">
+                  <h3>Crypto Scoring System</h3>
+                  <p class="muted">Comprehensive crypto analysis engine delivering data‑driven investment insights.</p>
+                  <div class="proj-details" hidden>
+                    <ul class="card-list">
+                      <li>Built a multidimensional scoring engine combining fundamentals, on‑chain metrics, technical indicators, and risk factors.</li>
+                      <li>Designed ingestion pipelines aggregating market, on‑chain and sentiment signals with validation, de‑duplication and retries.</li>
+                      <li>Engineered feature normalization/standardization and tunable weighting to compute a composite score per asset/timeframe.</li>
+                      <li>Backtested strategies with walk‑forward validation; tracked Sharpe ratio, hit rate and max drawdown to calibrate thresholds.</li>
+                      <li>Surfaced top signals via alerts and a lightweight dashboard; added guardrails for position sizing and risk limits.</li>
+                    </ul>
+                  </div>
+                  <br>
+                  <div class="kw-list">
+                    <span class="kw-badge">.NET Core</span>
+                    <span class="kw-badge">Python</span>
+                    <span class="kw-badge">Pandas</span>
+                    <span class="kw-badge">SQL</span>
+                    <span class="kw-badge">Technical Indicators</span>
+                    <span class="kw-badge">Market Data APIs</span>
+                    <span class="kw-badge">Backtesting</span>
+                    <span class="kw-badge">Azure</span>
+                  </div>
+                </div>
+                <div class="tile-foot">
+                  <a class="link" href="http://astrumia.com/" target="_blank" rel="noopener">Website</a>
+                </div>
+              </article>
+
+              <article class="tile" data-oss="true">
+                <div class="tile-body">
+                  <h3>Plutonium T6 Server</h3>
+                  <p class="muted">Dedicated server platform for hosting and managing Black Ops II (Plutonium) with stability and easy config.</p>
+                  <div class="proj-details" hidden>
+                    <ul class="card-list">
+                      <li>A dedicated server platform for hosting and managing Call of Duty: Black Ops II using the Plutonium mod.</li>
+                      <li>Enables advanced customization, stable performance, and straightforward configuration.</li>
+                      <li>Provides tooling and structure for reliable operation and streamlined administration.</li>
+                      <li>Includes guidance for setup/operations to support consistent deployments.</li>
+                      <li>Open-source repository available for contributions and audits.</li>
+                    </ul>
+                  </div>
+                  <div class="kw-list">
+                    <span class="kw-badge">C# / .NET</span>
+                    <span class="kw-badge">Server Hosting</span>
+                    <span class="kw-badge">Plutonium</span>
+                    <span class="kw-badge">Black Ops II</span>
+                    <span class="kw-badge">Config Management</span>
+                    <span class="kw-badge">Performance</span>
+                  </div>
+                </div>
+                <div class="tile-foot">
+                  <a class="link" href="https://github.com/Sterbweise/T6Server" target="_blank" rel="noopener">Code</a>
+                </div>
+              </article>
+            </div>
+          </div>
+          <button class="proj-arrow next" aria-label="Next projects" type="button">›</button>
+        </div>
+      </section>
+
+      <!-- Project Modal -->
+      <div id="proj-modal" class="proj-modal" aria-hidden="true">
+        <div class="proj-backdrop" data-close="modal"></div>
+        <div class="proj-dialog" role="dialog" aria-modal="true" aria-labelledby="proj-modal-title">
+          <button class="proj-close" aria-label="Close" data-close="modal">×</button>
+          <h3 id="proj-modal-title"></h3>
+          <div class="proj-modal-text"></div>
+          <div class="kw-list proj-modal-tags"></div>
+        </div>
+      </div>
+
+      <section class="section container" aria-label="Connect">
+        <div class="connect-grid">
+          <section id="contact" aria-labelledby="contact-title">
+            <h2 id="contact-title" class="section-title reveal">Contact</h2>
+            <div class="contact-card reveal delay-1">
+              <ul class="contact-list">
+                <li><i class="fa-sharp fa-solid fa-location-dot"></i><span>Federal Territory of Kuala Lumpur, Malaysia</span><span class="kw-badge time-badge" id="local-time" aria-label="Local time (UTC+8)"></span></li>
+                <li><i class="fa-solid fa-phone"></i><a href="tel:+60182939937">+60 18-283 9937</a><a class="kw-badge pref-badge" href="https://wa.me/60182939937" target="_blank" rel="noopener" aria-label="Open WhatsApp profile">WhatsApp Preferred <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></li>
+                <li><i class="fa-solid fa-envelope"></i><a href="mailto:chandeze.killian@proton.me">chandeze.killian@proton.me</a></li>
+                <li><i class="fa-brands fa-linkedin"></i><a href="https://www.linkedin.com/in/killian-chandeze" target="_blank" rel="noopener">linkedin/killian-chandeze</a></li>
+                <li><i class="fa-brands fa-github"></i><a href="https://github.com/Sterbweise" target="_blank" rel="noopener">github/Sterbweise</a></li>
+              </ul>
+            </div>
+          </section>
+          <section id="languages" aria-labelledby="languages-title">
+            <h2 id="languages-title" class="section-title reveal">Languages</h2>
+            <div class="contact-card reveal delay-1">
+              <ul class="contact-list">
+                <li><span>French</span><span class="kw-badge lang-level-badge">C2 - Native</span></li>
+                <li><span>English</span><span class="kw-badge lang-level-badge">C1 - Proficient</span></li>
+                <li><span>Spanish</span><span class="kw-badge lang-level-badge">B1 - Basic</span></li>
+              </ul>
+            </div>
+
+              </ul>
+            </div>
+          </section>
+        </div>
+
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">KC</div>
+        <div class="footer-copy muted">© <span id="year"></span> Killian Chandeze</div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#education">Education</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <button class="to-top" aria-label="Back to top">↑</button>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
