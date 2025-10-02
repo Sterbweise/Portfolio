@@ -1328,12 +1328,17 @@ a[download], .btn-download, .download, .download-btn{
   color: #000 !important;      /* noir par défaut */
   font-weight: 600;
 }
-[data-theme="light"] a[download],
-[data-theme="light"] .btn-download,
-[data-theme="light"] .download,
-[data-theme="light"] .download-btn{
-  color: #111 !important;      /* noir doux en light */
+
+[data-theme="light"] .btn-download{
+  color: #fff !important;      /* noir doux en light */
 }
+[data-theme="light"] .btn-download:hover,
+[data-theme="light"] .btn.ghost,
+[data-theme="light"] .btn.ghost.btn-download{
+  color: #111 !important;
+}
+
+
 [data-theme="dark"] a[download],
 [data-theme="dark"] .btn-download,
 [data-theme="dark"] .download,

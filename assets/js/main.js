@@ -211,7 +211,7 @@
   const cursor = document.getElementById('role-cursor');
   if (!el) return;
 
-  const text = 'Software Engineer (.NET / ASP.NET)';
+  const text = 'Software Engineer C#/.NET';
   let i = 0;
   const speed = 40; // ms per char
 
