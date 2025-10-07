@@ -1,0 +1,173 @@
+/* Header social links — modern glass effect, minimal aesthetic */
+.social-links{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 0;     /* placé à gauche du header */
+  margin-right: 12px; /* petit espace avant le burger/menu */
+}
+
+.glass-link{
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;                 /* cercle */
+  border: none;                         /* aucun contour */
+  /* verre premium: léger dégradé + translucide */
+  background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+  backdrop-filter: blur(10px) saturate(125%);
+  -webkit-backdrop-filter: blur(10px) saturate(125%);
+  color: inherit;
+  text-decoration: none;
+  transition: background .2s ease, transform .15s ease, box-shadow .2s ease, opacity .2s ease;
+  outline: none;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.24);
+  position: relative;
+  overflow: hidden;
+}
+.glass-link::after{
+  /* reflet interne doux façon “glass” */
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(120% 120% at 20% 0%, rgba(255,255,255,0.20) 0%, transparent 55%);
+  pointer-events:none;
+  opacity:.7;
+}
+
+[data-theme="light"] .glass-link{
+  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.65));
+  box-shadow: 0 8px 22px rgba(0,0,0,0.14);
+}
+
+.glass-link:hover{
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.10));
+  box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+  opacity: .98;
+}
+[data-theme="light"] .glass-link:hover{
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.78));
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+}
+
+.glass-link:focus,
+.glass-link:focus-visible,
+.glass-link:active{
+  outline: none !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.26) !important; /* pas de glow bleu */
+}
+
+/* Icon sizing */
+.glass-link i{
+  font-size: 18px;
+  line-height: 1;
+  opacity: 0.95;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.20)); /* léger relief dans le verre */
+  transition: transform .15s ease, opacity .2s ease;
+}
+.glass-link:hover i{
+  transform: translateY(-1px);
+  opacity: 1;
+}
+
+/* Brand tint (subtle) */
+.glass-link.linkedin i{ color: #60a5fa; } /* soft blue tint */
+.glass-link.github i{ color: #e2e8f0; }   /* soft gray tint */
+[data-theme="light"] .glass-link.github i{ color: #111; }
+
+/* Placement gauche dans le header */
+.site-header .nav .social-links{ margin-left: 0; margin-right: 12px; }
+
+/* Rectangular social buttons — minimal aesthetic, theme-aware (override previous glass) */
+.social-links .glass-link{
+  width: 44px !important;
+  height: 28px !important;
+  border-radius: 0 !important;
+  border: 1px solid rgba(255,255,255,0.16) !important;
+  background:
+    radial-gradient(120% 120% at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.10), transparent 60%),
+    rgba(255,255,255,0.04) !important;
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  box-shadow: none !important;
+  transition: background .18s ease, border-color .18s ease, transform .12s ease, opacity .2s ease;
+  padding: 0; /* keep icon centered */
+}
+.social-links .glass-link:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,0.22) !important;
+  background:
+    radial-gradient(120% 120% at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.14), transparent 60%),
+    rgba(255,255,255,0.06) !important;
+}
+[data-theme="light"] .social-links .glass-link{
+  border-color: rgba(0,0,0,0.12) !important;
+  background:
+    radial-gradient(120% 120% at var(--mx,50%) var(--my,50%), rgba(0,0,0,0.06), transparent 60%),
+    rgba(0,0,0,0.02) !important;
+}
+[data-theme="light"] .social-links .glass-link:hover{
+  border-color: rgba(0,0,0,0.18) !important;
+  background:
+    radial-gradient(120% 120% at var(--mx,50%) var(--my,50%), rgba(0,0,0,0.10), transparent 60%),
+    rgba(0,0,0,0.04) !important;
+}
+/* Icon tint stays subtle and centered */
+.social-links .glass-link i{
+  font-size: 16px;
+  line-height: 1;
+  opacity: .95;
+  transform: translateY(0);
+  transition: transform .12s ease, opacity .18s ease;
+}
+.social-links .glass-link:hover i{
+  transform: translateY(-1px);
+  opacity: 1;
+}
+
+/* Language select — improve dropdown aesthetics */
+#lang-select{
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#lang-select option{
+  background: #0f172a;
+  color: #e2e8f0;
+}
+@media (prefers-color-scheme: light){
+  #lang-select option{
+    background: #fff;
+    color: #111;
+  }
+}
+
+/* Dropdown scrollbar (WebKit/Blink) */
+select::-webkit-scrollbar{
+  width: 10px;
+}
+select::-webkit-scrollbar-track{
+  background: rgba(255,255,255,0.06);
+}
+select::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.24);
+  border-radius: 0;
+  border: 2px solid transparent;
+}
+@media (prefers-color-scheme: light){
+  select::-webkit-scrollbar-track{ background: rgba(0,0,0,0.06); }
+  select::-webkit-scrollbar-thumb{ background: rgba(0,0,0,0.24); }
+}
+
+/* Minimal open/hover feel */
+#lang-select:hover{
+  border-color: rgba(255,255,255,0.45);
+  background-color: rgba(255,255,255,0.06);
+}
+@media (prefers-color-scheme: light){
+  #lang-select:hover{
+    border-color: rgba(0,0,0,0.30);
+    background-color: rgba(0,0,0,0.04);
+  }
+}

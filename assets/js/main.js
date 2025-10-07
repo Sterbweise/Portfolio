@@ -1,9 +1,85 @@
 (function(){
+  // GPA/Mention badge next to location line
+  function renderEducationGpa(lang){
+    const cards = document.querySelectorAll('#education article.card');
+    cards.forEach(card => {
+      const val = (lang === 'fr')
+        ? (card.getAttribute('data-gpa-fr') || card.getAttribute('data-gpa'))
+        : (card.getAttribute('data-gpa-en') || card.getAttribute('data-gpa'));
+      const metaLeft = card.querySelector('.meta-left');
+      if (!metaLeft) return;
+      // Target the location line (first .meta-line containing the location)
+      const locLine = metaLeft.querySelector('.meta-line');
+      if (!locLine) return;
+
+      // Find existing badge
+      let badge = locLine.querySelector('.gpa-badge');
+      if (!val){
+        // Remove badge if no value provided
+        if (badge) badge.remove();
+        return;
+      }
+      const label = (lang === 'fr') ? 'Mention' : 'GPA';
+      const text = `${label}: ${val}`;
+
+      if (!badge){
+        badge = document.createElement('span');
+        badge.className = 'gpa-badge';
+        badge.textContent = text;
+        // Append inside location line to keep rectangular badge styling
+        locLine.appendChild(badge);
+      } else {
+        badge.textContent = text;
+      }
+    });
+  }
+
+  // CV download link switcher based on language
+  function updateCvLinks(lang){
+    const links = document.querySelectorAll('.btn-download[href]');
+    const href = lang === 'fr'
+      ? 'assets/cv/CV_FR_Killian_Chandeze_Sofware_Engineer.pdf'
+      : 'assets/cv/CV_EN_Killian_Chandeze_Sofware_Engineer.pdf';
+    links.forEach(a => {
+      a.setAttribute('href', href);
+      a.setAttribute('download', href.split('/').pop());
+    });
+  }
+
+  // Initial setup once DOM and i18n are ready
+  document.addEventListener('DOMContentLoaded', () => {
+    // Try to infer current language from html lang or i18n state changes later
+    const initialLang = document.documentElement.lang && document.documentElement.lang.toLowerCase().startsWith('fr') ? 'fr' : 'en';
+    renderEducationGpa(initialLang);
+    updateCvLinks(initialLang);
+  });
+
+  // React to language changes from i18n system
+  document.addEventListener('i18n:change', (e) => {
+    const lang = (e && e.detail && e.detail.lang) ? e.detail.lang : 'en';
+    renderEducationGpa(lang);
+    updateCvLinks(lang);
+  });
   const navToggle = document.querySelector('.nav-toggle');
   const nav = document.getElementById('site-nav');
   const toTop = document.querySelector('.to-top');
   const yearEl = document.getElementById('year');
   const themeToggle = document.getElementById('theme-toggle');
+
+  // i18n-aware labels for theme toggle (EN/FR)
+  const getUiLang = () => {
+    const attr = document.documentElement.getAttribute('lang');
+    const ls = typeof localStorage !== 'undefined' ? localStorage.getItem('lang') : null;
+    const v = (attr || ls || 'en').toString().slice(0,2).toLowerCase();
+    return v === 'fr' ? 'fr' : 'en';
+  };
+  const getThemeLabel = (theme) => {
+    const lang = getUiLang();
+    // Button shows the target mode (same behavior as before)
+    const toDark  = lang === 'fr' ? 'Sombre' : 'Dark';
+    const toLight = lang === 'fr' ? 'Clair'  : 'Light';
+    return theme === 'light' ? toDark : toLight;
+  };
 
   // Year
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -11,7 +87,7 @@
   // Theme toggle (dark/light with persistence)
   const applyTheme = (theme) => {
     document.body.setAttribute('data-theme', theme);
-    if (themeToggle) themeToggle.textContent = theme === 'light' ? 'Dark' : 'Light';
+    if (themeToggle) themeToggle.textContent = getThemeLabel(theme);
   };
 
   const getInitialTheme = () => {
@@ -29,6 +105,10 @@
       currentTheme = currentTheme === 'light' ? 'dark' : 'light';
       localStorage.setItem('theme', currentTheme);
       applyTheme(currentTheme);
+    });
+    // Update label when language switches (via i18n)
+    document.addEventListener('i18n:change', () => {
+      themeToggle.textContent = getThemeLabel(currentTheme);
     });
   }
 
@@ -167,7 +247,8 @@
       btn.type = 'button';
       btn.className = 'btn ghost exp-toggle';
       btn.setAttribute('aria-expanded', 'false');
-      btn.textContent = 'Show more';
+      const getI18n = (k, d) => (window.i18nGet ? window.i18nGet(k, d) : d);
+      btn.textContent = getI18n('show_more', 'Show more');
 
       // Wrapper for centering
       const wrap = document.createElement('div');
@@ -181,7 +262,7 @@
       btn.addEventListener('click', () => {
         expanded = !expanded;
         btn.setAttribute('aria-expanded', String(expanded));
-        btn.textContent = expanded ? 'Show less' : 'Show more';
+        btn.textContent = expanded ? getI18n('show_less', 'Show less') : getI18n('show_more', 'Show more');
 
         cards.slice(maxVisible).forEach(c => {
           if (expanded){
@@ -199,6 +280,10 @@
         if (!expanded){
           expSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+      });
+      // Update button label on language change
+      document.addEventListener('i18n:change', () => {
+        btn.textContent = expanded ? getI18n('show_less', 'Show less') : getI18n('show_more', 'Show more');
       });
     }
   }
@@ -251,31 +336,10 @@ document.addEventListener('DOMContentLoaded', function(){
   el.appendChild(frag);
 });
 
-/* Education: inject minimal GPA badge next to location line */
+/* Education: dynamic GPA/Mention line based on language */
 document.addEventListener('DOMContentLoaded', function(){
-  const edu = document.getElementById('education');
-  if (!edu) return;
-  const cards = edu.querySelectorAll('article.card');
-  cards.forEach(card => {
-    // Only inject GPA if attribute is explicitly provided
-    const val = card.getAttribute('data-gpa');
-    if (!val) return;
-    // Find the location line inside meta-left
-    const locLine = card.querySelector('.meta-left .meta-line');
-    if (!locLine) return;
-    // If badge exists, update its text with label and stop
-    const existing = locLine.querySelector('.gpa-badge');
-    if (existing){
-      existing.textContent = `GPA: ${val}`;
-      return;
-    }
-    // Build badge
-    const badge = document.createElement('span');
-    badge.className = 'gpa-badge';
-    badge.textContent = `GPA: ${val}`;
-    // Insert after location text
-    locLine.appendChild(badge);
-  });
+  const lang = (document.documentElement.getAttribute('lang') || 'en').slice(0,2).toLowerCase() === 'fr' ? 'fr' : 'en';
+  renderEducationGpa(lang);
 });
 
 /* Projects: open modal with details from tile */
@@ -378,6 +442,111 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 });
+
+/* Header glass links: pressed animation (minimal) */
+(function(){
+  const links = document.querySelectorAll('.glass-link');
+  links.forEach(a => {
+    const set = (on)=> on ? a.classList.add('pressed') : a.classList.remove('pressed');
+    a.addEventListener('mousedown', ()=> set(true));
+    a.addEventListener('mouseup',   ()=> set(false));
+    a.addEventListener('mouseleave',()=> set(false));
+    a.addEventListener('touchstart',()=> set(true), {passive:true});
+    a.addEventListener('touchend',  ()=> set(false));
+  });
+})();
+
+/* Header language custom menu wiring */
+(function(){
+  const native = document.getElementById('lang-select');
+  const menu = document.getElementById('lang-menu');
+  if (!native || !menu) return;
+
+  const trigger = menu.querySelector('.lang-trigger');
+  const list = menu.querySelector('.lang-list');
+  const items = menu.querySelectorAll('.lang-list .value');
+
+  // Map langue -> drapeau + code
+  const LANG_MAP = {
+    en: { flag: '🇬🇧', code: 'EN' },
+    fr: { flag: '🇫🇷', code: 'FR' }
+  };
+
+  const setActive = () => {
+    // Active state in list
+    items.forEach(b => b.classList.toggle('active', b.dataset.lang === native.value));
+
+    // Mettre à jour le trigger avec drapeau + code
+    const labelEl = trigger.querySelector('.label');
+    let flagEl = trigger.querySelector('.flag');
+    if (!flagEl){
+      flagEl = document.createElement('span');
+      flagEl.className = 'flag';
+      // insérer la flag avant le label
+      if (labelEl) {
+        labelEl.insertAdjacentElement('beforebegin', flagEl);
+      } else {
+        trigger.insertAdjacentElement('afterbegin', flagEl);
+      }
+    }
+    const info = LANG_MAP[native.value] || { flag: '🏳️', code: native.value?.toUpperCase() || '' };
+    flagEl.textContent = info.flag;
+    if (labelEl) labelEl.textContent = info.code;
+    trigger.classList.add('has-flag');
+    trigger.setAttribute('aria-label', info.code);
+  };
+
+  const open = (v) => {
+    list.hidden = !v;
+    trigger.setAttribute('aria-expanded', String(v));
+  };
+
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    open(list.hidden);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target)) open(false);
+  });
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') open(false);
+  });
+
+  items.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const lang = btn.dataset.lang;
+      if (!lang) return;
+      native.value = lang;
+      native.dispatchEvent(new Event('change', { bubbles: true }));
+      open(false);
+    });
+  });
+
+  // Initial label (EN/FR + flag)
+  setActive();
+  document.addEventListener('i18n:change', setActive);
+})();
+
+/* Header social icons — subtle JS highlight following cursor */
+(function(){
+  const links = document.querySelectorAll('.social-links .glass-link');
+  links.forEach(el=>{
+    el.addEventListener('mousemove', (e)=>{
+      const r = el.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 100;
+      const y = ((e.clientY - r.top) / r.height) * 100;
+      el.style.setProperty('--mx', x + '%');
+      el.style.setProperty('--my', y + '%');
+    }, { passive: true });
+    el.addEventListener('mouseleave', ()=>{
+      el.style.removeProperty('--mx');
+      el.style.removeProperty('--my');
+    });
+  });
+})();
 
 /* keep IIFE terminator */
 })();

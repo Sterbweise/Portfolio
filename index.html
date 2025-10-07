@@ -16,6 +16,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/additions.css" />
+    <link rel="stylesheet" href="assets/css/lang-select.css" />
+    <link rel="stylesheet" href="assets/css/header-icons.css" />
 
     <!-- Favicons -->
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
@@ -30,21 +32,51 @@
   <body data-theme="dark">
     <header class="site-header" role="banner">
       <div class="container nav">
-        <a href="#top" class="brand" aria-label="Go to top">Killian Chandeze</a>
+        <a href="#top" class="brand" aria-label="Go to top"></a>
+        <div class="social-links">
+            <a class="glass-link linkedin" href="https://www.linkedin.com/in/killian-chandeze" target="_blank" rel="noopener" aria-label="Open LinkedIn profile">
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a class="glass-link github" href="https://github.com/Sterbweise" target="_blank" rel="noopener" aria-label="Open GitHub profile">
+              <i class="fa-brands fa-github"></i>
+            </a>
+        </div>
         <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
           <span class="nav-toggle-bar"></span>
           <span class="nav-toggle-bar"></span>
           <span class="nav-toggle-bar"></span>
         </button>
         <nav id="site-nav" class="site-nav" role="navigation" aria-label="Primary">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#experience">Experience</a>
-          <a href="#education">Education</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a href="#about" data-i18n="nav_about">About</a>
+          <a href="#skills" data-i18n="nav_skills">Skills</a>
+          <a href="#experience" data-i18n="nav_experience">Experience</a>
+          <a href="#education" data-i18n="nav_education">Education</a>
+          <a href="#projects" data-i18n="nav_projects">Projects</a>
+          <a href="#contact" data-i18n="nav_contact">Contact</a>
           <button id="theme-toggle" class="btn btn-small ghost" type="button" aria-label="Toggle theme">Light</button>
-          <a class="btn btn-small btn-download" href="CV_Killian_Chandeze_Sofware_Engineer.pdf" download="CV_Killian_Chandeze_Sofware_Engineer.pdf" target="_blank" rel="noopener">Download CV</a>
+          <select id="lang-select" class="btn btn-small ghost" aria-label="Change language">
+            <option value="en">EN</option>
+            <option value="fr">FR</option>
+          </select>
+          <div id="lang-menu" class="lang-menu">
+            <button class="lang-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+              <span class="icon-globe" aria-hidden="true"></span>
+              <span class="label">Language</span>
+              <span class="caret" aria-hidden="true"></span>
+            </button>
+            <div class="lang-list" role="menu" hidden>
+              <button class="value" data-lang="en" role="menuitem">
+                <span class="rail" aria-hidden="true"></span>
+                <span class="text">English</span>
+              </button>
+              <button class="value" data-lang="fr" role="menuitem">
+                <span class="rail" aria-hidden="true"></span>
+                <span class="text">Français</span>
+              </button>
+            </div>
+          </div>
+          <a class="btn btn-small btn-download" href="CV_Killian_Chandeze_Sofware_Engineer.pdf" download="CV_Killian_Chandeze_Sofware_Engineer.pdf" target="_blank" rel="noopener" data-i18n="hero_download_cv">Download CV</a>
+
         </nav>
       </div>
     </header>
@@ -54,38 +86,40 @@
         <div class="hero-content">
           <div class="hero-tagline reveal">
             <p class="hero-quote lead-quote design-quote">
-              <span class="quote-mark open">“</span><span id="quote-text">Form follows function.</span><span class="quote-mark close">”</span>
+              <span class="quote-mark open">“</span><span id="quote-text" data-i18n="quote">Form follows function.</span><span class="quote-mark close">”</span>
             </p>
 
           </div>
-          <h1 class="reveal defer-on-scroll">Hi, I’m Killian Chandeze</h1>
+          <h1 class="reveal defer-on-scroll" data-i18n="hero_title">Hi, I’m Killian Chandeze</h1>
           <div class="hero-role reveal delay-1" aria-live="polite">
             <span id="role-typer"></span><span id="role-cursor" aria-hidden="true">|</span>
           </div>
-          <p class="muted reveal delay-2">3+ years building robust, scalable, and data-driven solutions in IT, supply chain, and finance. Skilled in RESTful APIs, SQL/NoSQL, cloud-native applications, and performance optimization.</p>
+          <p class="muted reveal delay-2" data-i18n="hero_intro">3+ years building robust, scalable, and data-driven solutions in IT, supply chain, and finance. Skilled in RESTful APIs, SQL/NoSQL, cloud-native applications, and performance optimization.</p>
           <div class="hero-cta reveal delay-3">
-            <a class="btn" href="#projects">View Projects</a>
-            <a class="btn ghost btn-download" href="CV_Killian_Chandeze_Sofware_Engineer.pdf" download="CV_Killian_Chandeze_Sofware_Engineer.pdf" target="_blank" rel="noopener">Download CV</a>
+            <a class="btn" href="#projects" data-i18n="hero_view_projects">View Projects</a>
+            <a class="btn ghost btn-download" href="CV_Killian_Chandeze_Sofware_Engineer.pdf" download="CV_Killian_Chandeze_Sofware_Engineer.pdf" target="_blank" rel="noopener" data-i18n="hero_download_cv">Download CV</a>
           </div>
-          <a class="scroll-down" href="#about" aria-label="Go to About section">↓</a>
+          <a class="scroll-down" href="#about" aria-label="Scroll to About">
+            <span aria-hidden="true">↓</span>
+          </a>
         </div>
       </section>
 
       <section id="about" class="section container" aria-labelledby="about-title">
-        <h2 id="about-title" class="section-title reveal">About</h2>
+        <h2 id="about-title" class="section-title reveal" data-i18n="about_title">About</h2>
         <div class="about-grid reveal delay-1">
           <div class="about-text">
-            <p class="lead">Hi, I’m Killian — a Software Engineer from France, currently based in Malaysia. My goal is to build collaborative and impactful solutions that address real-world and future challenges.</p>
-            <p>I specialize in .NET technologies and work across the full stack, though I have a strong preference for backend development — where I find the real art and enjoyment of programming. I also have a data analyst background from my studies, and I enjoy combining both skill sets in projects.</p>
-            <p>Beyond coding, I’m passionate about <span class="hilite">finance</span>, <span class="hilite">problem‑solving</span>, <span class="hilite">new technologies</span>, and <span class="hilite">exploring anything that sparks curiosity</span>.</p>
+            <p class="lead" data-i18n="about_lead">Hi, I’m Killian — a Software Engineer from France, currently based in Malaysia. My goal is to build collaborative and impactful solutions that address real-world and future challenges.</p>
+            <p data-i18n="about_p2">I specialize in .NET technologies and work across the full stack, though I have a strong preference for backend development — where I find the real art and enjoyment of programming. I also have a data analyst background from my studies, and I enjoy combining both skill sets in projects.</p>
+            <p data-i18n="about_p3">Beyond coding, I’m passionate about <span class="hilite">finance</span>, <span class="hilite">problem‑solving</span>, <span class="hilite">new technologies</span>, and <span class="hilite">exploring anything that sparks curiosity</span>.</p>
             <div class="about-strengths">
-              <div class="about-strengths-title">Key strengths</div>
+              <div class="about-strengths-title" data-i18n="about_strengths_title">Key strengths</div>
               <div class="kw-list">
-                <span class="kw-badge">Adaptability</span>
-                <span class="kw-badge">Analytical Thinking</span>
-                <span class="kw-badge">Resilience</span>
-                <span class="kw-badge">Collaboration</span>
-                <span class="kw-badge">Continuous Learning</span>
+                <span class="kw-badge" data-i18n="strength_adaptability">Adaptability</span>
+                <span class="kw-badge" data-i18n="strength_analytical">Analytical Thinking</span>
+                <span class="kw-badge" data-i18n="strength_resilience">Resilience</span>
+                <span class="kw-badge" data-i18n="strength_collaboration">Collaboration</span>
+                <span class="kw-badge" data-i18n="strength_learning">Continuous Learning</span>
               </div>
             </div>
           </div>
@@ -96,15 +130,15 @@
       </section>
 
       <section id="skills" class="section container" aria-labelledby="skills-title">
-        <h2 id="skills-title" class="section-title reveal">Technical Skills</h2>
+        <h2 id="skills-title" class="section-title reveal" data-i18n="skills_title">Technical Skills</h2>
 
         <div class="skills-grid reveal delay-1" role="list">
           <article class="skill-cat" role="listitem">
             <header class="skill-head">
               <span class="skill-icon" aria-hidden="true"><i class="fa-solid fa-code"></i></span>
-              <h3>Languages</h3>
+              <h3 data-i18n="skills_cat_languages">Languages</h3>
             </header>
-            <ul class="chip-list">
+            <ul class="chip-list" data-i18n-list="skills_lang">
               <li class="chip">C# (.NET, ASP.NET, WPF)</li>
               <li class="chip">Python</li>
               <li class="chip">Java</li>
@@ -117,9 +151,9 @@
           <article class="skill-cat" role="listitem">
             <header class="skill-head">
               <span class="skill-icon" aria-hidden="true"><i class="fa-solid fa-database"></i></span>
-              <h3>Databases</h3>
+              <h3 data-i18n="skills_cat_databases">Databases</h3>
             </header>
-            <ul class="chip-list">
+            <ul class="chip-list" data-i18n-list="skills_db">
               <li class="chip">SQL (MS SQL, MySQL, PostgreSQL)</li>
               <li class="chip">NoSQL (Redis, MongoDB)</li>
             </ul>
@@ -128,9 +162,9 @@
           <article class="skill-cat" role="listitem">
             <header class="skill-head">
               <span class="skill-icon" aria-hidden="true"><i class="fa-solid fa-plug"></i></span>
-              <h3>Backend & APIs</h3>
+              <h3 data-i18n="skills_cat_backend">Backend & APIs</h3>
             </header>
-            <ul class="chip-list">
+            <ul class="chip-list" data-i18n-list="skills_backend">
               <li class="chip">RESTful APIs</li>
               <li class="chip">OpenAPI</li>
               <li class="chip">Swagger</li>
@@ -144,9 +178,9 @@
           <article class="skill-cat" role="listitem">
             <header class="skill-head">
               <span class="skill-icon" aria-hidden="true"><i class="fa-solid fa-server"></i></span>
-              <h3>Infrastructure</h3>
+              <h3 data-i18n="skills_cat_infra">Infrastructure</h3>
             </header>
-            <ul class="chip-list">
+            <ul class="chip-list" data-i18n-list="skills_infra">
               <li class="chip">Docker</li>
               <li class="chip">Kubernetes</li>
               <li class="chip">KVM</li>
@@ -162,9 +196,9 @@
           <article class="skill-cat" role="listitem">
             <header class="skill-head">
               <span class="skill-icon" aria-hidden="true"><i class="fa-solid fa-cloud"></i></span>
-              <h3>Cloud & DevOps</h3>
+              <h3 data-i18n="skills_cat_cloud">Cloud & DevOps</h3>
             </header>
-            <ul class="chip-list">
+            <ul class="chip-list" data-i18n-list="skills_cloud">
               <li class="chip">AWS</li>
               <li class="chip">Azure DevOps</li>
               <li class="chip">Git</li>
@@ -179,9 +213,9 @@
           <article class="skill-cat" role="listitem">
             <header class="skill-head">
               <span class="skill-icon" aria-hidden="true"><i class="fa-solid fa-wrench"></i></span>
-              <h3>Other</h3>
+              <h3 data-i18n="skills_cat_other">Other</h3>
             </header>
-            <ul class="chip-list">
+            <ul class="chip-list" data-i18n-list="skills_other">
               <li class="chip">Talend, SSIS, ETL</li>
               <li class="chip">Tableau, Power BI</li>
               <li class="chip">xUnit, Moq, Postman</li>
@@ -195,18 +229,18 @@
 
 
       <section id="experience" class="section container" aria-labelledby="exp-title">
-        <h2 id="exp-title" class="section-title reveal">Professional Experience</h2>
+        <h2 id="exp-title" class="section-title reveal" data-i18n="experience_title">Professional Experience</h2>
 
         <article class="card reveal delay-1">
           <header class="card-head meta-row">
             <div class="meta-left">
-              <h3>Software Engineer</h3>
+              <h3 data-i18n="exp_role_self">Software Engineer</h3>
 
               <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Kuala Lumpur, Malaysia</div>
             </div>
             <div class="meta-right"><div class="org-badge">Self-Employed</div><div class="meta-date">Dec 2023 — Present</div></div>
           </header>
-          <ul class="card-list">
+          <ul class="card-list" data-i18n-list="exp_self">
             <li>Developed scalable backends in C# (.NET 8), Java, and Python with clean architecture.</li>
             <li>Designed RESTful APIs with ASP.NET (MVC); built normalized SQL Server models (3NF) and optimized indexing.</li>
             <li>Deployed infrastructure with Docker, Kubernetes, and cloud services; automated CI/CD.</li>
@@ -230,13 +264,13 @@
         <article class="card reveal delay-2">
           <header class="card-head meta-row">
             <div class="meta-left">
-              <h3>Software Engineer</h3>
+              <h3 data-i18n="exp_role_ausy">Software Engineer</h3>
 
               <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Lorient, France</div>
             </div>
             <div class="meta-right"><div class="org-badge">AUSY</div><div class="meta-date">Feb 2023 — Nov 2023</div></div>
           </header>
-          <ul class="card-list">
+          <ul class="card-list" data-i18n-list="exp_ausy">
             <li>Engineered a supply chain optimization algorithm, reducing delivery times by ~30%.</li>
             <li>Developed a C# WPF (MVVM) app for production tracking with EF and LINQ.</li>
             <li>Designed and deployed ASP.NET microservices containerized with Docker.</li>
@@ -258,13 +292,13 @@
         <article class="card reveal delay-3">
           <header class="card-head meta-row">
             <div class="meta-left">
-              <h3>Software Developer & Data Analyst</h3>
+              <h3 data-i18n="exp_role_michelin_da">Software Developer & Data Analyst</h3>
 
               <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Clermont-Ferrand, France</div>
             </div>
             <div class="meta-right"><div class="org-badge">Michelin</div><div class="meta-date">Apr 2022 — Jul 2022</div></div>
           </header>
-          <ul class="card-list">
+          <ul class="card-list" data-i18n-list="exp_michelin_da">
             <li>Optimized Oracle PL/SQL scripts, improving log processing reliability by ~45%.</li>
             <li>Built a C# WPF dashboard for real-time machine monitoring.</li>
             <li>Automated AD and DB management with C# (.NET Framework) and PowerShell.</li>
@@ -287,13 +321,13 @@
         <article class="card reveal delay-4">
           <header class="card-head meta-row">
             <div class="meta-left">
-              <h3>Local Area Network Technician</h3>
+              <h3 data-i18n="exp_role_michelin_lan">Local Area Network Technician</h3>
 
               <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Clermont-Ferrand, France</div>
             </div>
             <div class="meta-right"><div class="org-badge">Michelin</div><div class="meta-date">Mar 2019 — Jun 2019</div></div>
           </header>
-          <ul class="card-list">
+          <ul class="card-list" data-i18n-list="exp_michelin_lan">
             <li>Automated server tasks to ensure smooth operation of critical production software.</li>
             <li>Configured Synology NAS for various management and production servers, enhancing data storage and accessibility.</li>
             <li>Created VBS scripts for deploying new machines, streamlining the setup process.</li>
@@ -317,13 +351,13 @@
         <article class="card reveal delay-5">
           <header class="card-head meta-row">
             <div class="meta-left">
-              <h3>Computer Repair Technician</h3>
+              <h3 data-i18n="exp_role_mediapc">Computer Repair Technician</h3>
 
               <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Clermont-Ferrand, France</div>
             </div>
             <div class="meta-right"><div class="org-badge">MediaPC</div><div class="meta-date">Apr 2018</div></div>
           </header>
-          <ul class="card-list">
+          <ul class="card-list" data-i18n-list="exp_mediapc">
             <li>Diagnosed and repaired desktops/laptops (hardware and software issues).</li>
             <li>Reinstalled operating systems, configured drivers, and performed system tuning.</li>
             <li>Removed malware, secured systems, and handled data backup/recovery.</li>
@@ -343,18 +377,18 @@
       </section>
 
       <section id="education" class="section container" aria-labelledby="edu-title">
-        <h2 id="edu-title" class="section-title reveal">Education</h2>
+        <h2 id="edu-title" class="section-title reveal" data-i18n="education_title">Education</h2>
         
         <article class="card reveal delay-1">
           <header class="card-head meta-row">
             <div class="meta-left">
-              <h3>PGCert Software Development and Algorithms</h3>
+              <h3 data-i18n="edu_pgcert_title">PGCert Software Development and Algorithms</h3>
 
               <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i>Lorient, France</div>
             </div>
             <div class="meta-right"><div class="org-badge">Microsoft</div><div class="meta-date">Sep 2022 — Feb 2023</div></div>
           </header>
-          <ul class="edu-bullets">
+          <ul class="edu-bullets" data-i18n-list="edu_pgcert">
             <li>Proficient in OOP principles (encapsulation, inheritance, polymorphism) to build scalable and maintainable .NET solutions.</li>
             <li>Strong problem-solving and algorithm design skills, optimizing performance and resource usage.</li>
             <li>Experience with autonomous agent systems and complex interactions.</li>
@@ -373,16 +407,16 @@
           </div>
         </article>
 
-        <article class="card reveal delay-2" data-gpa="3.6">
+        <article class="card reveal delay-2" data-gpa-en="3.6" data-gpa-fr="Bien">
           <header class="card-head meta-row">
             <div class="meta-left">
-              <h3>B.S. Computer Science (Statistics & Business Intelligence)</h3>
+              <h3 data-i18n="edu_bsc_title">B.S. Computer Science (Statistics & Business Intelligence)</h3>
 
               <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Aurillac, France</div>
             </div>
             <div class="meta-right"><div class="org-badge">University Clermont Auvergne</div><div class="meta-date">Sep 2020 — Jun 2022</div></div>
           </header>
-          <ul class="edu-bullets">
+          <ul class="edu-bullets" data-i18n-list="edu_bsc">
             <li>Proficient in Python, R, Java, and SQL (relational databases) to build data-driven solutions and optimize decision-making processes.</li>
             <li>Skilled in statistical and probabilistic analysis and financial/epidemic modeling (Monte Carlo, Martingale processes, predictive models).</li>
             <li>Expertise in ETL and data visualization with Power BI, transforming complex datasets into actionable insights.</li>
@@ -402,16 +436,16 @@
           </div>
         </article>
 
-        <article class="card reveal delay-3" data-gpa="3.7">
+        <article class="card reveal delay-3" data-gpa-en="3.7" data-gpa-fr="Très bien">
           <header class="card-head meta-row">
             <div class="meta-left">
-              <h3>S.H.S. Computer Networking & Communication Systems</h3>
+              <h3 data-i18n="edu_shs_title">S.H.S. Computer Networking & Communication Systems</h3>
 
               <div class="meta-line"><i class="fa-sharp fa-solid fa-location-dot"></i> Clermont-Ferrand, France</div>
             </div>
             <div class="meta-right"><div class="org-badge">Lycée Professionnel Camille Claudel</div><div class="meta-date">Sep 2017 — Jun 2020</div></div>
           </header>
-          <ul class="edu-bullets">
+          <ul class="edu-bullets" data-i18n-list="edu_shs">
             <li>Mastery of IPv4 and IPv6 protocols, including subnetting (CIDR/VLSM) and advanced IP address management.</li>
             <li>Strong knowledge of the OSI model and TCP/UDP transport protocols for reliable and efficient data communication.</li>
             <li>Experience with MPLS, VPNs, and tunneling protocols (GRE, IPSec, L2TP) to enable secure and scalable network architectures.</li>
@@ -433,19 +467,19 @@
 
       <section id="projects" class="section container" aria-labelledby="proj-title" style="
     padding-bottom: 0px;">
-        <h2 id="proj-title" class="section-title reveal">Projects</h2>
+        <h2 id="proj-title" class="section-title reveal" data-i18n="projects_title">Projects</h2>
 
         <div class="proj-carousel reveal delay-1" aria-roledescription="carousel">
-          <button class="proj-arrow prev" aria-label="Previous projects" type="button">‹</button>
+          <button class="proj-arrow prev" aria-label="Previous projects" type="button" data-i18n="proj_prev_aria" data-i18n-attr="aria-label">‹</button>
           <div class="proj-viewport">
             <div class="proj-track">
               
               <article class="tile reveal" data-oss="true">
                 <div class="tile-body">
-                  <h3>Winget Update Tools</h3>
-                  <p class="muted">Automates and simplifies Windows app updates via WinGet with flexible modes and exclusions.</p>
+                  <h3 data-i18n="proj_winget_title">Winget Update Tools</h3>
+                  <p class="muted" data-i18n="proj_winget_desc">Automates and simplifies Windows app updates via WinGet with flexible modes and exclusions.</p>
                   <div class="proj-details is-collapsed">
-                    <ul>
+                    <ul data-i18n-list="proj_winget">
                       <li>PowerShell-based automation to update installed apps using Windows Package Manager (winget).</li>
                       <li>Supports flexible update modes (all apps, specific lists) and exclusion lists for fine-grained control.</li>
                       <li>Improves maintenance efficiency with clear logging and safe fallbacks.</li>
@@ -461,16 +495,16 @@
                   </div>
                 </div>
                 <div class="tile-foot">
-                  <a class="link" href="https://github.com/Sterbweise/winget-update" target="_blank" rel="noopener">Code</a>
+                  <a class="link" href="https://github.com/Sterbweise/winget-update" target="_blank" rel="noopener" data-i18n="proj_code_link">Code</a>
                 </div>
               </article>
 
               <article class="tile">
                 <div class="tile-body">
-                  <h3>Supply Chain Optimization Engine</h3>
-                  <p class="muted">Optimization engine for planning and inventory, enabling real‑time, scalable operations.</p>
+                  <h3 data-i18n="proj_supply_title">Supply Chain Optimization Engine</h3>
+                  <p class="muted" data-i18n="proj_supply_desc">Optimization engine for planning and inventory, enabling real‑time, scalable operations.</p>
                   <div class="proj-details" hidden>
-                    <ul class="card-list">
+                    <ul class="card-list" data-i18n-list="proj_supply">
                       <li>Contributed to the development of optimization algorithms to streamline production planning and inventory management, improving efficiency and delivery times.</li>
                       <li>Enabled seamless communication between C# and JavaScript subprograms, facilitating comprehensive data retrieval and integration across systems.</li>
                       <li>Utilized containerization (Docker, Kubernetes) to ensure efficient deployment and scalability, supporting high availability and performance.</li>
@@ -492,16 +526,16 @@
                   </div>
                 </div>
                 <div class="tile-foot">
-                  <a class="link" href="https://www.syleps.com/" target="_blank" rel="noopener">Website</a>
+                  <a class="link" href="https://www.syleps.com/" target="_blank" rel="noopener" data-i18n="proj_website_link">Website</a>
                 </div>
               </article>
 
               <article class="tile">
                 <div class="tile-body">
-                  <h3>Real-time Production Dashboard</h3>
-                  <p class="muted">WPF dashboard for live production tracking and actionable shop‑floor insights.</p>
+                  <h3 data-i18n="proj_wpf_title">Real-time Production Dashboard</h3>
+                  <p class="muted" data-i18n="proj_wpf_desc">WPF dashboard for live production tracking and actionable shop‑floor insights.</p>
                   <div class="proj-details" hidden>
-                    <ul class="card-list">
+                    <ul class="card-list" data-i18n-list="proj_wpf">
                       <li>Contributed to a C# WPF (MVVM) production app, improving tracking accuracy and inventory visibility.</li>
                       <li>Enabled end‑to‑end flow tracking to identify bottlenecks and optimize throughput.</li>
                       <li>Implemented clear data visualizations for actionable insights and faster decision‑making.</li>
@@ -528,10 +562,10 @@
               
               <article class="tile">
                 <div class="tile-body">
-                  <h3>Crypto Scoring System</h3>
-                  <p class="muted">Comprehensive crypto analysis engine delivering data‑driven investment insights.</p>
+                  <h3 data-i18n="proj_crypto_title">Crypto Scoring System</h3>
+                  <p class="muted" data-i18n="proj_crypto_desc">Comprehensive crypto analysis engine delivering data‑driven investment insights.</p>
                   <div class="proj-details" hidden>
-                    <ul class="card-list">
+                    <ul class="card-list" data-i18n-list="proj_crypto">
                       <li>Built a multidimensional scoring engine combining fundamentals, on‑chain metrics, technical indicators, and risk factors.</li>
                       <li>Designed ingestion pipelines aggregating market, on‑chain and sentiment signals with validation, de‑duplication and retries.</li>
                       <li>Engineered feature normalization/standardization and tunable weighting to compute a composite score per asset/timeframe.</li>
@@ -552,16 +586,16 @@
                   </div>
                 </div>
                 <div class="tile-foot">
-                  <a class="link" href="http://astrumia.com/" target="_blank" rel="noopener">Website</a>
+                  <a class="link" href="http://astrumia.com/" target="_blank" rel="noopener" data-i18n="proj_website_link">Website</a>
                 </div>
               </article>
 
               <article class="tile" data-oss="true">
                 <div class="tile-body">
-                  <h3>Plutonium T6 Server</h3>
-                  <p class="muted">Dedicated server platform for hosting and managing Black Ops II (Plutonium) with stability and easy config.</p>
+                  <h3 data-i18n="proj_plutonium_title">Plutonium T6 Server</h3>
+                  <p class="muted" data-i18n="proj_plutonium_desc">Dedicated server platform for hosting and managing Black Ops II (Plutonium) with stability and easy config.</p>
                   <div class="proj-details" hidden>
-                    <ul class="card-list">
+                    <ul class="card-list" data-i18n-list="proj_plutonium">
                       <li>A dedicated server platform for hosting and managing Call of Duty: Black Ops II using the Plutonium mod.</li>
                       <li>Enables advanced customization, stable performance, and straightforward configuration.</li>
                       <li>Provides tooling and structure for reliable operation and streamlined administration.</li>
@@ -579,12 +613,12 @@
                   </div>
                 </div>
                 <div class="tile-foot">
-                  <a class="link" href="https://github.com/Sterbweise/T6Server" target="_blank" rel="noopener">Code</a>
+                  <a class="link" href="https://github.com/Sterbweise/T6Server" target="_blank" rel="noopener" data-i18n="proj_code_link">Code</a>
                 </div>
               </article>
             </div>
           </div>
-          <button class="proj-arrow next" aria-label="Next projects" type="button">›</button>
+          <button class="proj-arrow next" aria-label="Next projects" type="button" data-i18n="proj_next_aria" data-i18n-attr="aria-label">›</button>
         </div>
       </section>
 
@@ -602,11 +636,11 @@
       <section class="section container" aria-label="Connect">
         <div class="connect-grid">
           <section id="contact" aria-labelledby="contact-title">
-            <h2 id="contact-title" class="section-title reveal">Contact</h2>
+            <h2 id="contact-title" class="section-title reveal" data-i18n="contact_title">Contact</h2>
             <div class="contact-card reveal delay-1">
               <ul class="contact-list">
-                <li><i class="fa-sharp fa-solid fa-location-dot"></i><span>Federal Territory of Kuala Lumpur, Malaysia</span><span class="kw-badge time-badge" id="local-time" aria-label="Local time (UTC+8)"></span></li>
-                <li><i class="fa-solid fa-phone"></i><a href="tel:+60182939937">+60 18-283 9937</a><a class="kw-badge pref-badge" href="https://wa.me/60182939937" target="_blank" rel="noopener" aria-label="Open WhatsApp profile">WhatsApp Preferred <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></li>
+                <li><i class="fa-sharp fa-solid fa-location-dot"></i><span>Federal Territory of Kuala Lumpur, Malaysia</span><span class="kw-badge time-badge" id="local-time" aria-label="Local time (UTC+8)" data-i18n="local_time_aria" data-i18n-attr="aria-label"></span></li>
+                <li><i class="fa-solid fa-phone"></i><a href="tel:+60182939937">+60 18-283 9937</a><a class="kw-badge pref-badge" href="https://wa.me/60182939937" target="_blank" rel="noopener" aria-label="Open WhatsApp profile"><span data-i18n="contact_whatsapp_pref">WhatsApp Preferred</span> <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></li>
                 <li><i class="fa-solid fa-envelope"></i><a href="mailto:chandeze.killian@proton.me">chandeze.killian@proton.me</a></li>
                 <li><i class="fa-brands fa-linkedin"></i><a href="https://www.linkedin.com/in/killian-chandeze" target="_blank" rel="noopener">linkedin/killian-chandeze</a></li>
                 <li><i class="fa-brands fa-github"></i><a href="https://github.com/Sterbweise" target="_blank" rel="noopener">github/Sterbweise</a></li>
@@ -614,12 +648,12 @@
             </div>
           </section>
           <section id="languages" aria-labelledby="languages-title">
-            <h2 id="languages-title" class="section-title reveal">Languages</h2>
+            <h2 id="languages-title" class="section-title reveal" data-i18n="languages_title">Languages</h2>
             <div class="contact-card reveal delay-1">
               <ul class="contact-list">
-                <li><span>French</span><span class="kw-badge lang-level-badge">C2 - Native</span></li>
-                <li><span>English</span><span class="kw-badge lang-level-badge">C1 - Proficient</span></li>
-                <li><span>Spanish</span><span class="kw-badge lang-level-badge">B1 - Basic</span></li>
+                <li><span data-i18n="lang_fr">French</span><span class="kw-badge lang-level-badge" data-i18n="level_c2_native">C2 - Native</span></li>
+                <li><span data-i18n="lang_en">English</span><span class="kw-badge lang-level-badge" data-i18n="level_c1_proficient">C1 - Proficient</span></li>
+                <li><span data-i18n="lang_es">Spanish</span><span class="kw-badge lang-level-badge" data-i18n="level_b1_basic">B1 - Basic</span></li>
               </ul>
             </div>
 
@@ -636,11 +670,11 @@
         <div class="footer-brand">KC</div>
         <div class="footer-copy muted">© <span id="year"></span> Killian Chandeze</div>
         <div class="footer-links">
-          <a href="#about">About</a>
-          <a href="#experience">Experience</a>
-          <a href="#education">Education</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a href="#about" data-i18n="footer_about">About</a>
+          <a href="#experience" data-i18n="footer_experience">Experience</a>
+          <a href="#education" data-i18n="footer_education">Education</a>
+          <a href="#projects" data-i18n="footer_projects">Projects</a>
+          <a href="#contact" data-i18n="footer_contact">Contact</a>
         </div>
       </div>
     </footer>
@@ -648,6 +682,7 @@
     <button class="to-top" aria-label="Back to top">↑</button>
 
     <!-- Scripts -->
+    <script src="assets/js/i18n.js"></script>
     <script src="assets/js/main.js"></script>
   </body>
 </html>
