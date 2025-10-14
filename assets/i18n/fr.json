@@ -173,15 +173,15 @@
   "edu_bsc_gpa_label": "Mention",
   "edu_bsc_gpa_mention": "Bien",
 
-  "exp_role_self": "Ingénieur logiciel",
-  "exp_role_ausy": "Ingénieur logiciel",
-  "exp_role_michelin_da": "Développeur logiciel",
+  "exp_role_self": "Ingénieur Logiciel",
+  "exp_role_ausy": "Ingénieur Logiciel",
+  "exp_role_michelin_da": "Développeur Logiciel",
   "exp_role_michelin_lan": "Technicien réseau local",
   "exp_role_mediapc": "Technicien réparation informatique",
 
-  "edu_pgcert_title": "PGCert Développement logiciel full‑stack",
-  "edu_bsc_title": "Licence Informatique (Statistiques & Business Intelligence)",
-  "edu_shs_title": "S.H.S. Réseaux informatiques & systèmes de communication",
+  "edu_pgcert_title": "PGCert Développement Logiciel Full‑Stack",
+  "edu_bsc_title": "BUT Statistique et Informatique Decisionnelle",
+  "edu_shs_title": "BAC Réseaux Informatiques et Systèmes Communicants",
 
   "proj_winget_title": "Outils de mise à jour Winget",
   "proj_supply_title": "Optimisation de supply chain",
