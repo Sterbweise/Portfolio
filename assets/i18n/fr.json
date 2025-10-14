@@ -61,6 +61,8 @@
   "skills_backend_5": "Dapper",
   "skills_backend_6": "LINQ",
   "skills_backend_7": "RabbitMQ",
+  "skills_backend_8": "SignalR",
+  "skills_backend_9": "gRPC",
 
   "skills_infra_1": "Docker",
   "skills_infra_2": "Kubernetes",
@@ -70,12 +72,11 @@
   "skills_infra_6": "TCP/IP",
   "skills_infra_7": "Réseaux",
   "skills_infra_8": "Terraform",
-  "skills_infra_9": "SOPS",
+  "skills_infra_9": "SOPs",
 
   "skills_cloud_1": "AWS",
-  "skills_cloud_2": "Azure DevOps",
+  "skills_cloud_2": "Azure DevOps (CI/CD)",
   "skills_cloud_3": "Git",
-  "skills_cloud_4": "CI/CD",
   "skills_cloud_5": "Jenkins",
   "skills_cloud_6": "Prometheus",
   "skills_cloud_7": "Grafana",
@@ -83,9 +84,9 @@
 
   "skills_other_1": "Talend, SSIS, ETL",
   "skills_other_2": "Tableau, Power BI",
-  "skills_other_3": "xUnit, Moq, Postman",
-  "skills_other_4": "SDLC, TDD, UML",
-  "skills_other_5": "Agile/Scrum",
+  "skills_other_3": "xUnit, Moq, Postman, Serilog",
+  "skills_other_4": "Agile/Scrum",
+  "skills_other_5": "SOLID, SDLC, TDD, UML",
 
   "exp_self_1": "Conception et développement de solutions backend en C# (.NET 8), Java et Python, basés sur une architecture clean.",
   "exp_self_2": "Conception d’APIs REST sécurisées en ASP.NET (Clean Arch, JWT, validation, rate limits).",
@@ -101,7 +102,7 @@
 
   "exp_michelin_da_1": "Optimisation de scripts Oracle PL/SQL, amélioration de la fiabilité du traitement des logs d’environ 45 %.",
   "exp_michelin_da_2": "Conception d’un tableau de bord C# WPF pour la surveillance en temps réel des machines, avec indicateurs de performance.",
-  "exp_michelin_da_3": "Diagnostic, configuration, administration et création AD/DB automatisés avec C# et PowerShell, réduction des opérations manuelles et des erreurs.",
+  "exp_michelin_da_3": "Diagnostic, configuration et  administration AD/DB automatisés avec C# et PowerShell, réduction des opérations manuelles et des erreurs.",
   "exp_michelin_da_4": "Développement d’outils d’export de contacts (CSV/VCF) depuis SQL Server; synchronisation via PowerShell.",
   "exp_michelin_da_5": "Conception de pipelines ETL et de tableaux de bord Power BI pour mettre en évidence des KPIs opérationnels.",
 
@@ -170,5 +171,36 @@
   "edu_mention_tres_bien": "Très bien",
   "edu_mention_excellent": "Excellent",
   "edu_bsc_gpa_label": "Mention",
-  "edu_bsc_gpa_mention": "Bien"
+  "edu_bsc_gpa_mention": "Bien",
+
+  "exp_role_self": "Ingénieur logiciel",
+  "exp_role_ausy": "Ingénieur logiciel",
+  "exp_role_michelin_da": "Développeur logiciel",
+  "exp_role_michelin_lan": "Technicien réseau local",
+  "exp_role_mediapc": "Technicien réparation informatique",
+
+  "edu_pgcert_title": "PGCert Développement logiciel full‑stack",
+  "edu_bsc_title": "Licence Informatique (Statistiques & Business Intelligence)",
+  "edu_shs_title": "S.H.S. Réseaux informatiques & systèmes de communication",
+
+  "proj_winget_title": "Outils de mise à jour Winget",
+  "proj_supply_title": "Optimisation de supply chain",
+  "proj_wpf_title": "Dashboard de production",
+  "proj_crypto_title": "Système de scoring crypto",
+  "proj_plutonium_title": "Serveur Plutonium T6",
+  "proj_winget_desc": "Automatise et simplifie la mise à jour des applications Windows via WinGet, avec des modes flexibles et des exclusions.",
+  "proj_supply_desc": "Moteur d’optimisation pour la planification et l’inventaire, permettant des opérations temps réel et scalables.",
+  "proj_wpf_desc": "Tableau de bord WPF pour le suivi de production en direct et des insights actionnables.",
+  "proj_crypto_desc": "Moteur d’analyse crypto complet fournissant des insights d’investissement basés sur les données.",
+  "proj_plutonium_desc": "Plateforme serveur dédiée pour héberger et gérer Black Ops II (Plutonium) avec stabilité et configuration simple.",
+
+  "lang_fr": "Français",
+  "lang_en": "Anglais",
+  "lang_es": "Espagnol",
+  "level_c2_native": "C2 - Natif",
+  "level_c1_proficient": "C1 - Avancé",
+  "level_b1_basic": "B1 - Basique",
+
+  "show_more": "Afficher plus",
+  "show_less": "Afficher moins"
 }
