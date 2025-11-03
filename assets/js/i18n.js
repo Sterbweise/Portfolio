@@ -2,6 +2,11 @@
   // Inline fallback dictionaries to work even on file:// (no fetch)
   const FALLBACK = {
     en: {
+      "nav_home": "Home",
+      "nav_work_with_me": "Work with me",
+      "nav_services": "Services",
+      "nav_blog": "Blog",
+
       "nav_about": "About",
       "nav_skills": "Skills",
       "nav_experience": "Experience",
@@ -162,6 +167,11 @@
       "proj_plutonium_desc": "Dedicated server platform for hosting and managing Black Ops II (Plutonium) with stability and easy config."
     },
     fr: {
+      "nav_home": "Accueil",
+      "nav_work_with_me": "Travailler avec moi",
+      "nav_services": "Services",
+      "nav_blog": "Blog",
+
       "nav_about": "À propos",
       "nav_skills": "Compétences",
       "nav_experience": "Expérience",
@@ -410,9 +420,22 @@
     return typeof val === 'string' ? val : (fallback || '');
   };
 
+  // Fonction pour réinitialiser après chargement des composants
+  window.reinitializeI18n = function() {
+    initLangSelector();
+  };
+
+  // Écouter l'événement de chargement des composants
+  document.addEventListener('componentsLoaded', () => {
+    initLangSelector();
+  });
+
   (async function init() {
     const initial = getInitialLang();
     await setLang(initial);
-    initLangSelector();
+    // Ne pas initialiser ici si les composants ne sont pas encore chargés
+    if (document.getElementById('lang-select')) {
+      initLangSelector();
+    }
   })();
 })();

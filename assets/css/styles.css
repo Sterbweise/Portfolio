@@ -110,7 +110,22 @@ body{
   padding: .8rem 0;
 }
 .brand{
-  font-weight:700; letter-spacing:.2px; color:var(--text); text-decoration:none;
+  font-weight: 700; 
+  letter-spacing: 0.5px; 
+  color: var(--text); 
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.brand:hover {
+  opacity: 0.8;
+}
+
+.brand-name {
+  font-size: 1.1rem;
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 .site-nav{
   display:flex; align-items:center; gap:1rem;

@@ -1,0 +1,69 @@
+{
+  "id": "nextcloud",
+  "title": "Nextcloud Setup",
+  "description": "Deploy secure Nextcloud instance for file sharing, collaboration, and productivity with enterprise features.",
+  "detailedDescription": "Set up a complete Nextcloud cloud storage and collaboration platform with enterprise-grade security and features. I configure file sharing, office suite integration, team collaboration tools, and advanced security measures. Perfect for organizations wanting full control over their data and collaboration tools.",
+  "category": "infrastructure",
+  "icon": "fa-solid fa-cloud",
+  "tone": "teal",
+  "startingPrice": 400,
+  "deliveryDays": 4,
+  "packages": [
+    {
+      "name": "Personal Cloud",
+      "price": "$400",
+      "features": [
+        "Nextcloud installation",
+        "SSL & security setup",
+        "Basic apps installation",
+        "User account creation",
+        "Mobile app configuration"
+      ],
+      "deliveryTime": "2-3 days"
+    },
+    {
+      "name": "Business Cloud",
+      "price": "$700",
+      "features": [
+        "Complete Nextcloud setup",
+        "Office suite integration",
+        "Team collaboration tools",
+        "Advanced security features",
+        "Backup configuration",
+        "User training"
+      ],
+      "deliveryTime": "4-5 days"
+    },
+    {
+      "name": "Enterprise Cloud",
+      "price": "$1,200",
+      "features": [
+        "High-availability deployment",
+        "LDAP/AD integration",
+        "Advanced monitoring",
+        "Compliance features",
+        "Custom app development",
+        "Migration & ongoing support"
+      ],
+      "deliveryTime": "7-10 days"
+    }
+  ],
+  "guarantees": [
+    { "icon": "fas fa-cloud", "text": "Secure cloud storage setup" },
+    { "icon": "fas fa-file-alt", "text": "Office suite integration" },
+    { "icon": "fas fa-users", "text": "Team collaboration tools" },
+    { "icon": "fas fa-mobile-alt", "text": "Mobile app configuration" },
+    { "icon": "fas fa-backup", "text": "Backup system included" }
+  ],
+  "extras": [
+    { "name": "Additional storage", "price": "$50/100GB", "description": "Expand storage capacity" },
+    { "name": "Custom app", "price": "$250", "description": "Install and configure custom Nextcloud app" },
+    { "name": "LDAP integration", "price": "$200", "description": "Connect with Active Directory" },
+    { "name": "Advanced backup", "price": "$150", "description": "Automated backup to external storage" },
+    { "name": "Branding customization", "price": "$175", "description": "Custom branding and theming" }
+  ],
+  "meta": {
+    "deliveryTime": "2-5 days",
+    "revisions": "1 revision"
+  }
+}

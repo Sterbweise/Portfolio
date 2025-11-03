@@ -1,0 +1,69 @@
+{
+  "id": "openproject",
+  "title": "OpenProject Installation",
+  "description": "Set up OpenProject for comprehensive project management with team collaboration and reporting features.",
+  "detailedDescription": "Deploy and configure OpenProject, a powerful open-source project management platform. I set up complete project workflows, team collaboration tools, time tracking, and reporting dashboards. Perfect for teams looking for a comprehensive project management solution with full control over their data.",
+  "category": "infrastructure",
+  "icon": "fa-solid fa-tasks",
+  "tone": "green",
+  "startingPrice": 350,
+  "deliveryDays": 4,
+  "packages": [
+    {
+      "name": "Basic Installation",
+      "price": "$350",
+      "features": [
+        "OpenProject installation",
+        "Basic configuration",
+        "User management setup",
+        "Project templates",
+        "Basic workflow configuration"
+      ],
+      "deliveryTime": "2-3 days"
+    },
+    {
+      "name": "Professional Setup",
+      "price": "$650",
+      "features": [
+        "Complete installation & config",
+        "Custom workflows & fields",
+        "Team collaboration setup",
+        "Time tracking configuration",
+        "Reporting & dashboards",
+        "Email notifications"
+      ],
+      "deliveryTime": "4-5 days"
+    },
+    {
+      "name": "Enterprise Solution",
+      "price": "$1,100",
+      "features": [
+        "High-availability setup",
+        "LDAP/SSO integration",
+        "Advanced customizations",
+        "Plugin installations",
+        "Backup & monitoring",
+        "Migration & training"
+      ],
+      "deliveryTime": "7-10 days"
+    }
+  ],
+  "guarantees": [
+    { "icon": "fas fa-project-diagram", "text": "Complete project workflows" },
+    { "icon": "fas fa-users", "text": "Team collaboration tools" },
+    { "icon": "fas fa-clock", "text": "Time tracking system" },
+    { "icon": "fas fa-chart-gantt", "text": "Gantt charts and reporting" },
+    { "icon": "fas fa-bell", "text": "Notification system setup" }
+  ],
+  "extras": [
+    { "name": "Custom plugin", "price": "$300", "description": "Install and configure custom OpenProject plugin" },
+    { "name": "LDAP integration", "price": "$200", "description": "Connect with existing Active Directory" },
+    { "name": "Custom workflow", "price": "$150", "description": "Design custom project workflow" },
+    { "name": "Advanced reporting", "price": "$175", "description": "Custom reports and KPI dashboards" },
+    { "name": "Mobile app setup", "price": "$100", "description": "Configure mobile access and apps" }
+  ],
+  "meta": {
+    "deliveryTime": "2-5 days",
+    "revisions": "1 revision"
+  }
+}

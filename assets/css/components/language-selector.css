@@ -1,0 +1,206 @@
+/**
+ * Language Selector Component
+ * Clean dropdown selector for language switching (flags only, no icons)
+ */
+
+#lang-select {
+  appearance: none;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: inherit;
+  padding: 8px 32px 8px 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+#lang-select:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  /* No background change - only border */
+}
+
+#lang-select:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+#lang-select option {
+  background: #1e293b;
+  color: #f1f5f9;
+  padding: 8px;
+}
+
+/* Light theme adjustments */
+@media (prefers-color-scheme: light) {
+  #lang-select {
+    border-color: rgba(0, 0, 0, 0.15);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  }
+
+  #lang-select:hover {
+    border-color: rgba(0, 0, 0, 0.3);
+    /* No background change - only border */
+  }
+}
+
+/* Custom language menu (alternative to native select) */
+#lang-menu {
+  position: relative;
+  display: none !important; /* Always hidden - we use the select dropdown instead */
+}
+
+.lang-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: inherit;
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lang-trigger:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  /* No background change - only border */
+}
+
+/* Hide the planet icon - keep only flags */
+.lang-trigger .icon-globe {
+  display: none;
+}
+
+.lang-trigger .caret {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.lang-trigger[aria-expanded="true"] .caret {
+  transform: rotate(180deg);
+}
+
+.lang-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 180px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lang-list[hidden] {
+  display: block;
+}
+
+.lang-trigger[aria-expanded="true"] + .lang-list {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.lang-list .value {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  color: #cbd5e1;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.lang-list .value:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.lang-list .value .text {
+  flex: 1;
+}
+
+.lang-list .value .text::before {
+  content: attr(data-flag);
+  margin-right: 8px;
+  font-size: 1.125rem;
+}
+
+.lang-list .value .rail {
+  width: 3px;
+  height: 100%;
+  background: transparent;
+  position: absolute;
+  left: 0;
+  transition: background 0.2s ease;
+}
+
+.lang-list .value:hover .rail {
+  background: #3b82f6;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  #lang-select {
+    font-size: 0.8125rem;
+    padding: 6px 28px 6px 10px;
+  }
+
+  .lang-list {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    transform: translateY(100%);
+  }
+
+  .lang-trigger[aria-expanded="true"] + .lang-list {
+    transform: translateY(0);
+  }
+
+  .lang-list .value {
+    padding: 16px 20px;
+    font-size: 1rem;
+    border-bottom: 1px solid #334155;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  #lang-select,
+  .lang-trigger,
+  .lang-list,
+  .lang-list .value {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  #lang-select,
+  .lang-trigger {
+    border-width: 2px;
+  }
+
+  .lang-list {
+    border-width: 2px;
+  }
+}

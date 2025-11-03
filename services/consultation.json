@@ -1,0 +1,71 @@
+{
+  "id": "consultation",
+  "title": "Technical Consultation",
+  "description": "Expert advice on technology choices, architecture decisions, and project planning to guide your development.",
+  "detailedDescription": "Leverage my expertise to make informed technical decisions for your project. I provide strategic guidance on technology selection, architecture design, and project planning. Whether you need a quick consultation or comprehensive project analysis, I help you avoid costly mistakes and choose the right path forward.",
+  "category": "consultation",
+  "icon": "fa-solid fa-comments",
+  "tone": "gold",
+  "startingPrice": 100,
+  "deliveryDays": 1,
+  "badge": "Fast Delivery",
+  "packages": [
+    {
+      "name": "1-Hour Session",
+      "price": "$100",
+      "features": [
+        "1-hour video consultation",
+        "Technology recommendations",
+        "Architecture advice",
+        "Q&A session",
+        "Follow-up notes"
+      ],
+      "deliveryTime": "Same day"
+    },
+    {
+      "name": "Project Planning",
+      "price": "$300",
+      "features": [
+        "3-hour consultation package",
+        "Project scope analysis",
+        "Technology stack recommendations",
+        "Timeline & budget estimation",
+        "Risk assessment",
+        "Detailed project plan"
+      ],
+      "deliveryTime": "2-3 days"
+    },
+    {
+      "name": "Architecture Review",
+      "price": "$600",
+      "features": [
+        "Complete architecture analysis",
+        "Scalability assessment",
+        "Performance optimization plan",
+        "Security recommendations",
+        "Technology modernization roadmap",
+        "Implementation guidance"
+      ],
+      "deliveryTime": "5-7 days"
+    }
+  ],
+  "guarantees": [
+    { "icon": "fas fa-lightbulb", "text": "Expert technical advice" },
+    { "icon": "fas fa-clock", "text": "Fast response time" },
+    { "icon": "fas fa-file-alt", "text": "Detailed recommendations" },
+    { "icon": "fas fa-redo", "text": "Unlimited follow-up questions" },
+    { "icon": "fas fa-handshake", "text": "Honest, unbiased advice" }
+  ],
+  "extras": [
+    { "name": "Extended session", "price": "$75/hour", "description": "Additional consultation time beyond package" },
+    { "name": "Written report", "price": "$150", "description": "Detailed written analysis and recommendations" },
+    { "name": "Follow-up session", "price": "$50", "description": "30-minute follow-up call within 2 weeks" },
+    { "name": "Code review", "price": "$200", "description": "Review existing codebase and provide feedback" },
+    { "name": "Technology audit", "price": "$300", "description": "Complete technology stack assessment" }
+  ],
+  "meta": {
+    "deliveryTime": "Same day",
+    "revisions": "Unlimited"
+  },
+  "contactMessage": "Need expert guidance for your project? Let's schedule a consultation to discuss your technical challenges and find the best solutions for your specific needs."
+}

@@ -1,0 +1,72 @@
+{
+  "id": "backend-api",
+  "title": "Backend API Development",
+  "description": "Robust, scalable APIs and backend systems using .NET, Node.js, and modern database technologies.",
+  "detailedDescription": "I develop enterprise-grade backend systems and APIs that form the backbone of modern applications. Using .NET Core, ASP.NET, and modern database technologies, I create scalable, secure, and well-documented APIs. Each project includes comprehensive testing, security implementation, and performance optimization to ensure your backend can handle growth and maintain reliability.",
+  "category": "development",
+  "icon": "fa-solid fa-server",
+  "tone": "orange",
+  "startingPrice": 800,
+  "deliveryDays": 7,
+  "packages": [
+    {
+      "name": "Simple API",
+      "price": "$800",
+      "features": [
+        "RESTful API with 5-10 endpoints",
+        "Database design & setup",
+        "Basic authentication",
+        "API documentation",
+        "Error handling"
+      ],
+      "deliveryTime": "5-7 days"
+    },
+    {
+      "name": "Advanced API",
+      "price": "$1,800",
+      "features": [
+        "Complex API with 15+ endpoints",
+        "Advanced authentication (JWT)",
+        "Role-based access control",
+        "Database optimization",
+        "Comprehensive documentation",
+        "Unit testing",
+        "Deployment setup"
+      ],
+      "deliveryTime": "10-14 days"
+    },
+    {
+      "name": "Microservices Architecture",
+      "price": "$3,500",
+      "features": [
+        "Multiple microservices",
+        "API Gateway setup",
+        "Service discovery",
+        "Load balancing",
+        "Monitoring & logging",
+        "CI/CD pipeline",
+        "Docker containerization"
+      ],
+      "deliveryTime": "21-30 days"
+    }
+  ],
+  "guarantees": [
+    { "icon": "fas fa-server", "text": "Scalable architecture guaranteed" },
+    { "icon": "fas fa-lock", "text": "Security best practices included" },
+    { "icon": "fas fa-file-alt", "text": "Comprehensive API documentation" },
+    { "icon": "fas fa-vial", "text": "Unit testing included" },
+    { "icon": "fas fa-tachometer-alt", "text": "Performance optimized" }
+  ],
+  "extras": [
+    { "name": "Additional endpoint", "price": "$100", "description": "Extra API endpoint with full documentation" },
+    { "name": "Database migration", "price": "$300", "description": "Migrate existing data to new system" },
+    { "name": "Load testing", "price": "$250", "description": "Performance and load testing suite" },
+    { "name": "Monitoring setup", "price": "$200", "description": "Application monitoring and alerting" },
+    { "name": "Extra revision round", "price": "$300", "description": "Additional revision beyond included ones" }
+  ],
+  "meta": {
+    "deliveryTime": "5-10 days",
+    "revisions": "2 revisions"
+  },
+  "contactMessage": "Ready to build a robust backend for your application? Let's discuss your API requirements and create a scalable solution that grows with your business."
+}

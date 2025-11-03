@@ -5,7 +5,7 @@
   padding:2px 8px;
   border:1px solid rgba(255,255,255,0.12);
   background:rgba(255,255,255,0.04);
-  border-radius:8px;
+  border-radius:0;
   font-size:0.9rem;
   line-height:1.6;
 }
@@ -19,7 +19,7 @@
   position:relative;
   border:1px solid rgba(255,255,255,0.12);
   background:rgba(255,255,255,0.03);
-  border-radius:12px;
+  border-radius:0;
   padding:16px 18px;
 }
 
@@ -41,7 +41,7 @@
 
 .lang-badge{
   padding:2px 8px;
-  border-radius:999px;
+  border-radius:0;
   border:1px solid rgba(255,255,255,0.14);
   background:rgba(255,255,255,0.05);
   font-size:0.85rem;
@@ -55,7 +55,13 @@
 html{ scroll-behavior:smooth; }
 
 /* Header: hide brand text block for a cleaner professional layout */
-.site-header .brand{ display:none !important; }
+
+
+.site-nav .nav-link{
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  font-size:.85rem;
+}
 
 /* Hero tagline and quote */
 .hero-tagline{
@@ -67,7 +73,7 @@ html{ scroll-behavior:smooth; }
 .badge{
   display:inline-block;
   padding:4px 10px;
-  border-radius:999px;
+  border-radius:0;
   border:1px solid rgba(255,255,255,0.14);
   background:rgba(255,255,255,0.06);
   font-size:0.9rem;
@@ -81,23 +87,7 @@ html{ scroll-behavior:smooth; }
 
 /* Scroll down arrow */
 .scroll-down{
-  display:inline-block;
-  margin-top:20px;
-  width:36px;
-  height:36px;
-  line-height:36px;
-  text-align:center;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,0.14);
-  background:rgba(255,255,255,0.04);
-  text-decoration:none;
-  color:inherit;
-  transition:transform .2s ease, background .2s ease, border-color .2s ease;
-}
-.scroll-down:hover{
-  transform:translateY(2px);
-  background:rgba(255,255,255,0.07);
-  border-color:rgba(255,255,255,0.22);
+  display:none;
 }
 
 /* Emphasize hero quote */
@@ -762,7 +752,7 @@ a.kw-badge.pref-badge:active{
 .skill-cat{
   border:1px solid rgba(255,255,255,0.08);
   background:rgba(255,255,255,0.02);
-  border-radius:12px;
+  border-radius:0;
   padding:12px;
   transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
 }
@@ -801,7 +791,7 @@ a.kw-badge.pref-badge:active{
   padding:4px 10px;
   border:1px solid rgba(255,255,255,0.14);
   background:rgba(255,255,255,0.05);
-  border-radius:8px;
+  border-radius:0;
   font-size:0.85rem;
   line-height:1.3;
   transition:background .18s ease, border-color .18s ease, transform .12s ease;
@@ -834,7 +824,7 @@ a.kw-badge.pref-badge:active{
   padding:4px 10px;
   border:1px solid rgba(255,255,255,0.16);
   background:rgba(255,255,255,0.05);
-  border-radius:10px;
+  border-radius:0;
   font-size:0.9rem;
   line-height:1.4;
   transition:border-color .2s ease, background .2s ease, transform .15s ease;
@@ -1296,6 +1286,69 @@ section.container[aria-label="Connect"] .looking-for-min{
 @keyframes lf_min_scroll { from { transform:none; } to { transform:none; } }
 @keyframes lf-scroll { from { transform:none; } to { transform:none; } }
 
+/* === Minimal Vertical Navigation === */
+.resume-nav {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 999;
+}
+
+.resume-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.resume-nav-link {
+  display: block;
+  padding: 8px 12px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  position: relative;
+  text-align: right;
+  opacity: 0.6;
+}
+
+.resume-nav-link:hover {
+  color: var(--text);
+  opacity: 1;
+  transform: translateX(-4px);
+}
+
+.resume-nav-link.active {
+  color: var(--accent);
+  opacity: 1;
+  font-weight: 500;
+  transform: translateX(-6px);
+}
+
+.resume-nav-link.active::before {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 20px;
+  background: var(--accent);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .resume-nav {
+    display: none;
+  }
+}
+
 /* === Strong overrides: Looking for — bottom-right in Connect === */
 section.container[aria-label="Connect"]{
   position: relative !important;
@@ -1435,7 +1488,7 @@ a[download], .btn-download, .download, .download-btn{
   aspect-ratio: 3 / 4;     /* format 3:4 */
   object-fit: cover;       /* couvre sans déformation */
   display: block;
-  border-radius: 12px;     /* léger arrondi pour mieux s’intégrer */
+  border-radius: 0;     /* sharp corners for design consistency */
   transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
   background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.04)); /* fond de secours */
 }
@@ -1466,16 +1519,16 @@ a[download], .btn-download, .download, .download-btn{
 }
 
 /* === About photo — rounded corners fix + ambient glow === */
-/* Coins arrondis fermes (image + conteneur), priorité élevée */
+/* Sharp corners (image + container), design consistency */
 .about-photo{
   position: relative;
-  border-radius: 18px !important;
+  border-radius: 0 !important;
   overflow: visible; /* on laisse le halo dépasser proprement */
 }
 .about-photo img{
   position: relative;
   z-index: 1;               /* au-dessus du halo */
-  border-radius: 18px !important;
+  border-radius: 0 !important;
 }
 
 /* Halo coloré basé sur l'image (façon TV bias lighting) */
@@ -1487,7 +1540,7 @@ a[download], .btn-download, .download, .download-btn{
   filter: blur(28px) saturate(140%) brightness(110%);
   opacity: .42;             /* dark par défaut */
   transform: scale(1.04);
-  border-radius: 24px;      /* halo plus doux que l’image */
+  border-radius: 0;      /* sharp corners for consistency */
   z-index: 0;
   pointer-events: none;
   will-change: filter, transform, opacity;
@@ -1593,86 +1646,136 @@ a[download], .btn-download, .download, .download-btn{
   color: #e5e7eb; /* texte clair harmonisé */
 }
 
-/* === Footer — aesthetic, professional, minimal === */
-.site-footer{
-  position: relative;
-  margin-top: 40px;
-  padding: 20px 0;
-  color: var(--text);
-  background: transparent; /* respecte le fond de page */
-  border-top: 1px solid rgba(255,255,255,0.10);
+/* === Minimal Footer === */
+.site-footer {
+  margin-top: 80px;
+  padding: 40px 0 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
-.site-footer::before{
-  content:"";
-  position: absolute;
-  left: 0; right: 0; top: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, currentColor 35%, transparent);
-  opacity: .18;
-  pointer-events: none;
+
+[data-theme="light"] .site-footer {
+  border-top-color: rgba(0, 0, 0, 0.08);
 }
-.footer-grid{
+
+.footer-content {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 14px 18px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.footer-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.footer-tagline {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin: 0;
+  opacity: 0.8;
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
-/* Brand: petit bloc net et discret */
-.footer-brand{
-  display: inline-grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  font-weight: 700;
-  letter-spacing: .04em;
-  border: 1px solid rgba(255,255,255,0.16);
-  background: rgba(255,255,255,0.04);
-  /* léger rayon pour marquer la zone sans casser le style rectangulaire global */
-  border-radius: 6px;
-}
-[data-theme="light"] .footer-brand{
-  border-color: rgba(0,0,0,0.12);
-  background: rgba(0,0,0,0.03);
-}
-
-/* Copy: taille sobre et opacité maîtrisée */
-.footer-copy{
-  font-size: .95rem;
-  opacity: .85;
-}
-
-/* Links: rangée propre, underline progressif minimal au hover */
-.footer-links{
+.footer-social a {
   display: flex;
   align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.footer-links a{
-  position: relative;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--muted);
   text-decoration: none;
-  color: inherit;
-  opacity: .9;
-  padding-bottom: 1px;
-  background-image: linear-gradient(currentColor, currentColor);
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 0% 1px;
-  transition: background-size .22s ease, opacity .22s ease;
-}
-.footer-links a:hover{
-  background-size: 100% 1px;
-  opacity: 1;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
 }
 
-/* Light theme polish */
-[data-theme="light"] .site-footer{
-  border-top-color: rgba(0,0,0,0.10);
+.footer-social a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
 }
-[data-theme="light"] .site-footer::before{
-  opacity: .14;
+
+/* Couleurs spécifiques pour certaines plateformes */
+.footer-social a[aria-label="Email"]:hover {
+  color: #ea4335;
+}
+
+.footer-social a[aria-label="LinkedIn"]:hover {
+  color: #0077b5;
+}
+
+.footer-social a[aria-label="GitHub"]:hover {
+  color: #333;
+}
+
+.footer-social a[aria-label="WhatsApp"]:hover {
+  color: #25d366;
+}
+
+.footer-social a[aria-label="WeChat"]:hover {
+  color: #7bb32e;
+}
+
+.footer-social a[aria-label="CodinGame"]:hover {
+  color: #f2bb13;
+}
+
+.footer-social a[aria-label="LeetCode"]:hover {
+  color: #ffa116;
+}
+
+[data-theme="light"] .footer-social a[aria-label="GitHub"]:hover {
+  color: #24292e;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .footer-bottom {
+  border-top-color: rgba(0, 0, 0, 0.05);
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--muted);
+  opacity: 0.7;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .footer-social {
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .footer-social a {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
 }
 
 /* === Education GPA badge (minimal, aesthetic) === */
@@ -1778,7 +1881,7 @@ a[download], .btn-download, .download, .download-btn{
 }
 
 .proj-dialog{
-  border-radius: 10px;
+  border-radius: 0;
   border-width: 1px;
   box-shadow: 0 14px 36px rgba(0,0,0,0.32), 0 3px 10px rgba(0,0,0,0.20);
 }
@@ -1817,7 +1920,7 @@ a[download], .btn-download, .download, .download-btn{
 }
 
 .proj-close{
-  border-radius: 8px;
+  border-radius: 0;
   transition: background .18s ease, border-color .18s ease, transform .12s ease;
 }
 .proj-close:hover{

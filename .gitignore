@@ -1,0 +1,36 @@
+# Claude Code
+.claude/
+
+# Documentation files (generated/temporary)
+*.md
+# Uncomment the line below if you want to keep README.md:
+# !README.md
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Node modules (if you add npm/node later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Build outputs (if you add a build process later)
+dist/
+build/
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.cache

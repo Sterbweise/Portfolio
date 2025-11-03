@@ -1,0 +1,660 @@
+/* ===================================
+   RESPONSIVE DESIGN - MOBILE & TABLET
+   =================================== */
+
+/* Prevent horizontal scroll */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Tablet Styles (768px - 1024px) */
+@media (max-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: 100%;
+  }
+  
+  /* Hero Section */
+  .hero {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+  
+  .hero h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    line-height: 1.1;
+  }
+  
+  .hero .lead {
+    font-size: 1.1rem;
+    max-width: 90%;
+  }
+  
+  /* Grid Layouts */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+}
+
+/* Mobile Styles (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Container & Spacing */
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* Header Mobile */
+  .site-header {
+    padding: 0.8rem 0;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    width: 100%;
+  }
+  
+  .nav {
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    width: 100%;
+  }
+  
+  .brand-name {
+    font-size: 1rem;
+    color: var(--text);
+  }
+  
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    position: relative;
+  }
+  
+  /* Hide nav toggle on desktop */
+  @media (min-width: 769px) {
+    .nav-toggle {
+      display: none;
+    }
+  }
+  
+  .nav-toggle-bar {
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    margin: 2px 0;
+    transition: all 0.3s ease;
+    border-radius: 1px;
+  }
+  
+  /* Ensure nav toggle bars use theme colors */
+  [data-theme="light"] .nav-toggle-bar {
+    background: var(--text);
+  }
+  
+  [data-theme="dark"] .nav-toggle-bar {
+    background: var(--text);
+  }
+  
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+  
+  .site-nav {
+    position: fixed;
+    top: 70px;
+    left: 1rem;
+    right: 1rem;
+    background: var(--bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: var(--shadow);
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    max-width: calc(100vw - 2rem);
+  }
+  
+  .site-nav.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .nav-link {
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    display: block;
+    text-decoration: none;
+    color: var(--text);
+  }
+  
+  .nav-link:hover,
+  .nav-link:focus {
+    background: var(--bg-elev);
+    border-color: var(--border);
+  }
+  
+  /* Hero Section Mobile */
+  .hero {
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  .hero .lead {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .hero-cta .btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  /* About Section Mobile - Remove photo */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .about-photo {
+    display: none; /* Hide photo in mobile to avoid narrow columns */
+  }
+  
+  .about-text {
+    max-width: 100%;
+  }
+  
+  /* Skills Section Mobile */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .skill-card {
+    padding: 1.5rem;
+  }
+  
+  .skill-card h3 {
+    font-size: 1.1rem;
+  }
+  
+  /* Experience Section Mobile - Reorganize layout */
+  #experience .card {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  #experience .card-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  #experience .meta-left h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  #experience .meta-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  #experience .org-badge {
+    font-size: 0.85rem;
+  }
+  
+  #experience .meta-date {
+    font-size: 0.85rem;
+  }
+  
+  #experience .meta-left .meta-line {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Education Section Mobile - Reorganize layout */
+  #education .card {
+    padding: 1.5rem;
+  }
+  
+  #education .card-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  #education .meta-left h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  #education .meta-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  #education .org-badge {
+    font-size: 0.85rem;
+  }
+  
+  #education .meta-date {
+    font-size: 0.85rem;
+  }
+  
+  #education .meta-left .meta-line {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Projects Section Mobile - Enable swipe instead of buttons */
+  .proj-carousel {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .proj-arrow {
+    display: none; /* Hide navigation arrows on mobile */
+  }
+  
+  .proj-viewport {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .proj-viewport::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .proj-track {
+    display: flex;
+    gap: 1rem;
+    padding: 0 0.5rem;
+    transform: none !important; /* Override JS transform */
+  }
+  
+  .proj-track .tile {
+    flex: 0 0 85%;
+    max-width: 85%;
+    scroll-snap-align: start;
+  }
+  
+  /* Contact Section Mobile - Icons on same line as first text */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .contact-card {
+    text-align: left;
+  }
+  
+  .contact-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+  }
+  
+  .contact-list li .contact-main {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .contact-list li i {
+    flex-shrink: 0;
+  }
+  
+  .contact-list li .kw-badge {
+    margin-top: 0.25rem;
+    align-self: flex-start;
+  }
+  
+  /* Specific styling for time and WhatsApp badges */
+  .time-badge,
+  .pref-badge {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+  }
+  
+  /* Form Elements Mobile */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-control {
+    padding: 1rem;
+    font-size: 16px; /* Prevents zoom on iOS */
+    border-radius: 8px;
+  }
+  
+  textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  /* Footer Mobile */
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .footer-social {
+    justify-content: center;
+  }
+  
+  /* Buttons Mobile */
+  .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .btn-small {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Small Mobile Styles (max-width: 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 100%;
+  }
+  
+  .hero h1 {
+    font-size: clamp(1.8rem, 10vw, 2.2rem);
+  }
+  
+  .hero .lead {
+    font-size: 0.95rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .skill-card,
+  #experience .card,
+  #education .card,
+  .project-card {
+    padding: 1.2rem;
+  }
+  
+  .nav-toggle {
+    padding: 0.5rem;
+  }
+  
+  .site-nav {
+    gap: 0.3rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    max-width: calc(100vw - 1rem);
+  }
+  
+  .nav-link {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Ensure projects carousel doesn't cause horizontal scroll */
+  .proj-track .tile {
+    flex: 0 0 90%;
+    max-width: 90%;
+  }
+}
+
+/* Landscape Mobile Styles */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover,
+  .nav-link:hover,
+  .skill-card:hover,
+  .project-card:hover {
+    transform: none;
+  }
+  
+  .btn:active,
+  .nav-link:active {
+    transform: scale(0.98);
+  }
+  
+  /* Increase touch targets */
+  .nav-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .btn {
+    min-height: 44px;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Optimize for retina displays */
+  .hero h1,
+  .section-title {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Desktop fixes - Restore project arrows */
+@media (min-width: 769px) {
+  .proj-arrow {
+    display: block !important;
+  }
+  
+  .proj-track {
+    transform: translateX(0) !important; /* Allow JS to control transform */
+  }
+  
+  .proj-viewport {
+    overflow: hidden !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Restore desktop contact layout */
+  .contact-list li {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+  }
+  
+  .contact-list li .contact-main {
+    display: contents !important;
+  }
+}
+
+/* Language selector inline layout for mobile */
+@media (max-width: 768px) {
+  .site-nav {
+    gap: 0.5rem;
+  }
+  
+  .site-nav #lang-select,
+  .site-nav #theme-toggle {
+    display: inline-block;
+    margin: 0.25rem;
+  }
+
+  /* Keep lang-menu hidden - we only use the select dropdown */
+  .site-nav #lang-menu {
+    display: none !important;
+  }
+  
+  /* Create a flex container for language elements */
+  .site-nav .lang-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+  }
+}
+
+/* Additional mobile fixes */
+@media (max-width: 768px) {
+  /* Ensure all elements respect container width */
+  * {
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+  
+  /* Fix any potential overflow issues */
+  .kw-list {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .kw-badge {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    white-space: nowrap;
+  }
+  
+  /* Ensure cards don't overflow */
+  .card,
+  .tile {
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  /* Fix navigation menu positioning */
+  .site-nav {
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+  }
+  
+  /* Ensure buttons and form elements are touch-friendly */
+  .btn,
+  .nav-link,
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Fix any text overflow */
+  h1, h2, h3, h4, h5, h6 {
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  /* Ensure images don't cause overflow */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

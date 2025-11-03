@@ -1,0 +1,256 @@
+/* Custom Highlight.js theme that adapts to dark/light mode */
+
+/* Override default highlight.js styles */
+.hljs {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 8px !important;
+  padding: 16px !important;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', 'Courier New', monospace !important;
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+  overflow-x: auto !important;
+}
+
+[data-theme="light"] .hljs {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Dark theme colors (Notion-like) */
+[data-theme="dark"] .hljs {
+  color: #e6e6e6 !important;
+}
+
+[data-theme="dark"] .hljs-keyword,
+[data-theme="dark"] .hljs-selector-tag,
+[data-theme="dark"] .hljs-literal,
+[data-theme="dark"] .hljs-section,
+[data-theme="dark"] .hljs-link {
+  color: #ff6b6b !important; /* Red for keywords */
+}
+
+[data-theme="dark"] .hljs-function .hljs-keyword {
+  color: #4ecdc4 !important; /* Teal for function keyword */
+}
+
+[data-theme="dark"] .hljs-subst {
+  color: #e6e6e6 !important;
+}
+
+[data-theme="dark"] .hljs-string,
+[data-theme="dark"] .hljs-title,
+[data-theme="dark"] .hljs-name,
+[data-theme="dark"] .hljs-type,
+[data-theme="dark"] .hljs-attribute,
+[data-theme="dark"] .hljs-symbol,
+[data-theme="dark"] .hljs-bullet,
+[data-theme="dark"] .hljs-addition,
+[data-theme="dark"] .hljs-variable,
+[data-theme="dark"] .hljs-template-tag,
+[data-theme="dark"] .hljs-template-variable {
+  color: #95e1d3 !important; /* Light green for strings */
+}
+
+[data-theme="dark"] .hljs-comment,
+[data-theme="dark"] .hljs-quote,
+[data-theme="dark"] .hljs-deletion,
+[data-theme="dark"] .hljs-meta {
+  color: #6c7b7f !important; /* Gray for comments */
+}
+
+[data-theme="dark"] .hljs-keyword.hljs-function,
+[data-theme="dark"] .hljs-class .hljs-title,
+[data-theme="dark"] .hljs-title.hljs-class {
+  color: #fce38a !important; /* Yellow for functions/classes */
+}
+
+[data-theme="dark"] .hljs-number,
+[data-theme="dark"] .hljs-regexp,
+[data-theme="dark"] .hljs-doctag {
+  color: #f38ba8 !important; /* Pink for numbers */
+}
+
+[data-theme="dark"] .hljs-built_in,
+[data-theme="dark"] .hljs-builtin-name,
+[data-theme="dark"] .hljs-params,
+[data-theme="dark"] .hljs-attr {
+  color: #89b4fa !important; /* Blue for built-ins */
+}
+
+[data-theme="dark"] .hljs-formula {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .hljs-emphasis {
+  font-style: italic !important;
+}
+
+[data-theme="dark"] .hljs-strong {
+  font-weight: bold !important;
+}
+
+/* Light theme colors (GitHub-like but softer) */
+[data-theme="light"] .hljs {
+  color: #24292e !important;
+}
+
+[data-theme="light"] .hljs-keyword,
+[data-theme="light"] .hljs-selector-tag,
+[data-theme="light"] .hljs-literal,
+[data-theme="light"] .hljs-section,
+[data-theme="light"] .hljs-link {
+  color: #d73a49 !important; /* Red for keywords */
+}
+
+[data-theme="light"] .hljs-function .hljs-keyword {
+  color: #6f42c1 !important; /* Purple for function keyword */
+}
+
+[data-theme="light"] .hljs-subst {
+  color: #24292e !important;
+}
+
+[data-theme="light"] .hljs-string,
+[data-theme="light"] .hljs-title,
+[data-theme="light"] .hljs-name,
+[data-theme="light"] .hljs-type,
+[data-theme="light"] .hljs-attribute,
+[data-theme="light"] .hljs-symbol,
+[data-theme="light"] .hljs-bullet,
+[data-theme="light"] .hljs-addition,
+[data-theme="light"] .hljs-variable,
+[data-theme="light"] .hljs-template-tag,
+[data-theme="light"] .hljs-template-variable {
+  color: #032f62 !important; /* Dark blue for strings */
+}
+
+[data-theme="light"] .hljs-comment,
+[data-theme="light"] .hljs-quote,
+[data-theme="light"] .hljs-deletion,
+[data-theme="light"] .hljs-meta {
+  color: #6a737d !important; /* Gray for comments */
+}
+
+[data-theme="light"] .hljs-keyword.hljs-function,
+[data-theme="light"] .hljs-class .hljs-title,
+[data-theme="light"] .hljs-title.hljs-class {
+  color: #6f42c1 !important; /* Purple for functions/classes */
+}
+
+[data-theme="light"] .hljs-number,
+[data-theme="light"] .hljs-regexp,
+[data-theme="light"] .hljs-doctag {
+  color: #005cc5 !important; /* Blue for numbers */
+}
+
+[data-theme="light"] .hljs-built_in,
+[data-theme="light"] .hljs-builtin-name,
+[data-theme="light"] .hljs-params,
+[data-theme="light"] .hljs-attr {
+  color: #e36209 !important; /* Orange for built-ins */
+}
+
+[data-theme="light"] .hljs-formula {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .hljs-emphasis {
+  font-style: italic !important;
+}
+
+[data-theme="light"] .hljs-strong {
+  font-weight: bold !important;
+}
+
+/* Language labels (optional) */
+.hljs-code-label {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* Copy button (optional enhancement) */
+.hljs-copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text);
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.hljs:hover .hljs-copy-button {
+  opacity: 1;
+}
+
+.hljs-copy-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] .hljs-copy-button {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .hljs-copy-button:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Scrollbar for code blocks */
+.hljs::-webkit-scrollbar {
+  height: 8px;
+}
+
+.hljs::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.hljs::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.hljs::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .hljs::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .hljs::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .hljs::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Inline code styling */
+code:not(.hljs) {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace !important;
+  font-size: 0.9em !important;
+  color: var(--accent) !important;
+}
+
+[data-theme="light"] code:not(.hljs) {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}

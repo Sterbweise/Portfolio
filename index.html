@@ -16,8 +16,112 @@
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/additions.css" />
-    <link rel="stylesheet" href="assets/css/lang-select.css" />
     <link rel="stylesheet" href="assets/css/header-icons.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="assets/css/components/language-selector.css" />
+    <link rel="stylesheet" href="assets/css/components/carousel.css" />
+    
+    <style>
+      /* Override inline carousel styles - use component styles instead */
+      .carousel-container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin: 2rem 0;
+      }
+
+      .carousel-wrapper {
+        flex: 1;
+        overflow: hidden;
+        /* NO border-radius - sharp corners */
+      }
+
+      .carousel-track {
+        display: flex;
+        gap: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      /* Sharp, theme-matching buttons */
+      .carousel-btn {
+        background: var(--bg-elev, rgba(255, 255, 255, 0.05));
+        color: var(--text, white);
+        border: 1px solid var(--border, rgba(255, 255, 255, 0.1));
+        width: 50px;
+        height: 50px;
+        /* NO border-radius - sharp corners */
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: border-color 0.2s ease;
+      }
+
+      .carousel-btn:hover {
+        background: var(--bg-elev-hover, rgba(255, 255, 255, 0.08));
+        border-color: var(--border-hover, rgba(255, 255, 255, 0.2));
+      }
+
+      /* Theme-matching project cards - sharp corners, no blue */
+      .project-card {
+        min-width: 350px;
+        background: var(--bg-elev, rgba(255, 255, 255, 0.03));
+        border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+        /* NO border-radius - sharp corners */
+        padding: 24px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover {
+        border-color: var(--border-hover, rgba(255, 255, 255, 0.15));
+      }
+
+      .project-card h3 {
+        color: var(--text, #f1f5f9);
+        margin-bottom: 12px;
+        font-size: 1.25rem;
+      }
+
+      .project-card p {
+        color: var(--text-muted, #94a3b8);
+        margin-bottom: 16px;
+        line-height: 1.6;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .project-tag {
+        background: var(--bg-elev, rgba(255, 255, 255, 0.05));
+        color: var(--text, #d1d5db);
+        padding: 6px 12px;
+        /* NO border-radius - sharp corners */
+        border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+        font-size: 0.875rem;
+      }
+
+      @media (max-width: 768px) {
+        .carousel-container {
+          flex-direction: column;
+        }
+        .carousel-btn {
+          display: none;
+        }
+        .carousel-wrapper {
+          overflow-x: auto;
+        }
+        .project-card {
+          min-width: 300px;
+        }
+      }
+    </style>
 
     <!-- Favicons -->
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
@@ -30,60 +134,23 @@
   </head>
 
   <body data-theme="dark">
-    <header class="site-header" role="banner">
-      <div class="container nav">
-        <a href="#top" class="brand" aria-label="Go to top"></a>
-        <div class="social-links">
-            <a class="glass-link linkedin" href="https://www.linkedin.com/in/killian-chandeze" target="_blank" rel="noopener" aria-label="Open LinkedIn profile">
-              <i class="fa-brands fa-linkedin"></i>
-            </a>
-            <a class="glass-link github" href="https://github.com/Sterbweise" target="_blank" rel="noopener" aria-label="Open GitHub profile">
-              <i class="fa-brands fa-github"></i>
-            </a>
-        </div>
-        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
-          <span class="nav-toggle-bar"></span>
-          <span class="nav-toggle-bar"></span>
-          <span class="nav-toggle-bar"></span>
-        </button>
-        <nav id="site-nav" class="site-nav" role="navigation" aria-label="Primary">
-          <a href="#about" data-i18n="nav_about">About</a>
-          <a href="#skills" data-i18n="nav_skills">Skills</a>
-          <a href="#experience" data-i18n="nav_experience">Experience</a>
-          <a href="#education" data-i18n="nav_education">Education</a>
-          <a href="#projects" data-i18n="nav_projects">Projects</a>
-          <a href="#contact" data-i18n="nav_contact">Contact</a>
-          <button id="theme-toggle" class="btn btn-small ghost" type="button" aria-label="Toggle theme">Light</button>
-          <select id="lang-select" class="btn btn-small ghost" aria-label="Change language">
-            <option value="en">EN</option>
-            <option value="fr">FR</option>
-          </select>
-          <div id="lang-menu" class="lang-menu">
-            <button class="lang-trigger" type="button" aria-haspopup="true" aria-expanded="false">
-              <span class="icon-globe" aria-hidden="true"></span>
-              <span class="label">Language</span>
-              <span class="caret" aria-hidden="true"></span>
-            </button>
-            <div class="lang-list" role="menu" hidden>
-              <button class="value" data-lang="en" role="menuitem">
-                <span class="rail" aria-hidden="true"></span>
-                <span class="text">English</span>
-              </button>
-              <button class="value" data-lang="fr" role="menuitem">
-                <span class="rail" aria-hidden="true"></span>
-                <span class="text">Français</span>
-              </button>
-            </div>
-          </div>
-          <a class="btn btn-small btn-download" href="CV_Killian_Chandeze_Sofware_Engineer.pdf" download="CV_Killian_Chandeze_Sofware_Engineer.pdf" target="_blank" rel="noopener" data-i18n="hero_download_cv">Download CV</a>
-
-        </nav>
-      </div>
-    </header>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
 
     <main id="top">
-      <section class="hero section container" aria-label="Introduction">
-        <div class="hero-content">
+      <nav class="resume-nav" aria-label="Resume section navigation">
+        <ul class="resume-nav-list" role="list">
+          <li><a class="resume-nav-link" href="#about">About</a></li>
+          <li><a class="resume-nav-link" href="#skills">Skills</a></li>
+          <li><a class="resume-nav-link" href="#experience">Experience</a></li>
+          <li><a class="resume-nav-link" href="#education">Education</a></li>
+          <li><a class="resume-nav-link" href="#projects">Projects</a></li>
+          <li><a class="resume-nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="content-column">
+        <section class="hero section container" aria-label="Introduction">
+          <div class="hero-content">
           <div class="hero-tagline reveal">
             <p class="hero-quote lead-quote design-quote">
               <span class="quote-mark open">“</span><span id="quote-text" data-i18n="quote">Form follows function.</span><span class="quote-mark close">”</span>
@@ -105,8 +172,8 @@
         </div>
       </section>
 
-      <section id="about" class="section container" aria-labelledby="about-title">
-        <h2 id="about-title" class="section-title reveal" data-i18n="about_title">About</h2>
+        <section id="about" class="section container" aria-labelledby="about-title">
+          <h2 id="about-title" class="section-title reveal" data-i18n="about_title">About</h2>
         <div class="about-grid reveal delay-1">
           <div class="about-text">
             <p class="lead" data-i18n="about_lead">Hi, I’m Killian — a Software Engineer from France, currently based in Malaysia. My goal is to build collaborative and impactful solutions that address real-world and future challenges.</p>
@@ -127,10 +194,10 @@
             <img src="assets/img/profile.jpg" alt="Portrait of Killian Chandeze" />
           </div>
         </div>
-      </section>
+        </section>
 
-      <section id="skills" class="section container" aria-labelledby="skills-title">
-        <h2 id="skills-title" class="section-title reveal" data-i18n="skills_title">Technical Skills</h2>
+        <section id="skills" class="section container" aria-labelledby="skills-title">
+          <h2 id="skills-title" class="section-title reveal" data-i18n="skills_title">Technical Skills</h2>
 
         <div class="skills-grid reveal delay-1" role="list">
           <article class="skill-cat" role="listitem">
@@ -378,8 +445,8 @@
         </article>
       </section>
 
-      <section id="education" class="section container" aria-labelledby="edu-title">
-        <h2 id="edu-title" class="section-title reveal" data-i18n="education_title">Education</h2>
+        <section id="education" class="section container" aria-labelledby="edu-title">
+          <h2 id="edu-title" class="section-title reveal" data-i18n="education_title">Education</h2>
         
         <article class="card reveal delay-1">
           <header class="card-head meta-row">
@@ -467,15 +534,14 @@
         </article>
       </section>
 
-      <section id="projects" class="section container" aria-labelledby="proj-title" style="
-    padding-bottom: 0px;">
+      <section id="projects" class="section container" aria-labelledby="proj-title">
         <h2 id="proj-title" class="section-title reveal" data-i18n="projects_title">Projects</h2>
 
-        <div class="proj-carousel reveal delay-1" aria-roledescription="carousel">
-          <button class="proj-arrow prev" aria-label="Previous projects" type="button" data-i18n="proj_prev_aria" data-i18n-attr="aria-label">‹</button>
-          <div class="proj-viewport">
-            <div class="proj-track">
-              
+        <div class="carousel-container">
+          <button class="carousel-btn prev" onclick="moveCarousel(-1)">‹</button>
+          <div class="carousel-wrapper">
+            <div class="carousel-track" id="carousel-track">
+
               <article class="tile reveal" data-oss="true">
                 <div class="tile-body">
                   <h3 data-i18n="proj_winget_title">Winget Update Tools</h3>
@@ -621,7 +687,7 @@
               </article>
             </div>
           </div>
-          <button class="proj-arrow next" aria-label="Next projects" type="button" data-i18n="proj_next_aria" data-i18n-attr="aria-label">›</button>
+          <button class="carousel-btn next" onclick="moveCarousel(1)">›</button>
         </div>
       </section>
 
@@ -636,10 +702,10 @@
         </div>
       </div>
 
-      <section class="section container" aria-label="Connect">
-        <div class="connect-grid">
-          <section id="contact" aria-labelledby="contact-title">
-            <h2 id="contact-title" class="section-title reveal" data-i18n="contact_title">Contact</h2>
+        <section class="section container" aria-label="Connect">
+          <div class="connect-grid">
+            <section id="contact" aria-labelledby="contact-title">
+              <h2 id="contact-title" class="section-title reveal" data-i18n="contact_title">Contact</h2>
             <div class="contact-card reveal delay-1">
               <ul class="contact-list">
                 <li><i class="fa-sharp fa-solid fa-location-dot"></i><span>Federal Territory of Kuala Lumpur, Malaysia</span><span class="kw-badge time-badge" id="local-time" aria-label="Local time (UTC+8)" data-i18n="local_time_aria" data-i18n-attr="aria-label"></span></li>
@@ -668,24 +734,99 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <div class="footer-brand">KC</div>
-        <div class="footer-copy muted">© <span id="year"></span> Killian Chandeze</div>
-        <div class="footer-links">
-          <a href="#about" data-i18n="footer_about">About</a>
-          <a href="#experience" data-i18n="footer_experience">Experience</a>
-          <a href="#education" data-i18n="footer_education">Education</a>
-          <a href="#projects" data-i18n="footer_projects">Projects</a>
-          <a href="#contact" data-i18n="footer_contact">Contact</a>
-        </div>
-      </div>
-    </footer>
-
-    <button class="to-top" aria-label="Back to top">↑</button>
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
 
     <!-- Scripts -->
+    <script src="assets/js/components.js"></script>
     <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/components/carousel.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <script>
+      // CAROUSEL ULTRA SIMPLE
+      let currentIndex = 0;
+      const projects = [
+        {
+          title: "Winget Update Tools",
+          desc: "Automates and simplifies Windows app updates via WinGet with flexible modes and exclusions.",
+          tags: ["PowerShell", "WinGet", "Automation", "Windows", "Scripting"],
+          link: "https://github.com/Sterbweise/winget-update",
+          detailKeys: ["proj_winget_1", "proj_winget_2", "proj_winget_3", "proj_winget_4", "proj_winget_5"]
+        },
+        {
+          title: "Supply Chain Optimization Engine",
+          desc: "Optimization engine for planning and inventory, enabling real‑time, scalable operations.",
+          tags: ["C# / .NET", "ASP.NET", "Docker", "Kubernetes", "Real‑time Processing"],
+          link: "https://www.syleps.com/",
+          detailKeys: ["proj_supply_1", "proj_supply_2", "proj_supply_3", "proj_supply_4", "proj_supply_5", "proj_supply_6"]
+        },
+        {
+          title: "Real-time Production Dashboard",
+          desc: "WPF dashboard for live production tracking and actionable shop‑floor insights.",
+          tags: ["C# / .NET", "WPF (MVVM)", "Entity Framework", "LINQ", "SQL Server"],
+          link: "https://www.syleps.com/",
+          detailKeys: ["proj_wpf_1", "proj_wpf_2", "proj_wpf_3", "proj_wpf_4", "proj_wpf_5"]
+        },
+        {
+          title: "Crypto Scoring System",
+          desc: "Comprehensive crypto analysis engine delivering data‑driven investment insights.",
+          tags: [".NET Core", "Python", "Pandas", "SQL", "Technical Indicators"],
+          link: "http://astrumia.com/",
+          detailKeys: ["proj_crypto_1", "proj_crypto_2", "proj_crypto_3", "proj_crypto_4", "proj_crypto_5"]
+        },
+        {
+          title: "Plutonium T6 Server",
+          desc: "Dedicated server platform for hosting and managing Black Ops II (Plutonium) with stability and easy config.",
+          tags: ["C# / .NET", "Server Hosting", "Plutonium", "Black Ops II", "Config Management"],
+          link: "https://github.com/Sterbweise/T6Server",
+          detailKeys: ["proj_plutonium_1", "proj_plutonium_2", "proj_plutonium_3", "proj_plutonium_4", "proj_plutonium_5"]
+        }
+      ];
+      
+      function renderProjects() {
+        const track = document.getElementById('carousel-track');
+        track.innerHTML = projects.map(project => `
+          <div class="project-card" data-detail-keys="${project.detailKeys.join(',')}">
+            <h3>${project.title}</h3>
+            <p>${project.desc}</p>
+            <div class="project-tags">
+              ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+            </div>
+            <div style="margin-top: 16px;">
+              <a href="${project.link}" target="_blank" style="color: var(--accent, rgba(255, 255, 255, 0.8)); text-decoration: none;">View Project →</a>
+            </div>
+          </div>
+        `).join('');
+
+        // Reinitialize modal after rendering projects
+        setTimeout(() => {
+          if (window.initProjectModal) {
+            window.initProjectModal();
+          }
+        }, 200);
+      }
+      
+      function moveCarousel(direction) {
+        const maxIndex = projects.length - 1;
+        currentIndex += direction;
+        
+        if (currentIndex < 0) currentIndex = 0;
+        if (currentIndex > maxIndex) currentIndex = maxIndex;
+        
+        const track = document.getElementById('carousel-track');
+        const offset = currentIndex * -370; // 350px width + 20px gap
+        track.style.transform = `translateX(${offset}px)`;
+        
+        console.log('Carousel moved to index:', currentIndex);
+      }
+      
+      // Initialize when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+        renderProjects();
+        console.log('Carousel initialized with', projects.length, 'projects');
+      });
+    </script>
+
   </body>
 </html>

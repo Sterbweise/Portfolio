@@ -1,0 +1,69 @@
+{
+  "id": "reverse-proxy",
+  "title": "Reverse Proxy Setup",
+  "description": "Configure Nginx or Apache reverse proxy with load balancing, SSL termination, and security headers.",
+  "detailedDescription": "Implement a robust reverse proxy solution using Nginx or Apache to improve your application's performance, security, and scalability. I configure load balancing, SSL termination, caching, and security headers to ensure optimal performance and protection for your web applications.",
+  "category": "infrastructure",
+  "icon": "fa-solid fa-route",
+  "tone": "cyan",
+  "startingPrice": 300,
+  "deliveryDays": 2,
+  "packages": [
+    {
+      "name": "Basic Proxy",
+      "price": "$300",
+      "features": [
+        "Nginx/Apache installation",
+        "Basic reverse proxy config",
+        "SSL certificate setup",
+        "Basic security headers",
+        "Simple load balancing"
+      ],
+      "deliveryTime": "1-2 days"
+    },
+    {
+      "name": "Advanced Proxy",
+      "price": "$550",
+      "features": [
+        "Advanced load balancing",
+        "Caching configuration",
+        "Rate limiting & DDoS protection",
+        "Health checks & failover",
+        "Comprehensive logging",
+        "Performance optimization"
+      ],
+      "deliveryTime": "3-4 days"
+    },
+    {
+      "name": "Enterprise Proxy",
+      "price": "$900",
+      "features": [
+        "High-availability setup",
+        "Advanced security (WAF)",
+        "Monitoring & alerting",
+        "Auto-scaling configuration",
+        "CDN integration",
+        "Documentation & training"
+      ],
+      "deliveryTime": "5-7 days"
+    }
+  ],
+  "guarantees": [
+    { "icon": "fas fa-tachometer-alt", "text": "Performance optimization included" },
+    { "icon": "fas fa-shield-alt", "text": "Security headers configured" },
+    { "icon": "fas fa-balance-scale", "text": "Load balancing setup" },
+    { "icon": "fas fa-certificate", "text": "SSL certificate management" },
+    { "icon": "fas fa-chart-line", "text": "Performance monitoring" }
+  ],
+  "extras": [
+    { "name": "Additional backend", "price": "$75", "description": "Configure additional backend server" },
+    { "name": "WAF rules", "price": "$200", "description": "Custom Web Application Firewall rules" },
+    { "name": "CDN integration", "price": "$150", "description": "CloudFlare or similar CDN setup" },
+    { "name": "Advanced caching", "price": "$100", "description": "Redis or Memcached caching layer" },
+    { "name": "Monitoring dashboard", "price": "$125", "description": "Custom monitoring and analytics dashboard" }
+  ],
+  "meta": {
+    "deliveryTime": "1-3 days",
+    "revisions": "2 revisions"
+  }
+}

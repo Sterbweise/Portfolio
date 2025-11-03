@@ -160,7 +160,7 @@
   "proj_crypto_4": "Backtested strategies with walk‑forward validation; tracked Sharpe ratio, hit rate and max drawdown to calibrate thresholds.",
   "proj_crypto_5": "Surfaced top signals via alerts and a lightweight dashboard; added guardrails for position sizing and risk limits.",
 
-  "proj_plutonium_1": "A dedicated server platform for hosting and managing Call of Duty: Black Ops II using the Plutonium mod.",
+  "proj_plutonium": "A dedicated server platform for hosting and managing Call of Duty: Black Ops II using the Plutonium mod.",
   "proj_plutonium_2": "Enables advanced customization, stable performance, and straightforward configuration.",
   "proj_plutonium_3": "Provides tooling and structure for reliable operation and streamlined administration.",
   "proj_plutonium_4": "Includes guidance for setup/operations to support consistent deployments.",

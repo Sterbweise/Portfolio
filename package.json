@@ -1,0 +1,12 @@
+{
+  "name": "killian-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website with blog system",
+  "scripts": {
+    "generate-articles": "node generate-articles-list.js",
+    "serve": "python -m http.server 8000",
+    "dev": "npm run generate-articles && npm run serve"
+  },
+  "keywords": ["portfolio", "blog", "markdown"],
+  "author": "Killian Chandeze"
+}

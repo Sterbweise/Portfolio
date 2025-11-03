@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Article by Killian Chandeze" />
+    <meta name="theme-color" content="#0f172a" />
+    <title id="article-title">Article — Killian Chandeze</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/additions.css" />
+    <link rel="stylesheet" href="assets/css/header-icons.css" />
+    <link rel="stylesheet" href="assets/css/components/language-selector.css" />
+    <link rel="stylesheet" href="assets/css/blog.css" />
+    <link rel="stylesheet" href="assets/css/highlight-custom.css" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Highlight.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  </head>
+
+  <body data-theme="dark">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <main id="top">
+      <!-- Back to Blog -->
+      <section class="section container" style="padding-top: 2rem; padding-bottom: 1rem;">
+        <a href="blog.html" class="btn ghost" style="display: inline-flex; align-items: center; gap: 8px;">
+          <i class="fas fa-arrow-left"></i>
+          Back to Blog
+        </a>
+      </section>
+
+      <!-- Article Content -->
+      <article class="section container">
+        <div id="article-loading" class="blog-loading">
+          Loading article...
+        </div>
+        <div id="article-content" class="article-content" style="display: none;">
+          <!-- Article content will be loaded here -->
+        </div>
+        <div id="article-error" class="blog-empty" style="display: none;">
+          <h3>Article not found</h3>
+          <p>The requested article could not be loaded.</p>
+          <a href="blog.html" class="btn">Back to Blog</a>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/shared/markdown-parser.js"></script>
+    <script src="assets/js/article.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
