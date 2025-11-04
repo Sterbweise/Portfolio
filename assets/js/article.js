@@ -69,6 +69,13 @@ class ArticlePage {
       if (!response.ok) throw new Error('Article not found');
 
       const content = await response.text();
+
+      // Validate that we actually received markdown, not HTML
+      // (prevents SPA fallback from serving index.html on 404)
+      if (content.trim().startsWith('<!DOCTYPE') || content.trim().startsWith('<html')) {
+        throw new Error('Received HTML instead of markdown - article file may not exist');
+      }
+
       const article = this.parser.parse(content, articleId);
 
       // Update page metadata

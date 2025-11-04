@@ -3,8 +3,10 @@
 
 # Documentation files (generated/temporary)
 *.md
-# Uncomment the line below if you want to keep README.md:
-# !README.md
+# Keep important markdown files:
+!README.md
+!CLAUDE.md
+!articles/*.md
 
 # Editor directories and files
 .vscode/

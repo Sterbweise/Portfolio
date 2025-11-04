@@ -41,6 +41,13 @@ class BlogSystem {
           const response = await fetch(`articles/${filename}`);
           if (!response.ok) throw new Error(`Failed to load ${filename}`);
           const content = await response.text();
+
+          // Validate that we actually received markdown, not HTML
+          // (prevents SPA fallback from serving index.html on 404)
+          if (content.trim().startsWith('<!DOCTYPE') || content.trim().startsWith('<html')) {
+            throw new Error(`Received HTML instead of markdown for ${filename} - file may not exist`);
+          }
+
           return this.parser.parse(content, filename);
         } catch (error) {
           console.warn(`Could not load article: ${filename}`, error);
