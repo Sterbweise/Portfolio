@@ -1,0 +1,10 @@
+# robots.txt for kchndz.dev
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://kchndz.dev/sitemap.xml
+
+# Disallow build/dev directories (shouldn't be deployed but just in case)
+Disallow: /node_modules/
+Disallow: /.astro/

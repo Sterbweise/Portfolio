@@ -16,7 +16,10 @@ export interface Props {
   /** Profile image configuration */
   image?: {
     src: string;
+    srcFallback?: string;
     alt: string;
+    width?: number;
+    height?: number;
   };
   /** Additional CSS classes */
   class?: string;
@@ -82,12 +85,17 @@ const formattedHighlights =
     {
       image && (
         <div class="about-photo">
-          <img
-            src={image.src}
-            alt={image.alt}
-            loading="lazy"
-            decoding="async"
-          />
+          <picture>
+            <source srcset={image.src} type="image/webp" />
+            <img
+              src={image.srcFallback || image.src}
+              alt={image.alt}
+              width={image.width || 400}
+              height={image.height || 400}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
       )
     }

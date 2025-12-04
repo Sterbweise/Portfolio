@@ -60,7 +60,10 @@ export interface AboutData {
   strengths: string[];
   image?: {
     src: string;
+    srcFallback?: string;
     alt: string;
+    width?: number;
+    height?: number;
   };
 }
 

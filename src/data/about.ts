@@ -51,8 +51,11 @@ export const aboutData: AboutData = {
     "Continuous Learning",
   ],
   image: {
-    src: "/img/profile.jpg",
+    src: "/img/profile.webp",
+    srcFallback: "/img/profile.jpg",
     alt: "Portrait of Killian Chandeze",
+    width: 400,
+    height: 400,
   },
 };
 

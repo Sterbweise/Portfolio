@@ -1,6 +1,6 @@
 ---
 // src/layouts/BaseLayout.astro
-// Global layout component for the entire site
+// Global layout component for the entire site - Optimized for PageSpeed
 
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -20,7 +20,7 @@ const {
   title = "Portfolio — Killian Chandeze",
   description = "Software Engineer Portfolio — minimal, aesthetic one-page showcasing skills, experience, education, and projects.",
   canonical = "https://kchndz.dev",
-  ogImage = "https://kchndz.dev/assets/img/og-image.jpg",
+  ogImage = "https://kchndz.dev/img/og-image.jpg",
 }: Props = Astro.props;
 
 // Get current year for copyright
@@ -41,22 +41,49 @@ const currentYear = new Date().getFullYear();
     <!-- SEO - Dynamic title based on page -->
     <title>{title}</title>
 
-    <!-- Preconnect for performance -->
+    <!-- Preconnect for performance - with dns-prefetch fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
 
-    <!-- Fonts - Inter -->
+    <!-- Preload critical font weights (Inter 400, 600, 700) -->
+    <link
+      rel="preload"
+      href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Fonts - Inter with display=swap for better LCP -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
-    <!-- Icons - Font Awesome -->
+    <!-- Icons - Font Awesome (defer loading for better FCP) -->
     <link
+      rel="preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      rel="stylesheet"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <!-- Favicons -->
     <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
@@ -80,6 +107,47 @@ const currentYear = new Date().getFullYear();
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonical} />
+
+    <!-- Critical CSS for above-the-fold content (inlined) -->
+    <style is:inline>
+      /* Critical CSS - Prevents Flash of Unstyled Content */
+      :root {
+        --bg: #0b0c0e;
+        --text: #e8e9ea;
+        --muted: #9aa0a7;
+        --border: #1e2329;
+        --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+      }
+      [data-theme="light"] {
+        --bg: #ffffff;
+        --text: #0f172a;
+        --muted: #475569;
+        --border: #e5e7eb;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font-sans);
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+      /* Prevent layout shift from scrollbar */
+      html,
+      body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+    </style>
   </head>
 
   <body data-theme="dark">
@@ -115,7 +183,7 @@ const currentYear = new Date().getFullYear();
       })();
     </script>
 
-    <!-- Main scripts -->
+    <!-- Main scripts - deferred for better performance -->
     <script>
       // Theme toggle functionality
       function initThemeToggle() {
@@ -161,13 +229,18 @@ const currentYear = new Date().getFullYear();
             }
           };
 
-          // Throttle scroll events for performance
-          let scrollTimeout: ReturnType<typeof setTimeout>;
+          // Use requestAnimationFrame for better performance
+          let ticking = false;
           window.addEventListener(
             "scroll",
             () => {
-              if (scrollTimeout) clearTimeout(scrollTimeout);
-              scrollTimeout = setTimeout(handleScroll, 10);
+              if (!ticking) {
+                requestAnimationFrame(() => {
+                  handleScroll();
+                  ticking = false;
+                });
+                ticking = true;
+              }
             },
             { passive: true },
           );
@@ -185,7 +258,7 @@ const currentYear = new Date().getFullYear();
         }
       }
 
-      // Reveal animations on scroll
+      // Reveal animations on scroll - using Intersection Observer
       function initRevealAnimations() {
         const reveals = document.querySelectorAll(".reveal:not(.in)");
 
@@ -217,7 +290,11 @@ const currentYear = new Date().getFullYear();
       }
 
       // Run on DOM ready
-      document.addEventListener("DOMContentLoaded", init);
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
 
       // Also run on Astro page transitions (View Transitions API)
       document.addEventListener("astro:page-load", init);
