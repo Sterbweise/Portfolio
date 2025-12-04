@@ -1,0 +1,820 @@
+---
+// src/components/sections/Contact.astro
+// Contact section component displaying contact information and language proficiencies
+
+import Section from "../common/Section.astro";
+import { contactInfo, languages } from "../../data/site";
+import type { ContactInfo, LanguageEntry } from "../../types";
+
+export interface Props {
+  /** Custom contact info (overrides default) */
+  contact?: ContactInfo;
+  /** Custom languages data (overrides default) */
+  languageList?: LanguageEntry[];
+  /** Whether to show the languages section */
+  showLanguages?: boolean;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  contact = contactInfo,
+  languageList = languages,
+  showLanguages = true,
+  class: className = "",
+} = Astro.props;
+---
+
+<section class:list={["section", "container", className]} aria-label="Connect">
+  <div class="connect-grid">
+    <!-- Contact Information -->
+    <div id="contact" class="contact-section" aria-labelledby="contact-title">
+      <h2 id="contact-title" class="section-title">Contact</h2>
+      <div class="contact-card">
+        <ul class="contact-list">
+          <li>
+            <i class="fa-sharp fa-solid fa-location-dot" aria-hidden="true"></i>
+            <span>{contact.location}</span>
+          </li>
+          {
+            contact.social.map((social) => (
+              <li>
+                <i class={social.icon} aria-hidden="true" />
+                <a
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${social.platform} profile`}
+                >
+                  {social.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- Languages Section -->
+    {
+      showLanguages && languageList.length > 0 && (
+        <div
+          id="languages"
+          class="languages-section"
+          aria-labelledby="languages-title"
+        >
+          <h2 id="languages-title" class="section-title">
+            Languages
+          </h2>
+          <div class="contact-card">
+            <ul class="contact-list languages-list">
+              {languageList.map((lang) => (
+                <li class="lang-item">
+                  <span class="lang-name">{lang.name}</span>
+                  <span class="level-badge">{lang.level}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- PGP Key Section -->
+          <div class="pgp-section">
+            <h3 class="pgp-title">PGP Public Key</h3>
+            <button class="pgp-card" id="pgp-button" aria-label="View PGP public key">
+              <i class="fa-solid fa-key" aria-hidden="true"></i>
+              <div class="pgp-info">
+                <span class="pgp-label">Encrypted Communication</span>
+                <span class="pgp-email">Chandeze.Killian@proton.me</span>
+              </div>
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      )
+    }
+  </div>
+
+  <!-- PGP Key Modal -->
+  <div class="pgp-modal" id="pgp-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <div class="pgp-modal-overlay" id="pgp-modal-overlay"></div>
+    <div class="pgp-modal-content">
+      <div class="pgp-modal-header">
+        <h3 id="modal-title">PGP Public Key</h3>
+        <button class="pgp-modal-close" id="pgp-modal-close" aria-label="Close modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="pgp-modal-body">
+        <pre class="pgp-key" id="pgp-key-content">-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xjMEYmgpABYJKwYBBAHaRw8BAQdAJykHvgEfRbQSNlY06Z8KCX4JoU16sQ8v
+7Lw8dso3rwXNN0NoYW5kZXplLktpbGxpYW5AcHJvdG9uLm1lIDxDaGFuZGV6
+ZS5LaWxsaWFuQHByb3Rvbi5tZT7CjwQQFgoAIAUCYmgpAAYLCQcIAwIEFQgK
+AgQWAgEAAhkBAhsDAh4BACEJEAWKfhsgSlSMFiEEyYo/zHpPxaQ2tK1yBYp+
+GyBKVIz8ggEAlTDT8Hf8UqVoeDnkH4isEs4TUyuPV+patVOcbWyg9GEA+QFv
+Hm49SI5nIJ3YR2T/3tn2FbLe2q0aZbgr9NwJmJcNzjgEYmgpABIKKwYBBAGX
+VQEFAQEHQBP1jdgYsaema/4MooqktFo3Mp6Dyb2Wq879BOKrCos4AwEIB8J4
+BBgWCAAJBQJiaCkAAhsMACEJEAWKfhsgSlSMFiEEyYo/zHpPxaQ2tK1yBYp+
+GyBKVIyoSQD+Om17JY0Ds1/mWoDiuigu2LMB85iCPAM5Nu8DLYdPNPkA/2Fq
+UnMquejHtuLTp0kkdko878ND/+0HoTx1V7i5qjIM
+=ffhQ
+-----END PGP PUBLIC KEY BLOCK-----</pre>
+        <button class="pgp-copy-button" id="pgp-copy-button">
+          <i class="fa-solid fa-copy"></i>
+          <span>Copy to Clipboard</span>
+        </button>
+        <div class="pgp-copy-success" id="pgp-copy-success">
+          <i class="fa-solid fa-check"></i>
+          Copied!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // PGP Modal functionality
+  function initPGPModal() {
+    const modal = document.getElementById('pgp-modal');
+    const openButton = document.getElementById('pgp-button');
+    const closeButton = document.getElementById('pgp-modal-close');
+    const overlay = document.getElementById('pgp-modal-overlay');
+    const copyButton = document.getElementById('pgp-copy-button');
+    const copySuccess = document.getElementById('pgp-copy-success');
+    const keyContent = document.getElementById('pgp-key-content');
+
+    if (!modal || !openButton || !closeButton || !overlay) return;
+
+    // Open modal
+    openButton.addEventListener('click', () => {
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    });
+
+    // Close modal
+    const closeModal = () => {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    closeButton.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    // Copy to clipboard
+    if (copyButton && keyContent && copySuccess) {
+      copyButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(keyContent.textContent || '');
+          copySuccess.classList.add('show');
+          setTimeout(() => {
+            copySuccess.classList.remove('show');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy:', err);
+        }
+      });
+    }
+  }
+
+  // Initialize on DOM ready
+  document.addEventListener('DOMContentLoaded', initPGPModal);
+  document.addEventListener('astro:page-load', initPGPModal);
+</script>
+
+<style>
+  /* Connect section layout */
+  .connect-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* Section title styling */
+  .section-title {
+    font-size: clamp(1.3rem, 1.1rem + 1vw, 1.6rem);
+    margin: 0 0 1rem;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 28px;
+    height: 2px;
+    background: var(--border);
+    transition:
+      background-color 0.25s ease,
+      width 0.25s ease;
+  }
+
+  /* Hover effect on section titles */
+  .contact-section:hover .section-title::after,
+  .languages-section:hover .section-title::after {
+    background: var(--text);
+    width: 40px;
+  }
+
+  /* Contact card container */
+  .contact-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1rem 1.25rem;
+    transition: border-color 0.25s ease;
+  }
+
+  .contact-card:hover {
+    border-color: var(--text);
+  }
+
+  /* Contact list styling */
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .contact-list li:last-child {
+    border-bottom: none;
+  }
+
+  .contact-list li:hover {
+    border-bottom-color: var(--border);
+  }
+
+  .contact-list li:last-child:hover {
+    border-bottom-color: transparent;
+  }
+
+  /* Icon styling */
+  .contact-list i {
+    width: 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+  }
+
+  .contact-list li:hover i {
+    color: var(--text);
+  }
+
+  /* Link styling */
+  .contact-list a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 1px;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .contact-list a:hover {
+    border-color: var(--text);
+  }
+
+  .contact-list a:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+
+  /* Languages list specific styling */
+  .languages-list.contact-list li {
+    justify-content: space-between;
+  }
+
+  .lang-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .lang-name {
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  /* Level badge - minimalist style */
+  .level-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .lang-item:hover .level-badge {
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  /* Light theme adjustments */
+  :global([data-theme="light"]) .contact-card {
+    background: var(--card);
+  }
+
+  :global([data-theme="light"]) .contact-card:hover {
+    border-color: var(--text);
+  }
+
+  :global([data-theme="light"]) .contact-list li {
+    border-bottom-color: transparent;
+  }
+
+  :global([data-theme="light"]) .contact-list li:hover {
+    border-bottom-color: var(--border);
+  }
+
+  :global([data-theme="light"]) .contact-list li:hover i {
+    color: var(--text);
+  }
+
+  :global([data-theme="light"]) .contact-list a:hover {
+    border-color: var(--text);
+  }
+
+  :global([data-theme="light"]) .lang-item:hover .level-badge {
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  /* Responsive - Tablet and below */
+  @media (max-width: 900px) {
+    .connect-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .connect-grid {
+      gap: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+    }
+
+    .contact-card {
+      padding: 0.9rem 1rem;
+    }
+
+    .contact-list {
+      gap: 0.6rem;
+    }
+
+    .contact-list li {
+      font-size: 0.9rem;
+      gap: 0.6rem;
+    }
+
+    .contact-list i {
+      width: 18px;
+      font-size: 0.85rem;
+    }
+
+    .level-badge {
+      padding: 0.15rem 0.4rem;
+      font-size: 0.7rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .contact-card {
+      padding: 0.8rem;
+    }
+
+    .contact-list li {
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .lang-item {
+      flex-wrap: nowrap;
+    }
+
+    .lang-name {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Touch device optimizations */
+  @media (hover: none) and (pointer: coarse) {
+    .contact-card:hover {
+      border-color: var(--border);
+    }
+
+    .contact-card:active {
+      border-color: var(--text);
+    }
+
+    .contact-list li:hover {
+      border-bottom-color: transparent;
+    }
+
+    .contact-list li:hover i {
+      color: var(--muted);
+    }
+
+    .contact-list a:active {
+      border-color: var(--text);
+    }
+
+    .contact-list li:active i {
+      color: var(--text);
+    }
+
+    .lang-item:hover .level-badge {
+      border-color: var(--border);
+      color: var(--muted);
+    }
+
+    .lang-item:active .level-badge {
+      border-color: var(--text);
+      color: var(--text);
+    }
+  }
+
+  /* Focus within for accessibility */
+  .contact-section:focus-within .section-title::after,
+  .languages-section:focus-within .section-title::after {
+    background: var(--text);
+    width: 40px;
+  }
+
+  /* PGP Section */
+  .pgp-section {
+    margin-top: 1.5rem;
+  }
+
+  .pgp-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 0 0 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .pgp-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    text-align: left;
+  }
+
+  .pgp-card:hover {
+    border-color: var(--text);
+    transform: translateX(2px);
+  }
+
+  .pgp-card:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+
+  .pgp-card > i:first-child {
+    font-size: 1.1rem;
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+
+  .pgp-card:hover > i:first-child {
+    color: var(--text);
+  }
+
+  .pgp-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .pgp-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .pgp-email {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: monospace;
+  }
+
+  .pgp-card > i:last-child {
+    font-size: 0.9rem;
+    color: var(--muted);
+    transition: transform 0.2s ease;
+  }
+
+  .pgp-card:hover > i:last-child {
+    transform: translateX(3px);
+  }
+
+  /* PGP Modal */
+  .pgp-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .pgp-modal.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .pgp-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+  }
+
+  .pgp-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+
+  .pgp-modal.active .pgp-modal-content {
+    transform: scale(1);
+  }
+
+  .pgp-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pgp-modal-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .pgp-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1.1rem;
+  }
+
+  .pgp-modal-close:hover {
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  .pgp-modal-close:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+
+  .pgp-modal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .pgp-key {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    margin: 0 0 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--text);
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .pgp-copy-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .pgp-copy-button:hover {
+    border-color: var(--text);
+    background: var(--card);
+  }
+
+  .pgp-copy-button:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+
+  .pgp-copy-success {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 0.5rem;
+    background: color-mix(in oklab, #22c55e 12%, var(--bg-elev));
+    border: 1px solid color-mix(in oklab, #22c55e 40%, var(--border));
+    color: #22c55e;
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .pgp-copy-success.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Light theme adjustments */
+  :global([data-theme="light"]) .pgp-card {
+    background: var(--card);
+  }
+
+  :global([data-theme="light"]) .pgp-modal-overlay {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  :global([data-theme="light"]) .pgp-modal-content {
+    background: var(--card);
+  }
+
+  :global([data-theme="light"]) .pgp-key {
+    background: var(--bg-elev);
+  }
+
+  :global([data-theme="light"]) .pgp-copy-success {
+    background: color-mix(in oklab, #22c55e 10%, var(--bg-elev));
+    color: #16a34a;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .pgp-section {
+      margin-top: 1.25rem;
+    }
+
+    .pgp-title {
+      font-size: 0.85rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .pgp-card {
+      padding: 0.8rem 0.9rem;
+    }
+
+    .pgp-label {
+      font-size: 0.8rem;
+    }
+
+    .pgp-email {
+      font-size: 0.7rem;
+    }
+
+    .pgp-modal-content {
+      width: 95%;
+      max-height: 85vh;
+    }
+
+    .pgp-modal-header {
+      padding: 1rem 1.25rem;
+    }
+
+    .pgp-modal-header h3 {
+      font-size: 1rem;
+    }
+
+    .pgp-modal-body {
+      padding: 1.25rem;
+    }
+
+    .pgp-key {
+      font-size: 0.7rem;
+      padding: 0.9rem;
+    }
+
+    .pgp-copy-button {
+      padding: 0.7rem 0.9rem;
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pgp-card {
+      padding: 0.75rem 0.8rem;
+      gap: 0.6rem;
+    }
+
+    .pgp-card > i:first-child {
+      font-size: 1rem;
+    }
+
+    .pgp-label {
+      font-size: 0.75rem;
+    }
+
+    .pgp-email {
+      font-size: 0.65rem;
+    }
+
+    .pgp-modal-content {
+      width: 100%;
+      max-height: 90vh;
+    }
+
+    .pgp-modal-header {
+      padding: 0.9rem 1rem;
+    }
+
+    .pgp-modal-body {
+      padding: 1rem;
+    }
+
+    .pgp-key {
+      font-size: 0.65rem;
+      padding: 0.8rem;
+    }
+  }
+</style>

@@ -1,0 +1,187 @@
+---
+// src/components/common/Section.astro
+// Reusable section wrapper component for consistent layout across all sections
+
+export interface Props {
+  /** Section ID for navigation anchoring */
+  id?: string;
+  /** Section title (optional, renders h2 with section-title class) */
+  title?: string;
+  /** Title element ID for aria-labelledby */
+  titleId?: string;
+  /** Whether to use container width */
+  container?: boolean;
+  /** Additional CSS classes */
+  class?: string;
+  /** Aria label for accessibility (alternative to title) */
+  ariaLabel?: string;
+  /** Background variant */
+  background?: "default" | "elevated" | "transparent";
+  /** Padding variant */
+  padding?: "default" | "compact" | "large" | "none";
+}
+
+const {
+  id,
+  title,
+  titleId = id ? `${id}-title` : undefined,
+  container = true,
+  class: className = "",
+  ariaLabel,
+  background = "default",
+  padding = "default",
+} = Astro.props;
+
+const backgroundClasses = {
+  default: "",
+  elevated: "section-elevated",
+  transparent: "section-transparent",
+};
+
+const paddingClasses = {
+  default: "section-padding-default",
+  compact: "section-padding-compact",
+  large: "section-padding-large",
+  none: "section-padding-none",
+};
+
+const classes = [
+  "section",
+  container && "container",
+  backgroundClasses[background],
+  paddingClasses[padding],
+  className,
+].filter(Boolean).join(" ");
+
+const ariaProps = {
+  ...(ariaLabel && { "aria-label": ariaLabel }),
+  ...(title && titleId && { "aria-labelledby": titleId }),
+};
+---
+
+<section id={id} class={classes} {...ariaProps}>
+  {title && (
+    <h2 id={titleId} class="section-title">
+      {title}
+    </h2>
+  )}
+  <slot />
+</section>
+
+<style>
+  .section {
+    position: relative;
+  }
+
+  /* Padding variants */
+  .section-padding-default {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .section-padding-compact {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .section-padding-large {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+
+  .section-padding-none {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  /* Background variants */
+  .section-elevated {
+    background: var(--bg-elev);
+  }
+
+  .section-transparent {
+    background: transparent;
+  }
+
+  /* Section title styling */
+  .section-title {
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+    margin: 0 0 20px;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 36px;
+    height: 2px;
+    background: var(--border);
+    transition:
+      background-color 0.25s ease,
+      width 0.25s ease;
+  }
+
+  /* Section hover effect on title underline */
+  .section:hover .section-title::after {
+    background: var(--accent);
+    width: 56px;
+  }
+
+  /* Container width */
+  .container {
+    width: min(1100px, 92%);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .section-padding-default {
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+
+    .section-padding-compact {
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+
+    .section-padding-large {
+      padding-top: 64px;
+      padding-bottom: 64px;
+    }
+
+    .section-title {
+      font-size: clamp(1.3rem, 1rem + 1vw, 1.75rem);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .section-padding-default {
+      padding-top: 36px;
+      padding-bottom: 36px;
+    }
+
+    .section-padding-compact {
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    .section-padding-large {
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+
+    .container {
+      width: min(1100px, 94%);
+    }
+  }
+
+  /* Focus within section for accessibility */
+  .section:focus-within .section-title::after {
+    background: var(--accent);
+    width: 56px;
+  }
+</style>

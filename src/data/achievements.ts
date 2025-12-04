@@ -1,0 +1,114 @@
+// src/data/achievements.ts
+// Achievements, certifications, and awards data
+
+import type { AchievementEntry } from "../types";
+
+/**
+ * Achievements and certifications
+ * Listed with most notable first
+ */
+export const achievementsData: AchievementEntry[] = [
+  {
+    id: "Codingame-spring-challenge-2025",
+    title: "CodinGame – Spring Challenge 2025",
+    organization: "CodinGame",
+    location: "Global (Online Contest)",
+    badges: ["Rank: 372 / 2,864", "Solo"],
+    description: "Developed an autonomous AI agent in C#/.NET to compete in a real-time multiplayer strategy game.",
+    highlights: [
+      "Competitive AI agent using C# and .NET",
+      "Optimized pathfinding and resource allocation for performance under contest constraints",
+      "Sharpened algorithmic thinking and optimized problem‑solving"
+    ],
+    skills: ["C# / .NET", "Algorithms", "AI Agent", "Performance Optimization"]
+  },
+  {
+    id: "hackathon-microsoft-ai-learning-2024",
+    title: "Hackathon - Microsoft AI Learning",
+    organization: "Microsoft",
+    location: "Global (Remote)",
+    badges: ["Rank: 16", "Team", "Prize: AI Courses"],
+    description: "Built a cloud-native backend in C#/.NET using Azure Cosmos DB.",
+    highlights: [
+      "Configured Azure Cosmos DB for scalable data storage and retrieval",
+      "Implemented database schema and optimized queries with C# .NET",
+      "Applied cloud-native best practices including data partitioning and performance tuning",
+    ],
+    skills: ["C# / .NET", "Azure Cosmos DB", "Cloud-Native Architecture", "Database Design"]
+  },
+  {
+    id: "csgo-local-tournament-2019",
+    title: "CS:GO UCA Gaming Tournament",
+    organization: "UCA",
+    location: "Clermont-Ferrand, France",
+    badges: ["Rank: 3rd", "Team", "Prize: In-game skins"],
+    description: "Participated in a local CS:GO tournament as part of a competitive team.",
+    highlights: [
+      "Collaborated in a 5-player team under tournament pressure and tight deadlines",
+      "Demonstrated strategic thinking, communication, and quick decision-making",
+      "Managed stress and adapted rapidly to changing game situations during competition"
+    ],
+    skills: [
+      "Team Collaboration",
+      "Strategic Thinking",
+      "Communication",
+      "Quick Decision-Making"
+    ]
+  },
+];
+
+/**
+ * Get achievement by ID
+ */
+export function getAchievementById(id: string): AchievementEntry | undefined {
+  return achievementsData.find((achievement) => achievement.id === id);
+}
+
+/**
+ * Get achievements by organization
+ */
+export function getAchievementsByOrganization(
+  organization: string,
+): AchievementEntry[] {
+  return achievementsData.filter((achievement) =>
+    achievement.organization.toLowerCase().includes(organization.toLowerCase()),
+  );
+}
+
+/**
+ * Get certifications only
+ */
+export function getCertifications(): AchievementEntry[] {
+  return achievementsData.filter((achievement) =>
+    achievement.badges.some(
+      (badge) =>
+        badge.toLowerCase().includes("certified") ||
+        badge.toLowerCase().includes("professional"),
+    ),
+  );
+}
+
+/**
+ * Get awards/competitions only
+ */
+export function getAwards(): AchievementEntry[] {
+  return achievementsData.filter((achievement) =>
+    achievement.badges.some(
+      (badge) =>
+        badge.toLowerCase().includes("place") ||
+        badge.toLowerCase().includes("winner") ||
+        badge.toLowerCase().includes("champion"),
+    ),
+  );
+}
+
+/**
+ * Get achievements by skill
+ */
+export function getAchievementsBySkill(skill: string): AchievementEntry[] {
+  return achievementsData.filter((achievement) =>
+    achievement.skills.some((s) =>
+      s.toLowerCase().includes(skill.toLowerCase()),
+    ),
+  );
+}

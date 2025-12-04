@@ -1,0 +1,345 @@
+---
+// src/components/Navbar.astro
+// Main site navigation component with minimal design
+
+export interface Props {
+  currentPage?: string;
+}
+
+const { currentPage = "" } = Astro.props;
+
+const navItems = [
+  { href: "/", label: "Home", key: "home" },
+  { href: "/blog", label: "Blog", key: "blog" },
+  { href: "/services", label: "Services", key: "services" },
+  { href: "/work-with-me", label: "Work with me", key: "work-with-me" },
+  { href: "/#contact", label: "Contact", key: "contact" },
+];
+---
+
+<!-- Mobile navigation toggle -->
+<button
+  class="nav-toggle"
+  id="nav-toggle"
+  aria-label="Toggle navigation menu"
+  aria-expanded="false"
+  aria-controls="site-nav"
+>
+  <span class="nav-toggle__bar"></span>
+  <span class="nav-toggle__bar"></span>
+  <span class="nav-toggle__bar"></span>
+</button>
+
+<!-- Navigation menu -->
+<nav id="site-nav" class="site-nav" aria-label="Main navigation">
+  <ul class="nav-list">
+    {
+      navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={["nav-link", { active: currentPage === item.key }]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="nav-actions">
+    <!-- Theme toggle -->
+    <button
+      id="theme-toggle"
+      class="nav-action-btn"
+      aria-label="Toggle dark/light theme"
+      type="button"
+    >
+      <i class="fas fa-moon" aria-hidden="true"></i>
+    </button>
+  </div>
+</nav>
+
+<style>
+  /* Navigation container */
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Navigation links */
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    border-radius: 0;
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--text);
+    background: var(--bg-elev);
+  }
+
+  .nav-link:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+
+  .nav-link.active {
+    color: var(--text);
+  }
+
+  /* Nav actions (theme toggle, etc.) */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+    padding-left: 0.75rem;
+    border-left: 1px solid var(--border);
+  }
+
+  .nav-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .nav-action-btn:hover {
+    color: var(--text);
+    border-color: var(--text);
+    background: transparent;
+  }
+
+  .nav-action-btn:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+
+  .nav-action-btn i {
+    font-size: 0.9rem;
+  }
+
+  /* Mobile toggle button */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    z-index: 1001;
+    transition: border-color 0.2s ease;
+  }
+
+  .nav-toggle:hover {
+    border-color: var(--text);
+  }
+
+  .nav-toggle:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+
+  .nav-toggle__bar {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--text);
+    margin: 2px 0;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  /* Toggle animation when open */
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+  }
+
+  /* Light theme adjustments */
+  :global([data-theme="light"]) .nav-link:hover {
+    background: var(--bg-elev);
+  }
+
+  :global([data-theme="light"]) .nav-action-btn:hover {
+    background: var(--bg-elev);
+  }
+
+  /* Mobile styles */
+  @media (max-width: 900px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 58px;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .site-nav.open {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.25rem;
+    }
+
+    .nav-link {
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      border: 1px solid transparent;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus {
+      background: var(--bg-elev);
+      border-color: var(--border);
+    }
+
+    .nav-link.active {
+      background: var(--bg-elev);
+      border-color: var(--border);
+    }
+
+    .nav-actions {
+      margin-left: 0;
+      padding-left: 0;
+      padding-top: 0.75rem;
+      margin-top: 0.5rem;
+      border-left: none;
+      border-top: 1px solid var(--border);
+      justify-content: flex-start;
+    }
+
+    .nav-action-btn {
+      width: 42px;
+      height: 42px;
+    }
+  }
+
+  /* Light theme mobile */
+  :global([data-theme="light"]) .site-nav {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+<script>
+  function initNavbar() {
+    const navToggle = document.getElementById("nav-toggle");
+    const siteNav = document.getElementById("site-nav");
+
+    if (!navToggle || !siteNav) return;
+
+    // Toggle mobile menu
+    navToggle.addEventListener("click", () => {
+      const isOpen = siteNav.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    // Close menu when clicking a link
+    const navLinks = siteNav.querySelectorAll(".nav-link");
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        siteNav.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      if (
+        !siteNav.contains(target) &&
+        !navToggle.contains(target) &&
+        siteNav.classList.contains("open")
+      ) {
+        siteNav.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Close menu on escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && siteNav.classList.contains("open")) {
+        siteNav.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.focus();
+      }
+    });
+
+    // Handle resize - close mobile menu if screen becomes large
+    let resizeTimeout: ReturnType<typeof setTimeout>;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (window.innerWidth > 900 && siteNav.classList.contains("open")) {
+          siteNav.classList.remove("open");
+          navToggle.setAttribute("aria-expanded", "false");
+        }
+      }, 100);
+    });
+  }
+
+  // Initialize on DOM ready
+  document.addEventListener("DOMContentLoaded", initNavbar);
+
+  // Also initialize on Astro page transitions
+  document.addEventListener("astro:page-load", initNavbar);
+</script>

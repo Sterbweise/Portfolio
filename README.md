@@ -1,33 +1,93 @@
-# Minimal One-Page Portfolio
+# Portfolio Website
 
-Aesthetic, minimal, and responsive single-page portfolio for a Software Engineer. Sections: Hero, About, Skills, Experience, Education, Projects, Contact. Separate HTML/CSS/JS, smooth scrolling, and subtle reveal animations.
+A modern, performant portfolio website built with [Astro](https://astro.build).
 
-## Structure
-- index.html
-- assets/
-  - css/styles.css
-  - js/main.js
-  - cv/YourName-CV.pdf (add your PDF here)
+## 🚀 Features
 
-## Customize
-1. Open index.html and replace:
-   - Your Name
-   - Email, LinkedIn, GitHub links
-   - Experience, Education, Projects content
-2. Add your CV PDF:
-   - Place file at: assets/cv/YourName-CV.pdf
-   - Update links if you rename it.
-3. Colors and theme:
-   - Edit CSS variables in assets/css/styles.css under :root (and light mode in media query).
-4. Favicon:
-   - Add an icon to assets/img/favicon.ico and uncomment the link tag in index.html.
+- **Static Site Generation (SSG)** - Fast, SEO-friendly static pages
+- **MDX Support** - Write content using Markdown with JSX components
+- **Responsive Design** - Mobile-first, works on all devices
+- **Multi-language** - English and French support
+- **Optimized Performance** - Minimal JavaScript, maximum speed
 
-## Run locally
-- Option A: Double-click index.html to open in browser.
-- Option B (recommended): run a simple server for better routing/performance.
-  - PowerShell: npx serve -s .  (install Node.js first)
-  - Python: python -m http.server 8080
+## 📦 Tech Stack
 
-## Notes
-- Fully responsive; supports dark and light via prefers-color-scheme.
-- Accessible landmarks, semantic headings, and reduced motion friendly (animations are subtle).# Portfolio
+- [Astro](https://astro.build) - Static site generator
+- [MDX](https://mdxjs.com) - Markdown with components
+- CSS - Custom styling
+- JavaScript - Minimal client-side interactivity
+
+## 🛠️ Development
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org) (v18 or higher)
+- npm, yarn, or pnpm
+
+### Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+### Available Commands
+
+| Command           | Action                                      |
+| ----------------- | ------------------------------------------- |
+| `npm install`     | Install dependencies                        |
+| `npm run dev`     | Start dev server at `localhost:4321`        |
+| `npm run build`   | Build production site to `./dist/`          |
+| `npm run preview` | Preview build locally before deploying      |
+
+## 📁 Project Structure
+
+```
+/
+├── public/           # Static assets (images, fonts, etc.)
+│   ├── cv/          # Resume/CV files
+│   ├── img/         # Images
+│   └── js/          # Client-side scripts
+├── src/
+│   ├── components/  # Reusable Astro components
+│   ├── content/     # Content collections (projects, blog)
+│   ├── data/        # Data files (JSON, etc.)
+│   ├── layouts/     # Page layouts
+│   ├── pages/       # Route pages
+│   ├── scripts/     # Scripts
+│   ├── styles/      # Global styles
+│   └── types/       # TypeScript types
+├── astro.config.mjs # Astro configuration
+└── package.json
+```
+
+## 🌐 Deployment
+
+This site is configured for deployment on **Cloudflare Pages**.
+
+### Cloudflare Pages Settings
+
+- **Build command**: `npm run build`
+- **Build output directory**: `dist`
+- **Node.js version**: `18` (or higher)
+
+### Environment Variables
+
+No environment variables required for basic deployment.
+
+## 📄 License
+
+MIT License - feel free to use this as a template for your own portfolio!
+
+---
+
+Built with ❤️ using [Astro](https://astro.build)

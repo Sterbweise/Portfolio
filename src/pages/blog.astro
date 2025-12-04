@@ -1,0 +1,116 @@
+---
+// src/pages/blog.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import "../styles/blog.css";
+
+// Set up page metadata
+const pageTitle = "Blog — Killian Chandeze";
+const pageDescription =
+  "Blog by Killian Chandeze — insights on software engineering, DevOps, and technology trends.";
+
+// Fetch all blog posts
+const blogPosts = await getCollection("blog");
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical="https://kchndz.dev/blog"
+>
+  <!-- Compact Blog Header -->
+  <section
+    class="section container"
+    style="padding-top: 2rem; padding-bottom: 1rem;"
+  >
+    <div
+      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;"
+    >
+      <h1 style="margin: 0; font-size: 2rem; font-weight: 700;">Blog</h1>
+
+      <!-- Blog Search -->
+      <div class="blog-search" style="margin: 0;">
+        <input
+          type="text"
+          id="blog-search"
+          class="blog-search-input"
+          placeholder="Search articles..."
+          aria-label="Search articles"
+          style="max-width: 300px;"
+        />
+      </div>
+    </div>
+
+    <!-- Blog Stats and Filters -->
+    <div
+      style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;"
+    >
+      <div id="blog-stats" class="blog-stats" style="margin: 0;">
+        <p>{blogPosts.length} articles</p>
+      </div>
+      <div id="blog-filters" class="blog-filters" style="margin: 0;"></div>
+    </div>
+  </section>
+
+  <section class="section container" style="padding-top: 0;">
+    <!-- Blog Grid -->
+    <div id="blog-grid" class="blog-grid">
+      {
+        blogPosts.map((post) => (
+          <article class="blog-card">
+            <header>
+              <h2>
+                <a href={`/article/${post.slug}`}>{post.data.title}</a>
+              </h2>
+              <time datetime={post.data.date}>
+                {new Date(post.data.date).toLocaleDateString()}
+              </time>
+            </header>
+            <p>{post.data.excerpt}</p>
+            <div class="blog-meta">
+              <span class="blog-category">{post.data.category}</span>
+              <span class="blog-readtime">{post.data.readTime}</span>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <script>
+    // Blog page functionality
+    document.addEventListener("DOMContentLoaded", () => {
+      // Search functionality
+      const searchInput = document.getElementById("blog-search");
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          const target = e.target as HTMLInputElement;
+          const query = target.value.toLowerCase();
+          const blogCards = document.querySelectorAll(".blog-card");
+
+          blogCards.forEach((el) => {
+            const card = el as HTMLElement;
+            const title =
+              card.querySelector("h2")?.textContent?.toLowerCase() || "";
+            const excerpt =
+              card.querySelector("p")?.textContent?.toLowerCase() || "";
+            const category =
+              card
+                .querySelector(".blog-category")
+                ?.textContent?.toLowerCase() || "";
+
+            if (
+              title.includes(query) ||
+              excerpt.includes(query) ||
+              category.includes(query)
+            ) {
+              card.style.display = "block";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      }
+    });
+  </script>
+</BaseLayout>

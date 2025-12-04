@@ -1,0 +1,386 @@
+---
+// src/pages/projects/[slug].astro - Dynamic project detail page
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+// Generate static paths for all projects
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects.map((project) => ({
+        params: { slug: project.slug },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+
+const pageTitle = `${project.data.title} | Portfolio`;
+const pageDescription = project.data.description;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+    <article class="container section project-detail">
+        <header class="project-header">
+            <a href="/#projects" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i> Back to Projects
+            </a>
+            <h1 class="project-title">{project.data.title}</h1>
+            <p class="project-description lead">{project.data.description}</p>
+
+            <div class="project-meta">
+                <div class="kw-list">
+                    {
+                        project.data.tags.map((tag) => (
+                            <span class="kw-badge">{tag}</span>
+                        ))
+                    }
+                </div>
+                <a
+                    href={project.data.link}
+                    target="_blank"
+                    rel="noopener"
+                    class="btn"
+                >
+                    {project.data.linkText || "View Project"}
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        </header>
+
+        <div class="project-content prose">
+            <Content />
+        </div>
+    </article>
+</BaseLayout>
+
+<style>
+    .project-detail {
+        max-width: 800px;
+    }
+
+    .project-header {
+        margin-bottom: 3rem;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--muted);
+        text-decoration: none;
+        margin-bottom: 2rem;
+        transition: color 0.2s ease;
+    }
+
+    .back-link:hover {
+        color: var(--text);
+    }
+
+    .project-title {
+        font-size: clamp(2rem, 4vw, 2.5rem);
+        margin: 0 0 1rem 0;
+        line-height: 1.2;
+    }
+
+    .project-description {
+        margin: 0 0 2rem 0;
+    }
+
+    .project-meta {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .project-meta .kw-list {
+        flex: 1;
+        margin: 0;
+    }
+
+    .project-content {
+        line-height: 1.8;
+    }
+
+    /* Prose styles for markdown content - GitHub/Notion style */
+    .prose {
+        max-width: none;
+    }
+
+    .prose :global(h2) {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin: 2.5rem 0 1rem 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--border);
+        color: var(--text);
+    }
+
+    .prose :global(h3) {
+        font-size: 1.35rem;
+        font-weight: 600;
+        margin: 2rem 0 0.75rem 0;
+        color: var(--text);
+    }
+
+    .prose :global(h4) {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 1.5rem 0 0.5rem 0;
+        color: var(--text);
+    }
+
+    .prose :global(p) {
+        margin: 1rem 0;
+        color: var(--muted);
+        line-height: 1.7;
+    }
+
+    .prose :global(strong) {
+        color: var(--text);
+        font-weight: 600;
+    }
+
+    .prose :global(em) {
+        font-style: italic;
+    }
+
+    .prose :global(a) {
+        color: var(--text);
+        text-decoration: underline;
+        text-decoration-color: var(--border);
+        text-underline-offset: 2px;
+        transition: text-decoration-color 0.2s ease;
+    }
+
+    .prose :global(a:hover) {
+        text-decoration-color: var(--text);
+    }
+
+    /* Lists */
+    .prose :global(ul),
+    .prose :global(ol) {
+        margin: 1rem 0;
+        padding-left: 2rem;
+    }
+
+    .prose :global(ul) {
+        list-style: none;
+    }
+
+    .prose :global(ul li) {
+        position: relative;
+        padding-left: 1.5rem;
+    }
+
+    .prose :global(ul li::before) {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.6em;
+        width: 6px;
+        height: 6px;
+        background: var(--text);
+        border: 1px solid var(--text);
+        transition: background-color 0.2s ease;
+    }
+
+    .prose :global(ul li:hover::before) {
+        background: var(--bg);
+    }
+
+    .prose :global(li) {
+        margin: 0.5rem 0;
+        color: var(--muted);
+        line-height: 1.7;
+    }
+
+    .prose :global(ol li::marker) {
+        color: var(--text);
+        font-weight: 600;
+    }
+
+    /* Inline code */
+    .prose :global(code) {
+        background: var(--bg-elev);
+        color: var(--text);
+        padding: 0.2rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.9em;
+        font-family: var(--font-mono);
+        border: 1px solid var(--border);
+    }
+
+    /* Code blocks */
+    .prose :global(pre) {
+        background: var(--bg-elev);
+        padding: 1.25rem;
+        border-radius: 6px;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        border: 1px solid var(--border);
+        position: relative;
+    }
+
+    .prose :global(pre code) {
+        background: none;
+        padding: 0;
+        border-radius: 0;
+        font-size: 0.875rem;
+        border: none;
+        color: var(--text);
+        line-height: 1.6;
+    }
+
+    /* Tables - GitHub/Notion style */
+    .prose :global(table) {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+        font-size: 0.9rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .prose :global(thead) {
+        background: var(--bg-elev);
+    }
+
+    .prose :global(th) {
+        padding: 0.75rem 1rem;
+        text-align: left;
+        font-weight: 600;
+        color: var(--text);
+        border-bottom: 2px solid var(--border);
+        border-right: 1px solid var(--border);
+    }
+
+    .prose :global(th:last-child) {
+        border-right: none;
+    }
+
+    .prose :global(td) {
+        padding: 0.75rem 1rem;
+        color: var(--muted);
+        border-bottom: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+    }
+
+    .prose :global(td:last-child) {
+        border-right: none;
+    }
+
+    .prose :global(tbody tr:last-child td) {
+        border-bottom: none;
+    }
+
+    .prose :global(tbody tr) {
+        transition: background-color 0.2s ease;
+    }
+
+    .prose :global(tbody tr:hover) {
+        background: var(--bg-elev);
+    }
+
+    /* Blockquotes */
+    .prose :global(blockquote) {
+        border-left: 3px solid var(--text);
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+        color: var(--muted);
+        font-style: italic;
+        background: var(--bg-elev);
+        padding: 1rem 1rem 1rem 1.5rem;
+        border-radius: 0 4px 4px 0;
+    }
+
+    .prose :global(blockquote p) {
+        margin: 0.5rem 0;
+    }
+
+    /* Horizontal rule */
+    .prose :global(hr) {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 2.5rem 0;
+    }
+
+    /* Images */
+    .prose :global(img) {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        margin: 1.5rem 0;
+        border: 1px solid var(--border);
+    }
+
+    /* Light theme adjustments */
+    :global([data-theme="light"]) .prose :global(code) {
+        background: var(--bg-elev);
+        border-color: var(--border);
+    }
+
+    :global([data-theme="light"]) .prose :global(pre) {
+        background: var(--bg-elev);
+        border-color: var(--border);
+    }
+
+    :global([data-theme="light"]) .prose :global(pre code) {
+        background: none;
+        color: var(--text);
+    }
+
+    /* Disable text selection highlight in code blocks */
+    .prose :global(code::selection),
+    .prose :global(pre::selection),
+    .prose :global(pre code::selection) {
+        background: transparent;
+        color: inherit;
+    }
+
+    :global([data-theme="light"]) .prose :global(code::selection),
+    :global([data-theme="light"]) .prose :global(pre::selection),
+    :global([data-theme="light"]) .prose :global(pre code::selection) {
+        background: rgba(0, 0, 0, 0.1);
+        color: inherit;
+    }
+
+    :global([data-theme="light"]) .prose :global(table) {
+        border-color: var(--border);
+    }
+
+    :global([data-theme="light"]) .prose :global(th),
+    :global([data-theme="light"]) .prose :global(td) {
+        border-color: var(--border);
+    }
+
+    :global([data-theme="light"]) .prose :global(tbody tr:hover) {
+        background: var(--bg-elev);
+    }
+
+    @media (max-width: 768px) {
+        .project-meta {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .project-meta .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Make tables scrollable on mobile */
+        .prose :global(table) {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .prose :global(th),
+        .prose :global(td) {
+            padding: 0.5rem 0.75rem;
+        }
+    }
+</style>

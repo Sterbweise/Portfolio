@@ -1,0 +1,258 @@
+---
+// src/components/sections/About.astro
+// About section component with personal introduction, highlights, and strengths
+
+import Section from "../common/Section.astro";
+import Badge from "../common/Badge.astro";
+import { aboutData } from "../../data/about";
+
+export interface Props {
+  /** Introduction paragraphs (array of strings) */
+  introduction?: string[];
+  /** Highlighted interests/passions */
+  highlights?: string[];
+  /** Key strengths/soft skills */
+  strengths?: string[];
+  /** Profile image configuration */
+  image?: {
+    src: string;
+    alt: string;
+  };
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  introduction = aboutData.introduction,
+  highlights = aboutData.highlights,
+  strengths = aboutData.strengths,
+  image = aboutData.image,
+  class: className = "",
+} = Astro.props;
+
+// Format highlights for display in the last paragraph
+const formattedHighlights =
+  highlights.length > 0
+    ? highlights.map((h, i) => ({
+        text: h,
+        isLast: i === highlights.length - 1,
+      }))
+    : [];
+---
+
+<Section id="about" title="About" class={className}>
+  <div class="about-grid">
+    <div class="about-text">
+      {introduction.length > 0 && <p class="lead">{introduction[0]}</p>}
+
+      {introduction.length > 1 && <p>{introduction[1]}</p>}
+
+      {
+        highlights.length > 0 && (
+          <p>
+            Beyond coding, I'm passionate about{" "}
+            {formattedHighlights.map((highlight, index) => (
+              <>
+                {index > 0 && !highlight.isLast && ", "}
+                {highlight.isLast && index > 0 && ", and "}
+                <span class="hilite">{highlight.text}</span>
+              </>
+            ))}
+            .
+          </p>
+        )
+      }
+
+      {
+        strengths.length > 0 && (
+          <div class="about-strengths">
+            <div class="about-strengths-title">Key strengths</div>
+            <div class="kw-list">
+              {strengths.map((strength) => (
+                <Badge variant="default" hoverable>
+                  {strength}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+
+    {
+      image && (
+        <div class="about-photo">
+          <img
+            src={image.src}
+            alt={image.alt}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      )
+    }
+  </div>
+</Section>
+
+<style>
+  /* About grid layout */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 28px;
+    align-items: center;
+  }
+
+  /* Text content */
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .about-text p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .about-text .lead {
+    font-size: clamp(1rem, 0.95rem + 0.4vw, 1.15rem);
+    color: var(--muted);
+    max-width: 70ch;
+  }
+
+  /* Highlighted text */
+  .hilite {
+    position: relative;
+    color: var(--text);
+    font-weight: 500;
+    padding: 0.1rem 0.3rem;
+    margin: 0 0.1rem;
+    background: linear-gradient(
+      120deg,
+      color-mix(in oklab, var(--accent) 15%, transparent) 0%,
+      color-mix(in oklab, var(--accent) 8%, transparent) 100%
+    );
+    border-bottom: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+    transition: all 0.2s ease;
+  }
+
+  .hilite:hover {
+    background: linear-gradient(
+      120deg,
+      color-mix(in oklab, var(--accent) 25%, transparent) 0%,
+      color-mix(in oklab, var(--accent) 15%, transparent) 100%
+    );
+    border-bottom-color: var(--accent);
+  }
+
+  /* Strengths section */
+  .about-strengths {
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+  }
+
+  .about-strengths-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  .about-strengths-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .about-strengths .kw-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Profile photo */
+  .about-photo {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    aspect-ratio: 1;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+
+  .about-photo:hover {
+    border-color: var(--text);
+  }
+
+  .about-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  :global([data-theme="light"]) .hilite {
+    background: linear-gradient(
+      120deg,
+      color-mix(in oklab, var(--accent) 12%, transparent) 0%,
+      color-mix(in oklab, var(--accent) 6%, transparent) 100%
+    );
+  }
+
+  :global([data-theme="light"]) .hilite:hover {
+    background: linear-gradient(
+      120deg,
+      color-mix(in oklab, var(--accent) 20%, transparent) 0%,
+      color-mix(in oklab, var(--accent) 10%, transparent) 100%
+    );
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .about-photo {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-photo {
+      display: none; /* Hide photo on mobile for cleaner layout */
+    }
+
+    .about-text {
+      max-width: 100%;
+    }
+
+    .about-text .lead {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-strengths-title {
+      font-size: 0.8rem;
+    }
+
+    .about-strengths .kw-list {
+      gap: 0.4rem;
+    }
+  }
+</style>

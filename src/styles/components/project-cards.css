@@ -1,0 +1,286 @@
+/* Project Cards Enhanced Design */
+
+/* Ensure all project cards have the same size */
+.project-card {
+    height: 440px;
+    min-height: 440px;
+    max-height: 440px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none !important;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    padding: 24px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card:hover {
+    border-color: var(--border-hover, rgba(255, 255, 255, 0.15));
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    background: var(--bg-elev-hover, rgba(255, 255, 255, 0.05));
+}
+
+.project-card .tile-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Better spacing between elements */
+}
+
+.project-card .tile-body h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    text-decoration: none !important;
+    color: var(--text);
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+/* Space between title and the visibility badge */
+.proj-badges {
+    margin: 0.25rem 0 0.25rem 0;
+    flex-shrink: 0;
+}
+
+.project-card .tile-body p {
+    margin: 0.25rem 0 0.5rem 0; /* Reduced bottom margin */
+    text-decoration: none !important;
+    color: var(--muted);
+    line-height: 1.5; /* Slightly tighter line height */
+    flex: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    flex-shrink: 0;
+}
+
+.project-card .tile-body .kw-list {
+    margin-top: 2px; /* Much more compact space from description */
+    margin-bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.project-card .tile-foot {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.project-card .tile-foot .link {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    color: var(--accent);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.project-card .tile-foot .link:hover {
+    color: var(--accent-hover, #93c5fd);
+    text-decoration: none !important;
+    border-bottom: none !important;
+    opacity: 1;
+}
+
+/* Navigation Arrows */
+.proj-arrow {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--border);
+    background: var(--bg-elev);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.proj-arrow:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.proj-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Style for numbered indicators */
+.proj-indicator {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--border);
+    background: var(--bg-elev);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    border-radius: 0; /* Square shape */
+}
+
+.proj-indicator.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.proj-indicator:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    opacity: 0.9;
+}
+
+/* Carousel Indicators - Square Numbered */
+.proj-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 20px;
+}
+
+.proj-indicator {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--border);
+    background: var(--bg-elev);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    border-radius: 0; /* Square shape */
+}
+
+.proj-indicator.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.proj-indicator:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    opacity: 0.9;
+}
+
+/* Adjust carousel layout for better alignment with achievements */
+.proj-carousel {
+    position: relative;
+    width: 100%;
+    padding: 0; /* No padding */
+}
+
+.proj-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Navigation container to hold arrows and indicators */
+.proj-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Style for indicators container that contains both arrows and numbers */
+.proj-indicators {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    align-self: center;
+}
+
+.proj-track {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 24px;
+}
+
+/* Make project section container more consistent with achievements */
+
+/* Remove all underlines from project cards */
+.project-card,
+.project-card *,
+.project-card:hover,
+.project-card:hover *,
+.project-card:focus,
+.project-card:focus *,
+.project-card:active,
+.project-card:active * {
+    text-decoration: none !important;
+}
+
+/* Ensure consistent card sizing in carousel */
+.proj-track .project-card {
+    flex: 0 0 calc(33.333% - 16px);
+    min-width: 300px;
+    max-width: 400px;
+    padding: 24px;
+    height: 440px;
+    min-height: 440px;
+    max-height: 440px;
+}
+
+@media (max-width: 1024px) {
+    .proj-track .project-card {
+        flex: 0 0 calc(50% - 12px);
+        height: 440px;
+        min-height: 440px;
+        max-height: 440px;
+        padding: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .proj-track .project-card {
+        flex: 0 0 85%;
+        max-width: 85%;
+        height: 440px;
+        min-height: 440px;
+        max-height: 440px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .proj-track .project-card {
+        flex: 0 0 90%;
+        max-width: 90%;
+        height: 440px;
+        min-height: 440px;
+        max-height: 440px;
+        padding: 18px;
+    }
+
+    .project-card .tile-body h3 {
+        font-size: 1.15rem;
+    }
+}

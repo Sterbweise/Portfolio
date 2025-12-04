@@ -1,12 +1,25 @@
 {
-  "name": "killian-portfolio",
+  "name": "my-astro-portfolio",
+  "type": "module",
   "version": "1.0.0",
-  "description": "Portfolio website with blog system",
+  "description": "Personal portfolio website built with Astro",
+  "author": "Killian Chandeze",
+  "license": "MIT",
   "scripts": {
-    "generate-articles": "node generate-articles-list.js",
-    "serve": "python -m http.server 8000",
-    "dev": "npm run generate-articles && npm run serve"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "sync": "astro sync"
   },
-  "keywords": ["portfolio", "blog", "markdown"],
-  "author": "Killian Chandeze"
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "astro": "^5.16.3"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.12"
+  }
 }

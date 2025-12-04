@@ -1,0 +1,226 @@
+---
+// src/layouts/BaseLayout.astro
+// Global layout component for the entire site
+
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+// Import consolidated global styles
+import "../styles/global.css";
+
+// Define props for metadata
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "Portfolio — Killian Chandeze",
+  description = "Software Engineer Portfolio — minimal, aesthetic one-page showcasing skills, experience, education, and projects.",
+  canonical = "https://kchndz.dev",
+  ogImage = "https://kchndz.dev/assets/img/og-image.jpg",
+}: Props = Astro.props;
+
+// Get current year for copyright
+const currentYear = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="author" content="Killian Chandeze" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO - Dynamic title based on page -->
+    <title>{title}</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+
+    <!-- Fonts - Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons - Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph / Social Media Tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Killian Chandeze Portfolio" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonical} />
+  </head>
+
+  <body data-theme="dark">
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <!-- Site Header -->
+    <Header />
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Site Footer -->
+    <Footer />
+
+    <!-- Back to top button -->
+    <button class="to-top" aria-label="Back to top" type="button">
+      <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- Theme initialization (runs before paint to prevent flash) -->
+    <script is:inline>
+      // Initialize theme from localStorage or system preference
+      (function () {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const theme = savedTheme || (prefersDark ? "dark" : "light");
+        document.body.setAttribute("data-theme", theme);
+      })();
+    </script>
+
+    <!-- Main scripts -->
+    <script>
+      // Theme toggle functionality
+      function initThemeToggle() {
+        const themeToggle = document.getElementById("theme-toggle");
+
+        if (themeToggle) {
+          themeToggle.addEventListener("click", () => {
+            const currentTheme = document.body.getAttribute("data-theme");
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+            document.body.setAttribute("data-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+
+            // Update toggle icon
+            const icon = themeToggle.querySelector("i");
+            if (icon) {
+              icon.className =
+                newTheme === "dark" ? "fas fa-moon" : "fas fa-sun";
+            }
+          });
+
+          // Set initial icon based on current theme
+          const currentTheme = document.body.getAttribute("data-theme");
+          const icon = themeToggle.querySelector("i");
+          if (icon) {
+            icon.className =
+              currentTheme === "dark" ? "fas fa-moon" : "fas fa-sun";
+          }
+        }
+      }
+
+      // Back to top button functionality
+      function initBackToTop() {
+        const toTopBtn = document.querySelector(".to-top");
+
+        if (toTopBtn) {
+          // Show/hide button based on scroll position
+          const handleScroll = () => {
+            if (window.scrollY > 300) {
+              toTopBtn.classList.add("show");
+            } else {
+              toTopBtn.classList.remove("show");
+            }
+          };
+
+          // Throttle scroll events for performance
+          let scrollTimeout: ReturnType<typeof setTimeout>;
+          window.addEventListener(
+            "scroll",
+            () => {
+              if (scrollTimeout) clearTimeout(scrollTimeout);
+              scrollTimeout = setTimeout(handleScroll, 10);
+            },
+            { passive: true },
+          );
+
+          // Scroll to top when clicked
+          toTopBtn.addEventListener("click", () => {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          });
+
+          // Initial check
+          handleScroll();
+        }
+      }
+
+      // Reveal animations on scroll
+      function initRevealAnimations() {
+        const reveals = document.querySelectorAll(".reveal:not(.in)");
+
+        if (reveals.length === 0) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+          },
+        );
+
+        reveals.forEach((el) => observer.observe(el));
+      }
+
+      // Initialize all functionality
+      function init() {
+        initThemeToggle();
+        initBackToTop();
+        initRevealAnimations();
+      }
+
+      // Run on DOM ready
+      document.addEventListener("DOMContentLoaded", init);
+
+      // Also run on Astro page transitions (View Transitions API)
+      document.addEventListener("astro:page-load", init);
+    </script>
+  </body>
+</html>

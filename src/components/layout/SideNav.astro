@@ -1,0 +1,268 @@
+---
+// src/components/layout/SideNav.astro
+// Side navigation component for index page - displays section links vertically
+
+import { sectionNavigation } from "../../data/site";
+import type { NavItem } from "../../types";
+
+export interface Props {
+  /** Custom navigation items (overrides default) */
+  items?: NavItem[];
+  /** Position of the side nav */
+  position?: "left" | "right";
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  items = sectionNavigation,
+  position = "left",
+  class: className = "",
+} = Astro.props;
+---
+
+<aside
+  class:list={["side-nav", `side-nav--${position}`, className]}
+  aria-label="Page section navigation"
+>
+  <nav class="side-nav__inner">
+    <ul class="side-nav__list" role="list">
+      {
+        items.map((item) => (
+          <li>
+            <a
+              class="side-nav__link"
+              href={item.href}
+              data-section={item.href.replace("#", "")}
+            >
+              <span class="side-nav__indicator" />
+              <span class="side-nav__label">{item.label}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</aside>
+
+<style>
+  .side-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    padding: 1rem 0;
+  }
+
+  .side-nav--left {
+    left: 1.5rem;
+  }
+
+  .side-nav--right {
+    right: 1.5rem;
+  }
+
+  .side-nav__inner {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 0.75rem 0;
+  }
+
+  .side-nav__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .side-nav__link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .side-nav__link:hover {
+    color: var(--text);
+    background: var(--bg-elev);
+  }
+
+  .side-nav__link:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: -2px;
+  }
+
+  /* Indicator dot/line */
+  .side-nav__indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .side-nav__link:hover .side-nav__indicator {
+    background: var(--text);
+  }
+
+  /* Active state */
+  .side-nav__link.active {
+    color: var(--text);
+  }
+
+  .side-nav__link.active .side-nav__indicator {
+    background: var(--text);
+    box-shadow: none;
+  }
+
+  .side-nav__label {
+    white-space: nowrap;
+  }
+
+  /* Right position - reverse order for visual consistency */
+  .side-nav--right .side-nav__link {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  /* Light theme */
+  :global([data-theme="light"]) .side-nav__inner {
+    background: var(--bg);
+    border-color: var(--border);
+  }
+
+  :global([data-theme="light"]) .side-nav__link:hover {
+    background: var(--bg-elev);
+  }
+
+  /* Hide on smaller screens and when not on index page */
+  @media (max-width: 1200px) {
+    .side-nav {
+      display: none;
+    }
+  }
+
+  /* Compact mode for medium screens */
+  @media (max-width: 1400px) and (min-width: 1201px) {
+    .side-nav__label {
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.6rem;
+      margin-left: 0.5rem;
+      font-size: 0.75rem;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .side-nav--right .side-nav__label {
+      left: auto;
+      right: 100%;
+      margin-left: 0;
+      margin-right: 0.5rem;
+    }
+
+    .side-nav__link:hover .side-nav__label {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .side-nav__link {
+      padding: 0.6rem 0.75rem;
+      justify-content: center;
+    }
+
+    .side-nav--right .side-nav__link {
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  function initSideNav() {
+    const sideNavLinks = document.querySelectorAll(".side-nav__link");
+
+    if (sideNavLinks.length === 0) return;
+
+    // Get all sections referenced by the nav
+    const sections = Array.from(sideNavLinks)
+      .map((link) => {
+        const sectionId = link.getAttribute("data-section");
+        return sectionId ? document.getElementById(sectionId) : null;
+      })
+      .filter(Boolean) as HTMLElement[];
+
+    if (sections.length === 0) return;
+
+    // Update active link based on scroll position
+    function updateActiveLink() {
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+      let activeIndex = 0;
+
+      sections.forEach((section, index) => {
+        if (section && section.offsetTop <= scrollPosition) {
+          activeIndex = index;
+        }
+      });
+
+      sideNavLinks.forEach((link, index) => {
+        if (index === activeIndex) {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
+      });
+    }
+
+    // Throttled scroll handler
+    let scrollTimeout: ReturnType<typeof setTimeout>;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(updateActiveLink, 10);
+      },
+      { passive: true },
+    );
+
+    // Smooth scroll on click
+    sideNavLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
+        if (href?.startsWith("#")) {
+          e.preventDefault();
+          const target = document.getElementById(href.slice(1));
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+      });
+    });
+
+    // Initial update
+    updateActiveLink();
+  }
+
+  // Initialize on DOM ready
+  document.addEventListener("DOMContentLoaded", initSideNav);
+
+  // Also initialize on Astro page transitions
+  document.addEventListener("astro:page-load", initSideNav);
+</script>

@@ -1,0 +1,48 @@
+---
+// src/pages/article.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Set up page metadata
+const pageTitle = "Article — Killian Chandeze";
+const pageDescription = "Article by Killian Chandeze";
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical="https://kchndz.dev/article"
+>
+  <!-- Back to Blog -->
+  <section
+    class="section container"
+    style="padding-top: 2rem; padding-bottom: 1rem;"
+  >
+    <a
+      href="/blog"
+      class="btn ghost"
+      style="display: inline-flex; align-items: center; gap: 8px;"
+    >
+      <i class="fas fa-arrow-left"></i>
+      Back to Blog
+    </a>
+  </section>
+
+  <!-- Article Content -->
+  <article class="section container">
+    <div id="article-loading" class="blog-loading">Loading article...</div>
+    <div id="article-content" class="article-content" style="display: none;">
+      <!-- Article content will be loaded here -->
+    </div>
+    <div id="article-error" class="blog-empty" style="display: none;">
+      <h3>Article not found</h3>
+      <p>The requested article could not be loaded.</p>
+      <a href="/blog" class="btn">Back to Blog</a>
+    </div>
+  </article>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+    is:inline></script>
+  <script src="/js/shared/markdown-parser.js" is:inline></script>
+  <script src="/js/article.js" is:inline></script>
+</BaseLayout>

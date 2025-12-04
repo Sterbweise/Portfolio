@@ -1,0 +1,197 @@
+---
+// src/components/common/Badge.astro
+// Reusable badge component for tags, labels, and status indicators
+
+export interface Props {
+  /** Visual variant of the badge */
+  variant?:
+    | "default"
+    | "accent"
+    | "success"
+    | "warning"
+    | "muted"
+    | "public"
+    | "private";
+  /** Size of the badge */
+  size?: "sm" | "md" | "lg";
+  /** Optional FontAwesome icon class */
+  icon?: string;
+  /** Additional CSS classes */
+  class?: string;
+  /** Whether the badge is interactive/hoverable */
+  hoverable?: boolean;
+}
+
+const {
+  variant = "default",
+  size = "md",
+  icon,
+  class: className = "",
+  hoverable = true,
+} = Astro.props;
+
+const sizeClasses = {
+  sm: "badge-sm",
+  md: "badge-md",
+  lg: "badge-lg",
+};
+
+const variantClasses = {
+  default: "badge-default",
+  accent: "badge-accent",
+  success: "badge-success",
+  warning: "badge-warning",
+  muted: "badge-muted",
+  public: "badge-public",
+  private: "badge-private",
+};
+
+const classes = [
+  "badge",
+  sizeClasses[size],
+  variantClasses[variant],
+  hoverable && "badge-hoverable",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<span class={classes}>
+  {icon && <i class={icon} aria-hidden="true" />}
+  <slot />
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: 0;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  /* Size variants */
+  .badge-sm {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.75rem;
+  }
+
+  .badge-md {
+    padding: 0.3rem 0.55rem;
+    font-size: 0.8rem;
+  }
+
+  .badge-lg {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  /* Default variant */
+  .badge-default {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  /* Accent variant */
+  .badge-accent {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  /* Success variant */
+  .badge-success {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  /* Warning variant */
+  .badge-warning {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  /* Muted variant */
+  .badge-muted {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  /* Public visibility variant */
+  .badge-public {
+    background: color-mix(in oklab, #22c55e 12%, var(--bg-elev));
+    border: 1px solid color-mix(in oklab, #22c55e 40%, var(--border));
+    color: #22c55e;
+  }
+
+  /* Private visibility variant */
+  .badge-private {
+    background: color-mix(in oklab, #f59e0b 12%, var(--bg-elev));
+    border: 1px solid color-mix(in oklab, #f59e0b 40%, var(--border));
+    color: #f59e0b;
+  }
+
+  /* Hoverable state */
+  .badge-hoverable:hover {
+    transform: translateY(-1px);
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  .badge-public.badge-hoverable:hover {
+    background: color-mix(in oklab, #22c55e 18%, var(--bg-elev));
+    border-color: #22c55e;
+    color: #22c55e;
+  }
+
+  .badge-private.badge-hoverable:hover {
+    background: color-mix(in oklab, #f59e0b 18%, var(--bg-elev));
+    border-color: #f59e0b;
+    color: #f59e0b;
+  }
+
+  /* Icon styling */
+  .badge i {
+    font-size: 0.85em;
+  }
+
+  /* Light theme adjustments */
+  :global([data-theme="light"]) .badge-default {
+    background: var(--bg-elev);
+    border-color: var(--border);
+    color: var(--muted);
+  }
+
+  :global([data-theme="light"]) .badge-public {
+    background: color-mix(in oklab, #22c55e 10%, var(--bg-elev));
+    color: #16a34a;
+  }
+
+  :global([data-theme="light"]) .badge-private {
+    background: color-mix(in oklab, #f59e0b 10%, var(--bg-elev));
+    color: #d97706;
+  }
+
+  :global([data-theme="light"]) .badge-hoverable:hover {
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  /* Focus state for accessibility */
+  .badge:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+</style>

@@ -1,0 +1,314 @@
+---
+// src/components/sections/Education.astro
+// Education section component matching Experience layout format
+
+import Section from "../common/Section.astro";
+import Card from "../common/Card.astro";
+import Badge from "../common/Badge.astro";
+import { educationData } from "../../data/education";
+import type { EducationEntry } from "../../types";
+
+export interface Props {
+  /** Custom education data (overrides default) */
+  education?: EducationEntry[];
+  /** Maximum number of entries to show (0 = all) */
+  limit?: number;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  education = educationData,
+  limit = 0,
+  class: className = "",
+} = Astro.props;
+
+// Apply limit if specified
+const displayedEducation = limit > 0 ? education.slice(0, limit) : education;
+---
+
+<Section id="education" title="Education" class={className}>
+  <div class="education-list">
+    {
+      displayedEducation.map((edu) => (
+        <Card hoverable class="education-card">
+          <header class="card-head meta-row">
+            <div class="meta-left">
+              <h3>{edu.degree}</h3>
+              <div class="meta-line">
+                <i
+                  class="fa-sharp fa-solid fa-location-dot"
+                  aria-hidden="true"
+                />
+                <span>{edu.location}</span>
+                {edu.gpa && (
+                  <span
+                    class="gpa-badge"
+                    title={`GPA: ${edu.gpa.value}/${edu.gpa.scale}`}
+                  >
+                    GPA: {edu.gpa.value}/{edu.gpa.scale}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div class="meta-right">
+              <div class="org-badge" title={edu.institution}>
+                {edu.institution}
+              </div>
+              <div class="meta-date">
+                {edu.startDate} — {edu.endDate}
+              </div>
+            </div>
+          </header>
+
+          <ul class="card-list">
+            {edu.description.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+
+          {edu.skills.length > 0 && (
+            <div class="kw-list">
+              {edu.skills.map((skill) => (
+                <Badge variant="default" size="sm" hoverable>
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          )}
+        </Card>
+      ))
+    }
+  </div>
+</Section>
+
+<style>
+  .education-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Card header layout */
+  .card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-head h3 {
+    font-size: clamp(1.05rem, 1rem + 0.4vw, 1.2rem);
+    line-height: 1.2;
+    margin: 0 0 0.2rem;
+    color: var(--text);
+  }
+
+  /* Meta row layout */
+  .meta-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .meta-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .meta-right {
+    color: var(--muted);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+    flex-shrink: 0;
+  }
+
+  /* Location line */
+  .meta-line {
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-line i {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  /* Institution badge (like org-badge in Experience) */
+  .org-badge {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.825rem;
+    letter-spacing: 0.01em;
+    max-width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: border-color 0.2s ease;
+  }
+
+  .education-card:hover .org-badge {
+    border-color: var(--text);
+  }
+
+  /* Date display */
+  .meta-date {
+    font-size: 0.825rem;
+    color: var(--muted);
+  }
+
+  /* GPA badge */
+  .gpa-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.45rem;
+    margin-left: 0.35rem;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+
+  .education-card:hover .gpa-badge {
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  /* Description list */
+  .card-list {
+    margin: 0.5rem 0 1rem 1.2rem;
+    padding: 0;
+    list-style: disc;
+  }
+
+  .card-list li {
+    margin: 0.35rem 0;
+    line-height: 1.55;
+    color: var(--text);
+    font-size: 0.925rem;
+  }
+
+  .card-list li::marker {
+    color: var(--muted);
+  }
+
+  /* Skills/keywords list */
+  .kw-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  /* Light theme adjustments */
+  :global([data-theme="light"]) .org-badge {
+    background: var(--bg-elev);
+    border-color: var(--border);
+  }
+
+  :global([data-theme="light"]) .education-card:hover .org-badge {
+    border-color: var(--text);
+  }
+
+  :global([data-theme="light"]) .gpa-badge {
+    background: var(--bg-elev);
+    border-color: var(--border);
+  }
+
+  :global([data-theme="light"]) .education-card:hover .gpa-badge {
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .card-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .meta-right {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      text-align: left;
+    }
+
+    .org-badge {
+      max-width: none;
+    }
+
+    .card-head h3 {
+      font-size: 1.05rem;
+    }
+
+    .org-badge {
+      font-size: 0.775rem;
+    }
+
+    .meta-date {
+      font-size: 0.775rem;
+    }
+
+    .card-list {
+      margin-left: 1rem;
+    }
+
+    .card-list li {
+      font-size: 0.9rem;
+      margin: 0.3rem 0;
+    }
+
+    .kw-list {
+      gap: 0.35rem;
+    }
+
+    .gpa-badge {
+      font-size: 0.65rem;
+      padding: 0.1rem 0.35rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .meta-right {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .card-head h3 {
+      font-size: 1rem;
+    }
+
+    .meta-line {
+      font-size: 0.825rem;
+    }
+
+    .card-list li {
+      font-size: 0.875rem;
+    }
+  }
+</style>

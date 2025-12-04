@@ -1,0 +1,421 @@
+---
+// src/pages/article/[slug].astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, getEntryBySlug } from "astro:content";
+
+// Get the slug from the URL
+export async function getStaticPaths() {
+  const blogPosts = await getCollection("blog");
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+// Get the specific post based on slug
+const { post } = Astro.props;
+const { Content } = await post.render();
+const pageTitle = `${post.data.title} — Killian Chandeze`;
+const pageDescription = post.data.excerpt;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={`https://kchndz.dev/article/${post.slug}`}
+>
+  <!-- Back to Blog -->
+  <section
+    class="section container"
+    style="padding-top: 2rem; padding-bottom: 1rem;"
+  >
+    <a
+      href="/blog"
+      class="btn ghost"
+      style="display: inline-flex; align-items: center; gap: 8px;"
+    >
+      <i class="fas fa-arrow-left"></i>
+      Back to Blog
+    </a>
+  </section>
+
+  <article class="section container">
+    <header class="article-header">
+      <h1>{post.data.title}</h1>
+      <div class="article-meta">
+        <time datetime={post.data.date}
+          >{new Date(post.data.date).toLocaleDateString()}</time
+        >
+        <span class="article-category">{post.data.category}</span>
+        <span class="article-readtime">{post.data.readTime}</span>
+      </div>
+    </header>
+
+    <div class="article-content prose">
+      <Content />
+    </div>
+
+    <footer class="article-footer">
+      <div class="article-tags">
+        {post.data.tags.map((tag) => <span class="article-tag">{tag}</span>)}
+      </div>
+    </footer>
+  </article>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+  ></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initialize syntax highlighting
+      if (window.hljs) {
+        hljs.highlightAll();
+      }
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  /* Article header */
+  .article-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .article-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    color: var(--text);
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .article-category,
+  .article-readtime {
+    padding: 0.25rem 0.5rem;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+  }
+
+  /* Article content */
+  .article-content {
+    line-height: 1.8;
+  }
+
+  /* Prose styles for markdown content - GitHub/Notion style */
+  .prose {
+    max-width: none;
+  }
+
+  .prose :global(h2) {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .prose :global(h3) {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem 0;
+    color: var(--text);
+  }
+
+  .prose :global(h4) {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem 0;
+    color: var(--text);
+  }
+
+  .prose :global(p) {
+    margin: 1rem 0;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .prose :global(strong) {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .prose :global(em) {
+    font-style: italic;
+  }
+
+  .prose :global(a) {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--border);
+    text-underline-offset: 2px;
+    transition: text-decoration-color 0.2s ease;
+  }
+
+  .prose :global(a:hover) {
+    text-decoration-color: var(--text);
+  }
+
+  /* Lists */
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+
+  .prose :global(ul) {
+    list-style: none;
+  }
+
+  .prose :global(ul li) {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .prose :global(ul li::before) {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    background: var(--text);
+    border: 1px solid var(--text);
+    transition: background-color 0.2s ease;
+  }
+
+  .prose :global(ul li:hover::before) {
+    background: var(--bg);
+  }
+
+  .prose :global(li) {
+    margin: 0.5rem 0;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .prose :global(ol li::marker) {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* Inline code */
+  .prose :global(code) {
+    background: var(--bg-elev);
+    color: var(--text);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+    font-family: var(--font-mono);
+    border: 1px solid var(--border);
+  }
+
+  /* Code blocks */
+  .prose :global(pre) {
+    background: var(--bg-elev);
+    padding: 1.25rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .prose :global(pre code) {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: 0.875rem;
+    border: none;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* Tables - GitHub/Notion style */
+  .prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .prose :global(thead) {
+    background: var(--bg-elev);
+  }
+
+  .prose :global(th) {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 2px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+
+  .prose :global(th:last-child) {
+    border-right: none;
+  }
+
+  .prose :global(td) {
+    padding: 0.75rem 1rem;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+
+  .prose :global(td:last-child) {
+    border-right: none;
+  }
+
+  .prose :global(tbody tr:last-child td) {
+    border-bottom: none;
+  }
+
+  .prose :global(tbody tr) {
+    transition: background-color 0.2s ease;
+  }
+
+  .prose :global(tbody tr:hover) {
+    background: var(--bg-elev);
+  }
+
+  /* Blockquotes */
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--text);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: var(--muted);
+    font-style: italic;
+    background: var(--bg-elev);
+    padding: 1rem 1rem 1rem 1.5rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .prose :global(blockquote p) {
+    margin: 0.5rem 0;
+  }
+
+  /* Horizontal rule */
+  .prose :global(hr) {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+
+  /* Images */
+  .prose :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border);
+  }
+
+  /* Remove text selection highlight in code blocks (dark mode) */
+  .prose :global(pre code::selection),
+  .prose :global(pre code *::selection) {
+    background: transparent;
+  }
+
+  /* Light theme adjustments */
+  :global([data-theme="light"]) .prose :global(code) {
+    background: var(--bg-elev);
+    border-color: var(--border);
+  }
+
+  :global([data-theme="light"]) .prose :global(pre) {
+    background: var(--bg-elev);
+    border-color: var(--border);
+  }
+
+  :global([data-theme="light"]) .prose :global(pre code) {
+    background: none;
+  }
+
+  :global([data-theme="light"]) .prose :global(thead) {
+    background: var(--bg-elev);
+  }
+
+  :global([data-theme="light"]) .prose :global(tbody tr:hover) {
+    background: var(--bg-elev);
+  }
+
+  :global([data-theme="light"]) .prose :global(blockquote) {
+    background: var(--bg-elev);
+  }
+
+  /* Light theme: subtle selection in code blocks */
+  :global([data-theme="light"]) .prose :global(pre code::selection),
+  :global([data-theme="light"]) .prose :global(pre code *::selection) {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Article footer */
+  .article-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .article-tag {
+    padding: 0.35rem 0.65rem;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+  }
+
+  .article-tag:hover {
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .article-header h1 {
+      font-size: 2rem;
+    }
+
+    .prose :global(h2) {
+      font-size: 1.5rem;
+    }
+
+    .prose :global(h3) {
+      font-size: 1.25rem;
+    }
+
+    .prose :global(table) {
+      font-size: 0.85rem;
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .prose :global(th),
+    .prose :global(td) {
+      padding: 0.6rem 0.8rem;
+    }
+  }
+</style>

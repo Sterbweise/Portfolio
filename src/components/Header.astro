@@ -1,0 +1,147 @@
+---
+// src/components/Header.astro
+// Site header component with minimal design - full width
+
+import Navbar from "./Navbar.astro";
+
+export interface Props {
+  currentPage?: string;
+}
+
+const { currentPage = "" } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="header-container">
+    <a class="brand" href="/">
+      <span class="brand-initials">KC</span>
+      <span class="brand-name">Killian Chandeze</span>
+    </a>
+
+    <Navbar currentPage={currentPage} />
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    background: color-mix(in oklab, var(--bg) 92%, transparent);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: saturate(1.2) blur(12px);
+    -webkit-backdrop-filter: saturate(1.2) blur(12px);
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.75rem 4%;
+    gap: 1rem;
+  }
+
+  /* Brand / Logo */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .brand:hover {
+    opacity: 1;
+  }
+
+  .brand:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 4px;
+  }
+
+  /* Logo initials - invert on hover */
+  .brand-initials {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: var(--text);
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: -0.5px;
+    transition: all 0.2s ease;
+  }
+
+  /* Dark theme: white bg with black text → black bg with white text on hover */
+  .brand:hover .brand-initials {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--text);
+  }
+
+  .brand-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+
+  /* Light theme adjustments */
+  :global([data-theme="light"]) .site-header {
+    background: color-mix(in oklab, var(--bg) 95%, transparent);
+  }
+
+  :global([data-theme="light"]) .brand-initials {
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  /* Light theme: black bg with white text → white bg with black text on hover */
+  :global([data-theme="light"]) .brand:hover .brand-initials {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--text);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header-container {
+      padding: 0.65rem 4%;
+    }
+
+    .brand-initials {
+      width: 32px;
+      height: 32px;
+      font-size: 0.8rem;
+    }
+
+    .brand-name {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header-container {
+      padding: 0.6rem 1rem;
+    }
+
+    .brand-name {
+      display: none;
+    }
+
+    .brand-initials {
+      width: 36px;
+      height: 36px;
+      font-size: 0.9rem;
+    }
+  }
+</style>

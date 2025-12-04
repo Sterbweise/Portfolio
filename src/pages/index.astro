@@ -1,0 +1,79 @@
+---
+// src/pages/index.astro
+// Main portfolio page - clean composition of section components
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SideNav from "../components/layout/SideNav.astro";
+import Hero from "../components/sections/Hero.astro";
+import About from "../components/sections/About.astro";
+import Skills from "../components/sections/Skills.astro";
+import Experience from "../components/sections/Experience.astro";
+import Education from "../components/sections/Education.astro";
+import Projects from "../components/sections/Projects.astro";
+import Achievements from "../components/sections/Achievements.astro";
+import Contact from "../components/sections/Contact.astro";
+
+import { siteConfig } from "../data/site";
+
+// Page metadata
+const pageTitle = siteConfig.title;
+const pageDescription = siteConfig.description;
+const canonicalUrl = siteConfig.url;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={canonicalUrl}
+>
+  <!-- Side Navigation for desktop - section links -->
+  <SideNav position="right" />
+
+  <!-- Main Content -->
+  <div class="content-column">
+    <!-- Hero Section -->
+    <Hero />
+
+    <!-- About Section -->
+    <About />
+
+    <!-- Skills Section -->
+    <Skills />
+
+    <!-- Experience Section (shows 3 by default with Load More) -->
+    <Experience initialCount={3} />
+
+    <!-- Education Section -->
+    <Education />
+
+    <!-- Projects Section -->
+    <Projects />
+
+    <!-- Achievements Section -->
+    <Achievements />
+
+    <!-- Contact & Languages Section -->
+    <Contact />
+  </div>
+</BaseLayout>
+
+<style>
+  /* Page-specific styles */
+  .content-column {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Ensure smooth scrolling for anchor links */
+  :global(html) {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Account for sticky header */
+  }
+
+  /* Adjust content margin when side nav is visible */
+  @media (min-width: 1201px) {
+    .content-column {
+      /* No adjustment needed - side nav is fixed position */
+    }
+  }
+</style>
