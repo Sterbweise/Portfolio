@@ -2,7 +2,7 @@
 title: "Plutonium Linux Server Suite"
 description: "Complete automation suite for deploying and managing Call of Duty Plutonium servers on Linux with automated key generation."
 publishDate: "2025-03-20"
-tags: ["Linux", "Bash", "Python", "Rust", "Docker", "Gaming", "Automation", "Flask API"]
+tags: ["Linux", "Bash", "Docker", "Rust", "Python", "Gaming", "Automation", "Flask API"]
 link: "https://github.com/Sterbweise/T6Server"
 linkText: "View on GitHub"
 featured: true
@@ -42,15 +42,15 @@ Automated Bash script for deploying Call of Duty: Black Ops II (T6) servers on D
 **Repository**: [github.com/Sterbweise/T6Server](https://github.com/Sterbweise/T6Server)
 
 **Key Features**:
-- ✅ One-command installation and uninstallation
-- ✅ Automated system updates and dependency management
-- ✅ UFW firewall configuration with automatic port rules
-- ✅ Wine installation for Windows application support
-- ✅ .NET Framework setup for IW4MAdmin integration
-- ✅ Multi-language support (English/French)
-- ✅ MOD support with custom maps and game modes
-- ✅ CPU and memory usage limits
-- ✅ Comprehensive logging and error handling
+- One-command installation and uninstallation
+- Automated system updates and dependency management
+- UFW firewall configuration with automatic port rules
+- Wine installation for Windows application support
+- .NET Framework setup for IW4MAdmin integration
+- Multi-language support (English/French)
+- MOD support with custom maps and game modes
+- CPU and memory usage limits
+- Comprehensive logging and error handling
 
 ### 2. **T5Server** - Black Ops Server Installer
 Simplified installation script for Call of Duty: Black Ops (T5) servers on Linux.
@@ -58,12 +58,12 @@ Simplified installation script for Call of Duty: Black Ops (T5) servers on Linux
 **Repository**: [github.com/Sterbweise/T5Server](https://github.com/Sterbweise/T5Server)
 
 **Key Features**:
-- ✅ Streamlined installation process for T5 servers
-- ✅ Automated Wine and dependency configuration
-- ✅ Network and firewall setup
-- ✅ Server binary installation
-- ✅ Directory structure management
-- ✅ Troubleshooting guides for common issues
+- Streamlined installation process for T5 servers
+- Automated Wine and dependency configuration
+- Network and firewall setup
+- Server binary installation
+- Directory structure management
+- Troubleshooting guides for common issues
 
 ### 3. **Plutonium Key Generator** - CLI Key Generation Tool
 Rust-based command-line utility for generating temporary Plutonium server keys without game ownership.
@@ -71,13 +71,13 @@ Rust-based command-line utility for generating temporary Plutonium server keys w
 **Repository**: [github.com/Sterbweise/plutonium-key-generator](https://github.com/Sterbweise/plutonium-key-generator)
 
 **Key Features**:
-- ✅ Interactive command-line interface
-- ✅ Support for multiple Call of Duty titles
-- ✅ Zombie and Multiplayer mode support
-- ✅ 48-hour temporary keys for testing
-- ✅ Cross-platform (Windows/Linux binaries)
-- ✅ API integration for automated key generation
-- ✅ User-friendly prompts and error handling
+- Interactive command-line interface
+- Support for multiple Call of Duty titles
+- Zombie and Multiplayer mode support
+- 48-hour temporary keys for testing
+- Cross-platform (Windows/Linux binaries)
+- API integration for automated key generation
+- User-friendly prompts and error handling
 
 **Supported Games**:
 - Call of Duty: Black Ops ✅ (Fully supported)
@@ -91,13 +91,13 @@ Containerized Python Flask API providing automated server key generation backend
 **Repository**: [github.com/Sterbweise/plutonium-key-generator-api](https://github.com/Sterbweise/plutonium-key-generator-api)
 
 **Key Features**:
-- ✅ RESTful API for key generation
-- ✅ Docker containerization for easy deployment
-- ✅ Automated Selenium-based key extraction
-- ✅ Environment-based configuration
-- ✅ Rate limiting and security features
-- ✅ JSON response format
-- ✅ Integration with Rust CLI client
+- RESTful API for key generation
+- Docker containerization for easy deployment
+- Automated Selenium-based key extraction
+- Environment-based configuration
+- Rate limiting and security features
+- JSON response format
+- Integration with Rust CLI client
 
 ## How It All Works Together
 

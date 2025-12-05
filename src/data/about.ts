@@ -34,8 +34,8 @@ export const heroData: HeroData = {
  */
 export const aboutData: AboutData = {
   introduction: [
-    "Hi, I'm Killian — a Software Engineer from France, currently based in Malaysia. My goal is to build collaborative and impactful solutions that address real-world and future challenges.",
-    "I specialize in .NET technologies and work across the full stack, though I have a strong preference for backend development — where I find the real art and enjoyment of programming. I also have a data analyst background from my studies, and I enjoy combining both skill sets in projects.",
+    "Hi, I'm Killian, a Software Engineer from France, currently based in Malaysia. My goal is to build collaborative and impactful solutions that address real-world and future challenges.",
+    "I specialize in .NET technologies and work across the full stack, though I have a strong preference for backend development. That's where I find the real art and enjoyment of programming. I also have a data analyst background from my studies, and I enjoy combining both skill sets in projects.",
   ],
   highlights: [
     "finance",

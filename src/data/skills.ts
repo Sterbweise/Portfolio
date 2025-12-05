@@ -12,7 +12,7 @@ export const skillsData: SkillCategory[] = [
     name: "Languages & Frameworks",
     icon: "fa-solid fa-code",
     skills: [
-      "C# / .NET (Core, Framework, 8)",
+      "C# / .NET (Core, Framework, 8+)",
       "ASP.NET (Core, MVC, Web API)",
       "Python (NumPy, Pandas, Scikit-learn)",
       "TypeScript / JavaScript (Angular)",

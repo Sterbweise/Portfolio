@@ -17,10 +17,10 @@ async function optimizeImages() {
     if (existsSync(profileSrc)) {
         console.log('Found profile.jpg, converting...');
         await sharp(profileSrc)
-            .resize(400, 400, { fit: 'cover' })
-            .webp({ quality: 85 })
+            .resize(800, 800, { fit: 'cover', kernel: 'lanczos3' })
+            .webp({ lossless: true })
             .toFile(profileWebp);
-        console.log('✅ Created profile.webp');
+        console.log('✅ Created profile.webp (800x800, lossless)');
     } else {
         console.log('❌ profile.jpg not found');
     }
@@ -38,7 +38,7 @@ async function optimizeImages() {
                 if (existsSync(src)) {
                     await sharp(src)
                         .resize(120, 60, { fit: 'inside', withoutEnlargement: true })
-                        .webp({ quality: 85 })
+                        .webp({ quality: 85, nearLossless: true, effort: 6 })
                         .toFile(dest);
                     console.log(`✅ Created ${logo}-${suffix}.webp`);
                 }

@@ -91,7 +91,7 @@ export const educationData: EducationEntry[] = [
   {
     id: "camille-claudel-shs-2020",
     degree: "S.H.S. Computer Networking & Communication Systems",
-    institution: "Lycée Professionnel Camille Claudel",
+    institution: "Lycée Camille Claudel",
     location: "Clermont-Ferrand, France",
     startDate: "Sep 2017",
     endDate: "Jun 2020",
