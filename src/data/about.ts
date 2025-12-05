@@ -51,11 +51,11 @@ export const aboutData: AboutData = {
     "Continuous Learning",
   ],
   image: {
-    src: "/img/profile.webp",
+    src: "/img/profile-v2.webp",
     srcFallback: "/img/profile.jpg",
     alt: "Portrait of Killian Chandeze",
-    width: 400,
-    height: 400,
+    width: 800,
+    height: 800,
   },
 };
 
