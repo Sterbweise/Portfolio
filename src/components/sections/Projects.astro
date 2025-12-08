@@ -54,14 +54,14 @@ const {
                   >
                     {isPublic ? "Public" : "Private"}
                   </Badge>
-                  {project.data.tags.slice(0, 3).map((tag) => (
+                  {project.data.tags.slice(0, 6).map((tag) => (
                     <Badge variant="default" size="sm" hoverable={false}>
                       {tag}
                     </Badge>
                   ))}
-                  {project.data.tags.length > 3 && (
+                  {project.data.tags.length > 6 && (
                     <Badge variant="muted" size="sm" hoverable={false}>
-                      +{project.data.tags.length - 3}
+                      +{project.data.tags.length - 6}
                     </Badge>
                   )}
                 </div>

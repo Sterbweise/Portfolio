@@ -23,7 +23,7 @@ const {
 } = Astro.props;
 
 // Helper to determine badge variant based on content
-function getBadgeVariant(badge: string): "prize" | "rank" | "type" | "default" {
+function getBadgeVariant(badge: string): "prize" | "rank" | "type" | "bonus" | "default" {
   const lowerBadge = badge.toLowerCase();
   if (lowerBadge.includes("prize") || lowerBadge.includes("$")) return "prize";
   if (
@@ -32,8 +32,7 @@ function getBadgeVariant(badge: string): "prize" | "rank" | "type" | "default" {
     lowerBadge.includes("winner") ||
     lowerBadge.includes("rank") ||
     lowerBadge.includes("#")
-  )
-    return "rank";
+  ) return "rank";
   if (
     lowerBadge.includes("team") ||
     lowerBadge.includes("solo") ||
@@ -41,8 +40,12 @@ function getBadgeVariant(badge: string): "prize" | "rank" | "type" | "default" {
     lowerBadge.includes("professional") ||
     lowerBadge.includes("open source") ||
     lowerBadge.includes("community")
-  )
-    return "type";
+  ) return "type";
+  if (
+    lowerBadge.includes("gift") ||
+    lowerBadge.includes("bonus")
+  ) return "bonus";
+
   return "default";
 }
 ---
@@ -52,56 +55,82 @@ function getBadgeVariant(badge: string): "prize" | "rank" | "type" | "default" {
     <div class="ach-viewport">
       <div class="ach-track" id="ach-track">
         {
-          achievements.map((achievement) => (
-            <article class="tile achievement-card">
-              <div class="tile-body">
-                <h3>{achievement.title}</h3>
-                <div class="card-meta">
-                  <span class="meta-item">{achievement.organization}</span>
-                  <span class="meta-separator">·</span>
-                  <span class="meta-item">{achievement.location}</span>
+          achievements.map((achievement) => {
+            const cardContent = (
+              <>
+                <div class="tile-body">
+                  <h3>{achievement.title}</h3>
+                  <div class="card-meta">
+                    <span class="meta-item">{achievement.organization}</span>
+                    <span class="meta-separator">·</span>
+                    <span class="meta-item">{achievement.location}</span>
+                  </div>
+                  <p class="muted">{achievement.description}</p>
+                  {achievement.highlights.length > 0 && (
+                    <ul class="highlights-list">
+                      {achievement.highlights.map((highlight) => (
+                        <li>{highlight}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <div class="kw-list">
+                    {achievement.badges.map((badge) => {
+                      const variant = getBadgeVariant(badge);
+                      return (
+                        <span class:list={["achievement-badge", `badge-${variant}`]}>
+                          {variant === "prize" && (
+                            <i class="fa-solid fa-trophy" aria-hidden="true" />
+                          )}
+                          {variant === "rank" && (
+                            <i class="fa-solid fa-medal" aria-hidden="true" />
+                          )}
+                          {variant === "bonus" && (
+                            <i class="fa-solid fa-gift" aria-hidden="true" />
+                          )}
+                          {badge}
+                        </span>
+                      );
+                    })}
+                  </div>
                 </div>
-                <p class="muted">{achievement.description}</p>
-                {achievement.highlights.length > 0 && (
-                  <ul class="highlights-list">
-                    {achievement.highlights.map((highlight) => (
-                      <li>{highlight}</li>
+                <div class="tile-foot">
+                  <div class="skills-row">
+                    {achievement.skills.slice(0, 4).map((skill) => (
+                      <Badge variant="default" size="sm" hoverable={false}>
+                        {skill}
+                      </Badge>
                     ))}
-                  </ul>
-                )}
-                <div class="kw-list">
-                  {achievement.badges.map((badge) => {
-                    const variant = getBadgeVariant(badge);
-                    return (
-                      <span class:list={["achievement-badge", `badge-${variant}`]}>
-                        {variant === "prize" && (
-                          <i class="fa-solid fa-trophy" aria-hidden="true" />
-                        )}
-                        {variant === "rank" && (
-                          <i class="fa-solid fa-medal" aria-hidden="true" />
-                        )}
-                        {badge}
-                      </span>
-                    );
-                  })}
-                </div>
-              </div>
-              <div class="tile-foot">
-                <div class="skills-row">
-                  {achievement.skills.slice(0, 4).map((skill) => (
-                    <Badge variant="default" size="sm" hoverable={false}>
-                      {skill}
-                    </Badge>
-                  ))}
-                  {achievement.skills.length > 4 && (
-                    <Badge variant="muted" size="sm" hoverable={false}>
-                      +{achievement.skills.length - 4}
-                    </Badge>
+                    {achievement.skills.length > 4 && (
+                      <Badge variant="muted" size="sm" hoverable={false}>
+                        +{achievement.skills.length - 4}
+                      </Badge>
+                    )}
+                  </div>
+                  {achievement.url && (
+                    <div class="external-link-indicator">
+                      <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" />
+                    </div>
                   )}
                 </div>
-              </div>
-            </article>
-          ))
+              </>
+            );
+
+            return achievement.url ? (
+              <a
+                href={achievement.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="tile achievement-card achievement-card-link"
+                aria-label={`View ${achievement.title} on external site`}
+              >
+                {cardContent}
+              </a>
+            ) : (
+              <article class="tile achievement-card">
+                {cardContent}
+              </article>
+            );
+          })
         }
       </div>
     </div>
@@ -153,6 +182,20 @@ function getBadgeVariant(badge: string): "prize" | "rank" | "type" | "default" {
       transform 0.25s ease,
       box-shadow 0.25s ease,
       border-color 0.25s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Clickable card specific styles */
+  .achievement-card-link {
+    cursor: pointer;
+    position: relative;
+  }
+
+  .achievement-card-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    border-color: var(--accent);
   }
 
   .achievement-card:hover {
@@ -278,6 +321,16 @@ function getBadgeVariant(badge: string): "prize" | "rank" | "type" | "default" {
     color: var(--accent);
   }
 
+  .badge-bonus {
+    background: color-mix(in oklab, #10b981 12%, var(--bg-elev)); /* adapt to bonus/green */
+    border: 1px solid color-mix(in oklab, #10b981 40%, var(--border));
+    color: #10b981;
+  }
+
+  .badge-bonus i {
+    color: #10b981;
+  }
+
   .badge-type {
     background: var(--bg-elev);
     border: 1px solid var(--border);
@@ -288,6 +341,7 @@ function getBadgeVariant(badge: string): "prize" | "rank" | "type" | "default" {
   .tile-foot {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
     padding-top: 0.5rem;
     border-top: 1px solid var(--border);
@@ -298,6 +352,35 @@ function getBadgeVariant(badge: string): "prize" | "rank" | "type" | "default" {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
+    flex: 1;
+  }
+
+  /* External link indicator */
+  .external-link-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+    flex-shrink: 0;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .external-link-indicator i {
+    font-size: 0.75rem;
+  }
+
+  .achievement-card-link:hover .external-link-indicator {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
   }
 
   /* Navigation container */
@@ -391,6 +474,21 @@ function getBadgeVariant(badge: string): "prize" | "rank" | "type" | "default" {
   :global([data-theme="light"]) .achievement-card:hover {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     border-color: var(--text);
+  }
+
+  :global([data-theme="light"]) .achievement-card-link:hover {
+    border-color: var(--accent);
+  }
+
+  :global([data-theme="light"]) .external-link-indicator {
+    background: var(--bg-elev);
+    border-color: var(--border);
+  }
+
+  :global([data-theme="light"]) .achievement-card-link:hover .external-link-indicator {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
   }
 
   :global([data-theme="light"]) .badge-prize {
@@ -497,6 +595,16 @@ function getBadgeVariant(badge: string): "prize" | "rank" | "type" | "default" {
 
     .achievement-card:active {
       transform: scale(0.99);
+    }
+
+    .achievement-card-link:active {
+      transform: scale(0.98);
+    }
+
+    .achievement-card-link:active .external-link-indicator {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
     }
   }
 

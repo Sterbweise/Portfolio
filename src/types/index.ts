@@ -122,6 +122,7 @@ export interface AchievementEntry {
   description: string;
   highlights: string[];
   skills: string[];
+  url?: string; // Optional link to achievement page (e.g., Devpost, competition page)
 }
 
 /**

@@ -9,18 +9,36 @@ import type { AchievementEntry } from "../types";
  */
 export const achievementsData: AchievementEntry[] = [
   {
+    id: "hackathon-cursor-anthropic-2025",
+    title: "Hackathon - Cursor x Anthropic",
+    organization: "Cursor x Anthropic",
+    location: "Kuala Lumpur, Malaysia",
+    badges: ["Team", "Largest Event SEA", "Bonus: Free Credits"],
+    description:
+      "Built a financial dashboard to centralize transactions for Malaysian users.",
+    highlights: [
+      "Designed app for managing financial transactions with TypeScript and Next.js",
+      "Streamlined data aggregation from multiple financial sources for better user insights",
+      "Ensured user-friendly analytics and reporting tailored for Malaysian users",
+    ],
+    skills: ["Web Application", "Data Aggregation", "TypeScript", "Next.js"],
+    url: "https://devpost.com/software/myduit-personal-finance-aggregation-platform",
+  },
+  {
     id: "Codingame-spring-challenge-2025",
     title: "CodinGame – Spring Challenge 2025",
     organization: "CodinGame",
     location: "Global (Online Contest)",
     badges: ["Rank: 372 / 2,864", "Solo"],
-    description: "Developed an autonomous AI agent in C#/.NET to compete in a real-time multiplayer strategy game.",
+    description:
+      "Developed an autonomous AI agent in Rust to compete in a real-time multiplayer strategy game.",
     highlights: [
-      "Competitive AI agent using C# and .NET",
+      "Competitive AI agent written in Rust",
       "Optimized pathfinding and resource allocation for performance under contest constraints",
-      "Sharpened algorithmic thinking and optimized problem‑solving"
+      "Sharpened algorithmic thinking and optimized problem‑solving",
     ],
-    skills: ["C# / .NET", "Algorithms", "AI Agent", "Performance Optimization"]
+    skills: ["Rust", "Algorithms", "AI Agent", "Performance Optimization"],
+    url: "https://www.codingame.com/contests/spring-challenge-2025/leaderboard/global?column=keyword&value=Sterbweise",
   },
   {
     id: "hackathon-microsoft-ai-learning-2024",
@@ -28,13 +46,20 @@ export const achievementsData: AchievementEntry[] = [
     organization: "Microsoft",
     location: "Global (Remote)",
     badges: ["Rank: 16", "Team", "Prize: AI Courses"],
-    description: "Built a cloud-native backend in C#/.NET using Azure Cosmos DB.",
+    description:
+      "Built a cloud-native backend in C#/.NET using Azure Cosmos DB.",
     highlights: [
       "Configured Azure Cosmos DB for scalable data storage and retrieval",
       "Implemented database schema and optimized queries with C# .NET",
       "Applied cloud-native best practices including data partitioning and performance tuning",
     ],
-    skills: ["C# / .NET", "Azure Cosmos DB", "Cloud-Native Architecture", "Database Design"]
+    skills: [
+      "C# / .NET",
+      "Azure Cosmos DB",
+      "Cloud-Native Architecture",
+      "DB Design",
+    ],
+    url: "https://azurecosmosdb.devpost.com/",
   },
   {
     id: "csgo-local-tournament-2019",
@@ -42,18 +67,19 @@ export const achievementsData: AchievementEntry[] = [
     organization: "UCA",
     location: "Clermont-Ferrand, France",
     badges: ["Rank: 3rd", "Team", "Prize: In-game skins"],
-    description: "Participated in a local CS:GO tournament as part of a competitive team.",
+    description:
+      "Participated in a local CS:GO tournament as part of a competitive team.",
     highlights: [
       "Collaborated in a 5-player team under tournament pressure and tight deadlines",
       "Demonstrated strategic thinking, communication, and quick decision-making",
-      "Managed stress and adapted rapidly to changing game situations during competition"
+      "Managed stress and adapted rapidly to changing game situations during competition",
     ],
     skills: [
       "Team Collaboration",
       "Strategic Thinking",
       "Communication",
-      "Quick Decision-Making"
-    ]
+      "Quick Decision-Making",
+    ],
   },
 ];
 
@@ -68,10 +94,10 @@ export function getAchievementById(id: string): AchievementEntry | undefined {
  * Get achievements by organization
  */
 export function getAchievementsByOrganization(
-  organization: string,
+  organization: string
 ): AchievementEntry[] {
   return achievementsData.filter((achievement) =>
-    achievement.organization.toLowerCase().includes(organization.toLowerCase()),
+    achievement.organization.toLowerCase().includes(organization.toLowerCase())
   );
 }
 
@@ -83,8 +109,8 @@ export function getCertifications(): AchievementEntry[] {
     achievement.badges.some(
       (badge) =>
         badge.toLowerCase().includes("certified") ||
-        badge.toLowerCase().includes("professional"),
-    ),
+        badge.toLowerCase().includes("professional")
+    )
   );
 }
 
@@ -97,8 +123,8 @@ export function getAwards(): AchievementEntry[] {
       (badge) =>
         badge.toLowerCase().includes("place") ||
         badge.toLowerCase().includes("winner") ||
-        badge.toLowerCase().includes("champion"),
-    ),
+        badge.toLowerCase().includes("champion")
+    )
   );
 }
 
@@ -108,7 +134,7 @@ export function getAwards(): AchievementEntry[] {
 export function getAchievementsBySkill(skill: string): AchievementEntry[] {
   return achievementsData.filter((achievement) =>
     achievement.skills.some((s) =>
-      s.toLowerCase().includes(skill.toLowerCase()),
-    ),
+      s.toLowerCase().includes(skill.toLowerCase())
+    )
   );
 }
