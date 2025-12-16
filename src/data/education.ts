@@ -59,7 +59,7 @@ export const educationData: EducationEntry[] = [
   },
   {
     id: "uca-bsc-2022",
-    degree: "B.Sc. Statistics & Business Intelligence",
+    degree: "B.Sc. Business Analytics and Statistics",
     institution: "University Clermont Auvergne",
     location: "Aurillac, France",
     startDate: "Sep 2020",
