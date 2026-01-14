@@ -25,10 +25,26 @@ export const achievementsData: AchievementEntry[] = [
     url: "https://devpost.com/software/myduit-personal-finance-aggregation-platform",
   },
   {
+    id: "hackathon-baidu-ernie-ai-2025",
+    title: "Baidu ERNIE AI Developer Challenge",
+    organization: "Baidu x Novita AI",
+    location: "Online",
+    badges: ["Rank: N/A / 1,095", "Solo", "25$ Novita Credits"],
+    description:
+      "Built an AI-powered crypto whitepaper analyzer using Baidu's ERNIE 4.5 to transform whitepapers into easy-to-understand insights.",
+    highlights: [
+      "Integrated ERNIE 4.5 via Novita API for intelligent document analysis",
+      "Built full-stack application with FastAPI backend and React TypeScript frontend",
+      "Implemented async PDF processing with real-time tracking and comprehensive analysis",
+    ],
+    skills: ["AI/ML", "FastAPI", "React/Typescript", "OpenAI API"],
+    url: "https://devpost.com/software/finsight-y213il",
+  },
+  {
     id: "Codingame-spring-challenge-2025",
     title: "CodinGame – Spring Challenge 2025",
     organization: "CodinGame",
-    location: "Global (Online Contest)",
+    location: "Online",
     badges: ["Rank: 372 / 2,864", "Solo"],
     description:
       "Developed an autonomous AI agent in Rust to compete in a real-time multiplayer strategy game.",

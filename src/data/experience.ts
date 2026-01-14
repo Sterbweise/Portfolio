@@ -10,7 +10,7 @@ import type { ExperienceEntry } from "../types";
 export const experienceData: ExperienceEntry[] = [
   {
     id: "freelance-2024",
-    title: "Software Engineer",
+    title: "Software Engineer (.NET / Angular)",
     company: "Freelance",
     location: "Kuala Lumpur, Malaysia",
     startDate: "Sep 2024",
@@ -38,7 +38,7 @@ export const experienceData: ExperienceEntry[] = [
   },
   {
     id: "freelance-2023",
-    title: "Software Engineer",
+    title: "Software Engineer (.NET / Python)",
     company: "Freelance",
     location: "Kuala Lumpur, Malaysia",
     startDate: "Dec 2023",
@@ -64,7 +64,7 @@ export const experienceData: ExperienceEntry[] = [
   },
   {
     id: "ausy-2023",
-    title: "Software Engineer",
+    title: "Software Engineer (.NET / WPF)",
     company: "AUSY",
     location: "Lorient, France",
     startDate: "Feb 2023",
@@ -176,7 +176,7 @@ export function getExperienceById(id: string): ExperienceEntry | undefined {
  */
 export function getExperiencesByCompany(company: string): ExperienceEntry[] {
   return experienceData.filter((exp) =>
-    exp.company.toLowerCase().includes(company.toLowerCase()),
+    exp.company.toLowerCase().includes(company.toLowerCase())
   );
 }
 
