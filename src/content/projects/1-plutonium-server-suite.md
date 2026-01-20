@@ -7,6 +7,8 @@ link: "https://github.com/Sterbweise/T6Server"
 linkText: "View on GitHub"
 featured: true
 visibility: public
+githubStars: 45
+downloads: 2300
 ---
 
 ## Overview

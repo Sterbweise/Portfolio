@@ -6,44 +6,69 @@
   "category": "infrastructure",
   "icon": "fa-solid fa-cloud",
   "tone": "teal",
-  "startingPrice": 400,
+  "startingPrice": 145,
   "deliveryDays": 4,
   "packages": [
     {
       "name": "Personal Cloud",
-      "price": "$400",
+      "price": "$145",
       "features": [
-        "Nextcloud installation",
-        "SSL & security setup",
-        "Basic apps installation",
-        "User account creation",
-        "Mobile app configuration"
+        "Nextcloud installation on your server",
+        "SSL certificate with Let's Encrypt auto-renewal",
+        "Security hardening & firewall configuration",
+        "Essential apps installation (Files, Photos, Calendar, Contacts)",
+        "User account creation (up to 5 users)",
+        "Mobile app configuration (iOS/Android)",
+        "Desktop sync client setup",
+        "File sharing & permissions setup",
+        "External storage support (S3, FTP)",
+        "Automated backup configuration",
+        "Basic documentation"
       ],
       "deliveryTime": "2-3 days"
     },
     {
       "name": "Business Cloud",
-      "price": "$700",
+      "price": "$260",
       "features": [
-        "Complete Nextcloud setup",
-        "Office suite integration",
-        "Team collaboration tools",
-        "Advanced security features",
-        "Backup configuration",
-        "User training"
+        "Complete Nextcloud installation & optimization",
+        "OnlyOffice or Collabora Online integration",
+        "Team collaboration tools (Talk, Deck, Calendar)",
+        "Advanced security (2FA, brute-force protection)",
+        "Redis caching for performance boost",
+        "Automated daily backups with retention policy",
+        "User management for up to 25 users",
+        "Group folders & advanced permissions",
+        "Email server integration",
+        "Activity tracking & audit logs",
+        "File versioning & trash management",
+        "Video conferencing setup (Nextcloud Talk)",
+        "Custom branding & theming",
+        "1-hour user training session",
+        "30 days support"
       ],
       "deliveryTime": "4-5 days"
     },
     {
       "name": "Enterprise Cloud",
-      "price": "$1,200",
+      "price": "$460",
       "features": [
-        "High-availability deployment",
-        "LDAP/AD integration",
-        "Advanced monitoring",
-        "Compliance features",
-        "Custom app development",
-        "Migration & ongoing support"
+        "High-availability deployment with load balancing",
+        "LDAP/Active Directory integration",
+        "Advanced monitoring with Grafana dashboard",
+        "Compliance features (encryption, audit logs, retention policies)",
+        "Custom app installation & configuration",
+        "Complete data migration from Google Workspace, Dropbox, OneDrive",
+        "SSO (Single Sign-On) integration",
+        "Advanced workflow automation",
+        "S3/object storage as primary storage",
+        "Unlimited users support",
+        "Advanced security scanning & threat detection",
+        "Custom domain & white-label setup",
+        "API integration with existing tools",
+        "Performance optimization for 100+ concurrent users",
+        "Comprehensive training & documentation",
+        "60 days priority support"
       ],
       "deliveryTime": "7-10 days"
     }
@@ -56,11 +81,18 @@
     { "icon": "fas fa-backup", "text": "Backup system included" }
   ],
   "extras": [
-    { "name": "Additional storage", "price": "$50/100GB", "description": "Expand storage capacity" },
-    { "name": "Custom app", "price": "$250", "description": "Install and configure custom Nextcloud app" },
-    { "name": "LDAP integration", "price": "$200", "description": "Connect with Active Directory" },
-    { "name": "Advanced backup", "price": "$150", "description": "Automated backup to external storage" },
-    { "name": "Branding customization", "price": "$175", "description": "Custom branding and theming" }
+    { "name": "Additional storage", "price": "$20/100GB", "description": "Expand storage capacity with optimization" },
+    { "name": "Custom app installation", "price": "$90", "description": "Install and configure custom Nextcloud app from store" },
+    { "name": "LDAP/AD integration", "price": "$75", "description": "Connect with Active Directory or LDAP server" },
+    { "name": "Advanced backup", "price": "$55", "description": "Automated encrypted backup to S3 or external storage" },
+    { "name": "Branding customization", "price": "$65", "description": "Custom branding, theming, and logo integration" },
+    { "name": "Office suite upgrade", "price": "$100", "description": "Premium OnlyOffice or Collabora setup with templates" },
+    { "name": "Full-text search", "price": "$70", "description": "Elasticsearch integration for advanced search" },
+    { "name": "E2E encryption", "price": "$60", "description": "End-to-end encryption setup for sensitive folders" },
+    { "name": "Cloud migration", "price": "$125", "description": "Migrate from Google Drive, Dropbox, or OneDrive" },
+    { "name": "Additional user licenses", "price": "$3/user", "description": "Add more user accounts with configuration" },
+    { "name": "Custom domain setup", "price": "$30", "description": "Configure custom domain with SSL certificate" },
+    { "name": "Performance optimization", "price": "$80", "description": "Advanced tuning for high-traffic environments" }
   ],
   "meta": {
     "deliveryTime": "2-5 days",

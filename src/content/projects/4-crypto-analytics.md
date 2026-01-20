@@ -7,6 +7,8 @@ link: "#"
 linkText: "Private Project"
 featured: true
 visibility: private
+githubStars: 0
+downloads: 0
 ---
 
 ## Overview

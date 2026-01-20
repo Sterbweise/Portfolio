@@ -6,44 +6,66 @@
   "category": "infrastructure",
   "icon": "fa-solid fa-tasks",
   "tone": "green",
-  "startingPrice": 350,
+  "startingPrice": 130,
   "deliveryDays": 4,
   "packages": [
     {
       "name": "Basic Installation",
-      "price": "$350",
+      "price": "$130",
       "features": [
-        "OpenProject installation",
-        "Basic configuration",
-        "User management setup",
-        "Project templates",
-        "Basic workflow configuration"
+        "OpenProject installation on your server",
+        "SSL certificate setup with auto-renewal",
+        "Basic configuration & settings",
+        "User management for up to 10 users",
+        "Project templates & work package types",
+        "Basic workflow configuration (To-do, In Progress, Done)",
+        "Gantt chart setup",
+        "File storage configuration",
+        "Email notification setup",
+        "Basic documentation"
       ],
       "deliveryTime": "2-3 days"
     },
     {
       "name": "Professional Setup",
-      "price": "$650",
+      "price": "$240",
       "features": [
-        "Complete installation & config",
-        "Custom workflows & fields",
-        "Team collaboration setup",
-        "Time tracking configuration",
-        "Reporting & dashboards",
-        "Email notifications"
+        "Complete installation & optimization",
+        "Custom workflows & custom fields",
+        "Team collaboration setup (forums, wiki, meetings)",
+        "Time tracking & cost reporting configuration",
+        "Advanced Gantt charts & roadmaps",
+        "Agile/Scrum boards with backlogs",
+        "Custom reporting & dashboards",
+        "Email notification automation",
+        "Role-based permissions & access control",
+        "Version control integration (Git/SVN)",
+        "Automated backup configuration",
+        "Custom project templates for your workflows",
+        "User training session (1 hour)",
+        "30 days support"
       ],
       "deliveryTime": "4-5 days"
     },
     {
       "name": "Enterprise Solution",
-      "price": "$1,100",
+      "price": "$420",
       "features": [
-        "High-availability setup",
-        "LDAP/SSO integration",
-        "Advanced customizations",
-        "Plugin installations",
-        "Backup & monitoring",
-        "Migration & training"
+        "High-availability setup with redundancy",
+        "LDAP/Active Directory or SSO integration",
+        "Advanced workflow customizations for complex processes",
+        "Premium plugin installations (BIM, 2FA, etc.)",
+        "Multi-project portfolio management",
+        "Advanced budgeting & cost tracking",
+        "Custom API integrations with external tools",
+        "Automated backup to remote storage",
+        "Monitoring dashboard with alerting",
+        "Data migration from Jira, Trello, Asana, or MS Project",
+        "Custom branding & white-label setup",
+        "Advanced security hardening",
+        "Resource management & capacity planning",
+        "Comprehensive training & documentation",
+        "60 days priority support"
       ],
       "deliveryTime": "7-10 days"
     }
@@ -56,11 +78,18 @@
     { "icon": "fas fa-bell", "text": "Notification system setup" }
   ],
   "extras": [
-    { "name": "Custom plugin", "price": "$300", "description": "Install and configure custom OpenProject plugin" },
-    { "name": "LDAP integration", "price": "$200", "description": "Connect with existing Active Directory" },
-    { "name": "Custom workflow", "price": "$150", "description": "Design custom project workflow" },
-    { "name": "Advanced reporting", "price": "$175", "description": "Custom reports and KPI dashboards" },
-    { "name": "Mobile app setup", "price": "$100", "description": "Configure mobile access and apps" }
+    { "name": "Premium plugin installation", "price": "$110", "description": "Install and configure premium OpenProject plugin (BIM, 2FA, etc.)" },
+    { "name": "LDAP/AD integration", "price": "$75", "description": "Connect with existing Active Directory or LDAP server" },
+    { "name": "Custom workflow design", "price": "$55", "description": "Design custom project workflow tailored to your needs" },
+    { "name": "Advanced reporting", "price": "$65", "description": "Custom reports, KPI dashboards, and analytics" },
+    { "name": "Mobile app configuration", "price": "$35", "description": "Configure mobile access and progressive web app" },
+    { "name": "Jira/Trello migration", "price": "$140", "description": "Complete migration from Jira, Trello, or similar tools" },
+    { "name": "Git integration", "price": "$45", "description": "GitHub/GitLab/Bitbucket integration for commits linking" },
+    { "name": "Custom templates", "price": "$50", "description": "5 custom project templates for your specific workflows" },
+    { "name": "API automation", "price": "$90", "description": "Custom API scripts for workflow automation" },
+    { "name": "Branding customization", "price": "$70", "description": "Custom logo, colors, and white-label configuration" },
+    { "name": "Additional user training", "price": "$60", "description": "Extended training session (2 hours) for team onboarding" },
+    { "name": "Webhook integration", "price": "$50", "description": "Webhooks for Slack, Teams, or custom notifications" }
   ],
   "meta": {
     "deliveryTime": "2-5 days",

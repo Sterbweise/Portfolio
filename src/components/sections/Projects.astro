@@ -67,6 +67,24 @@ const {
                 </div>
               </div>
               <div class="tile-foot">
+                <div class="project-stats">
+                  {project.data.githubStars !== undefined && (
+                    <span class="stat-item" title={`${project.data.githubStars} GitHub stars`}>
+                      <i class="fa-solid fa-star"></i>
+                      {project.data.githubStars >= 1000 
+                        ? `${(project.data.githubStars / 1000).toFixed(1)}k` 
+                        : project.data.githubStars}
+                    </span>
+                  )}
+                  {project.data.downloads !== undefined && (
+                    <span class="stat-item" title={`${project.data.downloads} downloads`}>
+                      <i class="fa-solid fa-download"></i>
+                      {project.data.downloads >= 1000 
+                        ? `${(project.data.downloads / 1000).toFixed(1)}k` 
+                        : project.data.downloads}
+                    </span>
+                  )}
+                </div>
                 <span class="link">Read more →</span>
               </div>
             </a>
@@ -176,6 +194,7 @@ const {
   .tile-foot {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
     padding-top: 0.5rem;
     border-top: 1px solid var(--border);
@@ -192,6 +211,45 @@ const {
   .project-card:hover .tile-foot .link {
     color: var(--muted);
   }
+
+  /* Project stats in footer */
+  .project-stats {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .stat-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .stat-item i {
+    font-size: 0.75rem;
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+
+  /* Star icon color */
+  .stat-item:first-child i {
+    color: #fbbf24;
+  }
+
+  /* Download icon color */
+  .stat-item:last-child i {
+    color: #3b82f6;
+  }
+
+  /* Stats remain unchanged on card hover */
 
   /* Navigation container */
   .proj-nav {
@@ -300,6 +358,11 @@ const {
     color: var(--bg);
   }
 
+  :global([data-theme="light"]) .stat-item {
+    background: transparent;
+    border-color: var(--border);
+  }
+
   /* Responsive - Tablet */
   @media (max-width: 1024px) {
     .project-card {
@@ -351,6 +414,19 @@ const {
     .tile-body .muted {
       font-size: 0.85rem;
       -webkit-line-clamp: 2;
+    }
+
+    .stat-item {
+      padding: 0.15rem 0.4rem;
+      font-size: 0.75rem;
+    }
+
+    .stat-item i {
+      font-size: 0.7rem;
+    }
+
+    .tile-foot .link {
+      font-size: 0.85rem;
     }
 
     .kw-list {

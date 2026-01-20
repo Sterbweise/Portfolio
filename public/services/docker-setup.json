@@ -6,44 +6,60 @@
   "category": "infrastructure",
   "icon": "fa-brands fa-docker",
   "tone": "emerald",
-  "startingPrice": 450,
+  "startingPrice": 160,
   "deliveryDays": 5,
   "packages": [
     {
       "name": "Basic Containerization",
-      "price": "$450",
+      "price": "$160",
       "features": [
-        "Docker & Docker Compose setup",
-        "Application containerization",
-        "Basic orchestration",
-        "Development environment",
-        "Documentation"
+        "Docker & Docker Compose installation",
+        "Application containerization (up to 3 services)",
+        "Multi-stage Dockerfile optimization",
+        "Development environment setup",
+        "Volume management for data persistence",
+        "Network configuration between containers",
+        "Environment variables & secrets management",
+        ".dockerignore optimization",
+        "Complete documentation & commands cheatsheet"
       ],
       "deliveryTime": "2-3 days"
     },
     {
       "name": "Production Ready",
-      "price": "$800",
+      "price": "$290",
       "features": [
-        "Production Docker setup",
-        "Multi-stage builds",
-        "Container orchestration",
-        "Health checks & monitoring",
-        "Security best practices",
-        "CI/CD integration"
+        "Production-grade Docker setup (up to 5 services)",
+        "Optimized multi-stage builds for minimal image size",
+        "Docker Compose with production configurations",
+        "Health checks & automatic restart policies",
+        "Resource limits (CPU/memory) configuration",
+        "Security hardening (non-root users, scanning)",
+        "Logging driver configuration",
+        "Watchtower for auto-updates",
+        "CI/CD integration (GitHub Actions/GitLab CI)",
+        "Backup & restore scripts",
+        "Monitoring with cAdvisor",
+        "Complete deployment documentation"
       ],
       "deliveryTime": "4-6 days"
     },
     {
       "name": "Enterprise Container Platform",
-      "price": "$1,400",
+      "price": "$525",
       "features": [
-        "Kubernetes cluster setup",
-        "Advanced orchestration",
-        "Auto-scaling configuration",
-        "Service mesh integration",
-        "Monitoring & logging stack",
-        "DevOps pipeline integration"
+        "Kubernetes cluster setup (k3s/k8s)",
+        "Advanced orchestration with Helm charts",
+        "Horizontal pod auto-scaling (HPA)",
+        "Ingress controller & load balancing",
+        "Service mesh integration (Istio/Linkerd)",
+        "Centralized logging (ELK/Loki stack)",
+        "Monitoring with Prometheus & Grafana",
+        "Secrets management with Vault/Sealed Secrets",
+        "CI/CD pipeline with ArgoCD/Flux",
+        "Rolling updates & rollback strategies",
+        "Resource quotas & namespace management",
+        "Complete architecture documentation & training"
       ],
       "deliveryTime": "8-12 days"
     }
@@ -56,11 +72,16 @@
     { "icon": "fas fa-rocket", "text": "CI/CD integration" }
   ],
   "extras": [
-    { "name": "Additional service", "price": "$150", "description": "Containerize additional application or service" },
-    { "name": "Kubernetes migration", "price": "$500", "description": "Migrate from Docker Compose to Kubernetes" },
-    { "name": "Registry setup", "price": "$200", "description": "Private Docker registry configuration" },
-    { "name": "Monitoring stack", "price": "$300", "description": "Prometheus, Grafana, and alerting setup" },
-    { "name": "Load balancer", "price": "$175", "description": "Container load balancing configuration" }
+    { "name": "Additional service", "price": "$40", "description": "Containerize additional application or service with optimization" },
+    { "name": "Kubernetes migration", "price": "$175", "description": "Migrate from Docker Compose to Kubernetes with Helm charts" },
+    { "name": "Private registry setup", "price": "$75", "description": "Private Docker registry with Harbor or GitLab registry" },
+    { "name": "Monitoring stack", "price": "$100", "description": "Prometheus, Grafana, and alerting with custom dashboards" },
+    { "name": "Load balancer", "price": "$60", "description": "Nginx/Traefik load balancing configuration" },
+    { "name": "Database container", "price": "$50", "description": "PostgreSQL/MySQL/MongoDB containerized with persistence" },
+    { "name": "Redis/cache layer", "price": "$45", "description": "Redis container for caching and sessions" },
+    { "name": "Backup automation", "price": "$65", "description": "Automated backup solution for volumes and databases" },
+    { "name": "SSL certificate automation", "price": "$40", "description": "Let's Encrypt automatic SSL certificate renewal" },
+    { "name": "Development environment", "price": "$75", "description": "Complete local dev environment with hot-reload" }
   ],
   "meta": {
     "deliveryTime": "3-6 days",

@@ -1,7 +1,6 @@
 {
   "services": [
     "backend-api",
-    "consultation",
     "mail-server",
     "reverse-proxy",
     "invoiceplan",

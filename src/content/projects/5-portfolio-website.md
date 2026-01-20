@@ -15,6 +15,8 @@ link: "https://github.com/Sterbweise/Portfolio"
 linkText: "View on GitHub"
 featured: true
 visibility: public
+githubStars: 0
+downloads: 6
 ---
 
 ## Overview

@@ -16,6 +16,8 @@ link: "https://github.com/Sterbweise/ERNIE-FinSight"
 linkText: "View on GitHub"
 featured: true
 visibility: public
+githubStars: 0
+downloads: 25
 ---
 
 ## Overview

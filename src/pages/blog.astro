@@ -9,8 +9,12 @@ const pageTitle = "Blog — Killian Chandeze";
 const pageDescription =
   "Blog by Killian Chandeze — insights on software engineering, DevOps, and technology trends.";
 
-// Fetch all blog posts
-const blogPosts = await getCollection("blog");
+// Fetch all blog posts and sort by date (newest first)
+const blogPosts = (await getCollection("blog")).sort((a, b) => {
+  const dateA = new Date(a.data.date).getTime();
+  const dateB = new Date(b.data.date).getTime();
+  return dateB - dateA; // Sort descending (newest first)
+});
 ---
 
 <BaseLayout

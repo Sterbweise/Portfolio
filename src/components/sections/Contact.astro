@@ -35,6 +35,10 @@ const {
           <li>
             <i class="fa-sharp fa-solid fa-location-dot" aria-hidden="true"></i>
             <span>{contact.location}</span>
+            <span id="malaysia-time" class="time-display" aria-label="Current time in Malaysia">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              <span id="time-text">--:--</span>
+            </span>
           </li>
           {
             contact.social.map((social) => (
@@ -185,9 +189,38 @@ UnMquejHtuLTp0kkdko878ND/+0HoTx1V7i5qjIM
     }
   }
 
+  // Malaysia Time Clock (GMT+8)
+  function initMalaysiaTimeClock() {
+    const timeText = document.getElementById('time-text');
+    if (!timeText) return;
+
+    function updateTime() {
+      const now = new Date();
+      // Get Malaysia time (GMT+8)
+      const malaysiaTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kuala_Lumpur' }));
+      const hours = String(malaysiaTime.getHours()).padStart(2, '0');
+      const minutes = String(malaysiaTime.getMinutes()).padStart(2, '0');
+      
+      timeText.textContent = `${hours}:${minutes} GMT+8`;
+    }
+
+    // Update immediately
+    updateTime();
+    
+    // Update every 30 seconds
+    setInterval(updateTime, 30000);
+  }
+
   // Initialize on DOM ready
-  document.addEventListener('DOMContentLoaded', initPGPModal);
-  document.addEventListener('astro:page-load', initPGPModal);
+  document.addEventListener('DOMContentLoaded', () => {
+    initPGPModal();
+    initMalaysiaTimeClock();
+  });
+  
+  document.addEventListener('astro:page-load', () => {
+    initPGPModal();
+    initMalaysiaTimeClock();
+  });
 </script>
 
 <style>
@@ -259,6 +292,16 @@ UnMquejHtuLTp0kkdko878ND/+0HoTx1V7i5qjIM
     transition: border-color 0.2s ease;
   }
 
+  /* First li in contact section with location and time */
+  .contact-section .contact-list li:first-child {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .contact-section .contact-list li:first-child > span:not(.time-display) {
+    flex: 1;
+  }
+
   .contact-list li:last-child {
     border-bottom: none;
   }
@@ -303,6 +346,56 @@ UnMquejHtuLTp0kkdko878ND/+0HoTx1V7i5qjIM
   .contact-list a:focus-visible {
     outline: 2px solid var(--text);
     outline-offset: 2px;
+  }
+
+  /* Malaysia Time Display */
+  .time-display {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-left: auto;
+    padding: 0.2rem 0.6rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .time-display i {
+    width: auto;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .contact-list li:hover .time-display {
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  .contact-list li:hover .time-display i {
+    color: var(--text);
+  }
+
+  /* Hide time on smaller screens */
+  @media (max-width: 768px) {
+    .time-display {
+      display: none;
+    }
+  }
+
+  /* Show time only on medium and larger screens */
+  @media (min-width: 769px) and (max-width: 1200px) {
+    .time-display {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+    }
+    
+    .time-display i {
+      font-size: 0.7rem;
+    }
   }
 
   /* Languages list specific styling */
@@ -365,6 +458,16 @@ UnMquejHtuLTp0kkdko878ND/+0HoTx1V7i5qjIM
   }
 
   :global([data-theme="light"]) .lang-item:hover .level-badge {
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  :global([data-theme="light"]) .time-display {
+    background: transparent;
+    border-color: var(--border);
+  }
+
+  :global([data-theme="light"]) .contact-list li:hover .time-display {
     border-color: var(--text);
     color: var(--text);
   }

@@ -24,6 +24,8 @@ const projectsCollection = defineCollection({
     linkText: z.string().optional(),
     featured: z.boolean().optional(),
     visibility: z.enum(['public', 'private']).default('public'),
+    githubStars: z.number().optional(),
+    downloads: z.number().optional(),
   }),
 });
 

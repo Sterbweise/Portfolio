@@ -6,44 +6,61 @@
   "category": "infrastructure",
   "icon": "fa-solid fa-route",
   "tone": "cyan",
-  "startingPrice": 300,
+  "startingPrice": 210,
   "deliveryDays": 2,
   "packages": [
     {
       "name": "Basic Proxy",
-      "price": "$300",
+      "price": "$210",
       "features": [
-        "Nginx/Apache installation",
-        "Basic reverse proxy config",
-        "SSL certificate setup",
-        "Basic security headers",
-        "Simple load balancing"
+        "Nginx or Traefik installation & configuration",
+        "Reverse proxy for up to 3 services/domains",
+        "Automated SSL certificates (Let's Encrypt) with auto-renewal",
+        "HTTP to HTTPS redirect",
+        "Basic security headers (HSTS, X-Frame-Options, CSP)",
+        "Access logging configuration",
+        "Simple load balancing (round-robin)",
+        "WebSocket support",
+        "Configuration documentation"
       ],
       "deliveryTime": "1-2 days"
     },
     {
       "name": "Advanced Proxy",
-      "price": "$550",
+      "price": "$400",
       "features": [
-        "Advanced load balancing",
-        "Caching configuration",
-        "Rate limiting & DDoS protection",
-        "Health checks & failover",
-        "Comprehensive logging",
-        "Performance optimization"
+        "Advanced Nginx/Traefik configuration for up to 8 services",
+        "Intelligent load balancing (least connections, IP hash)",
+        "Redis/Memcached caching layer integration",
+        "Rate limiting & DDoS protection (IP-based throttling)",
+        "Health checks with automatic failover",
+        "Gzip/Brotli compression optimization",
+        "Custom error pages (404, 500, 502, 503)",
+        "Comprehensive access & error logging",
+        "Performance tuning (worker processes, buffers)",
+        "HTTP/2 & HTTP/3 (QUIC) support",
+        "Basic WAF rules for common attacks",
+        "Monitoring with access to metrics endpoint"
       ],
       "deliveryTime": "3-4 days"
     },
     {
       "name": "Enterprise Proxy",
-      "price": "$900",
+      "price": "$680",
       "features": [
-        "High-availability setup",
-        "Advanced security (WAF)",
-        "Monitoring & alerting",
-        "Auto-scaling configuration",
-        "CDN integration",
-        "Documentation & training"
+        "High-availability setup with multiple proxy instances",
+        "Advanced WAF with ModSecurity and custom rules",
+        "Monitoring dashboard (Grafana) with alerting",
+        "Auto-scaling configuration for traffic spikes",
+        "CDN integration (Cloudflare/BunnyCDN)",
+        "A/B testing and canary deployment support",
+        "Advanced caching strategies with purge API",
+        "DDoS mitigation with connection limits",
+        "Geo-blocking and IP whitelisting/blacklisting",
+        "Request/response transformation",
+        "SSL certificate management for unlimited domains",
+        "Performance optimization for 10,000+ concurrent users",
+        "Complete documentation, architecture diagrams & training"
       ],
       "deliveryTime": "5-7 days"
     }
@@ -56,11 +73,16 @@
     { "icon": "fas fa-chart-line", "text": "Performance monitoring" }
   ],
   "extras": [
-    { "name": "Additional backend", "price": "$75", "description": "Configure additional backend server" },
-    { "name": "WAF rules", "price": "$200", "description": "Custom Web Application Firewall rules" },
-    { "name": "CDN integration", "price": "$150", "description": "CloudFlare or similar CDN setup" },
-    { "name": "Advanced caching", "price": "$100", "description": "Redis or Memcached caching layer" },
-    { "name": "Monitoring dashboard", "price": "$125", "description": "Custom monitoring and analytics dashboard" }
+    { "name": "Additional backend", "price": "$50", "description": "Configure additional backend server with health checks" },
+    { "name": "WAF rules", "price": "$140", "description": "Custom Web Application Firewall rules for OWASP Top 10 protection" },
+    { "name": "CDN integration", "price": "$110", "description": "CloudFlare, BunnyCDN, or AWS CloudFront setup" },
+    { "name": "Advanced caching", "price": "$80", "description": "Redis or Memcached caching layer with invalidation" },
+    { "name": "Monitoring dashboard", "price": "$90", "description": "Custom Grafana monitoring and analytics dashboard" },
+    { "name": "API Gateway", "price": "$180", "description": "Transform proxy into API Gateway with authentication and rate limiting" },
+    { "name": "Load balancer optimization", "price": "$100", "description": "Advanced load balancing algorithms and sticky sessions" },
+    { "name": "Geo-routing", "price": "$120", "description": "Route traffic based on geographical location" },
+    { "name": "Blue-green deployment", "price": "$150", "description": "Zero-downtime deployment configuration" },
+    { "name": "Custom error pages", "price": "$60", "description": "Branded error pages with your design" }
   ],
   "meta": {
     "deliveryTime": "1-3 days",

@@ -3,10 +3,12 @@ title: "Pokémon Guessing Game"
 description: "AI-powered web game using decision tree algorithms and statistical analysis to guess Pokémon through optimized question selection."
 publishDate: "2022-06-15"
 tags: ["Python", "Machine Learning", "SQLite", "Flask", "Data Science", "Algorithm Design"]
-link: "https://github.com/Sterbweise/guessing-game"
-linkText: "View on GitHub"
+link: "https://gitlab.com/"
+linkText: "View on GitLab"
 featured: false
 visibility: public
+githubStars: 8
+downloads: 450
 ---
 
 ## Overview

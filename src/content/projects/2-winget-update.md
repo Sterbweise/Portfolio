@@ -7,6 +7,8 @@ link: "https://github.com/Sterbweise/winget-update"
 linkText: "View on GitHub"
 featured: true
 visibility: public
+githubStars: 10
+downloads: 350
 ---
 
 ## Overview

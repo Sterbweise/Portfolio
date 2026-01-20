@@ -7,6 +7,8 @@ link: "https://github.com/Sterbweise/Monero-Chan"
 linkText: "View on GitHub"
 featured: false
 visibility: public
+githubStars: 1
+downloads: 24
 ---
 
 ## Overview

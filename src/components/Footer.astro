@@ -68,7 +68,17 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© <span id="year"></span> Made with care</p>
+      <p class="footer-copy">
+        <span class="matrix-text">©</span> <span id="year"></span> 
+        <span class="code-comment">//</span> 
+        <span class="matrix-fade">Crafted in</span> 
+        <span class="hex-code" title="France in hex">0x46 0x52</span> 
+        🇫🇷 
+        <span class="code-comment">with</span> 
+        <span class="matrix-heart">&lt;passion/&gt;</span> 
+        <span class="code-operator">&&</span> 
+        <span class="matrix-coffee">🍵</span>
+      </p>
     </div>
   </div>
 </footer>
@@ -185,6 +195,114 @@
     margin: 0;
     color: var(--muted);
     font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.02em;
+  }
+
+  /* Matrix-style geek elements */
+  .matrix-text {
+    color: #00ff41;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+    animation: matrix-flicker 3s infinite;
+  }
+
+  .code-comment {
+    color: #888;
+    font-style: italic;
+  }
+
+  .matrix-fade {
+    color: var(--muted);
+    opacity: 0.9;
+  }
+
+  .hex-code {
+    color: #00d9ff;
+    font-weight: 600;
+    background: rgba(0, 217, 255, 0.1);
+    padding: 0.1rem 0.3rem;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    cursor: help;
+    transition: all 0.3s ease;
+  }
+
+  .hex-code:hover {
+    background: rgba(0, 217, 255, 0.2);
+    border-color: rgba(0, 217, 255, 0.4);
+    transform: scale(1.05);
+  }
+
+  .matrix-heart {
+    color: #ff006e;
+    font-weight: bold;
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .code-operator {
+    color: #ffd700;
+    font-weight: bold;
+  }
+
+  .matrix-coffee {
+    display: inline-block;
+    animation: steam 2s ease-in-out infinite;
+  }
+
+  /* Matrix flicker animation */
+  @keyframes matrix-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+
+  /* Pulse glow animation for heart */
+  @keyframes pulse-glow {
+    0%, 100% { 
+      text-shadow: 0 0 5px rgba(255, 0, 110, 0.5);
+      transform: scale(1);
+    }
+    50% { 
+      text-shadow: 0 0 10px rgba(255, 0, 110, 0.8);
+      transform: scale(1.1);
+    }
+  }
+
+  /* Steam animation for coffee */
+  @keyframes steam {
+    0%, 100% { 
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    50% { 
+      transform: translateY(-2px) rotate(5deg);
+      opacity: 0.8;
+    }
+  }
+
+  /* Light theme adjustments */
+  :global([data-theme="light"]) .matrix-text {
+    color: #00cc33;
+    text-shadow: 0 0 3px rgba(0, 204, 51, 0.3);
+  }
+
+  :global([data-theme="light"]) .hex-code {
+    color: #0088cc;
+    background: rgba(0, 136, 204, 0.1);
+    border-color: rgba(0, 136, 204, 0.2);
+  }
+
+  :global([data-theme="light"]) .hex-code:hover {
+    background: rgba(0, 136, 204, 0.2);
+    border-color: rgba(0, 136, 204, 0.4);
+  }
+
+  :global([data-theme="light"]) .matrix-heart {
+    color: #e60073;
+  }
+
+  :global([data-theme="light"]) .code-operator {
+    color: #cc9900;
   }
 
   /* Light theme */
@@ -208,6 +326,22 @@
     .footer-social {
       justify-content: center;
     }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .hex-code {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-copy {
+      font-size: 0.75rem;
+      word-spacing: 0.1em;
+    }
   }
 
   /* Touch devices */
@@ -222,6 +356,19 @@
       transform: scale(0.95);
       border-color: var(--text);
       color: var(--text);
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .matrix-text,
+    .matrix-heart,
+    .matrix-coffee {
+      animation: none;
+    }
+
+    .hex-code:hover {
+      transform: none;
     }
   }
 </style>

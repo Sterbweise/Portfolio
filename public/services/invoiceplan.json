@@ -6,44 +6,65 @@
   "category": "infrastructure",
   "icon": "fa-solid fa-file-invoice-dollar",
   "tone": "indigo",
-  "startingPrice": 250,
+  "startingPrice": 90,
   "deliveryDays": 2,
   "packages": [
     {
       "name": "Basic Setup",
-      "price": "$250",
+      "price": "$90",
       "features": [
-        "InvoicePlan installation",
-        "Basic configuration",
-        "User account setup",
-        "Template customization",
-        "Basic payment gateway"
+        "InvoicePlan installation on your server",
+        "Basic configuration & settings",
+        "User account setup (up to 3 users)",
+        "Invoice template customization",
+        "1 payment gateway integration (Stripe or PayPal)",
+        "Tax calculation setup",
+        "Client management portal",
+        "Email notification configuration",
+        "PDF invoice generation",
+        "Basic documentation"
       ],
       "deliveryTime": "1-2 days"
     },
     {
       "name": "Professional Setup",
-      "price": "$450",
+      "price": "$165",
       "features": [
-        "Complete installation & config",
-        "Custom branding & themes",
-        "Multiple payment gateways",
-        "Email automation setup",
-        "Backup configuration",
-        "User training"
+        "Complete installation & configuration",
+        "Custom branding & professional themes",
+        "Multiple payment gateways (Stripe, PayPal, bank transfer)",
+        "Email automation with custom templates",
+        "Recurring invoices & subscription management",
+        "Multi-currency support",
+        "Automated backup configuration (daily backups)",
+        "Quote/estimate module setup",
+        "Expense tracking configuration",
+        "Client portal with payment history",
+        "Custom fields and invoice numbering",
+        "1-hour user training session",
+        "30 days post-delivery support"
       ],
       "deliveryTime": "3-4 days"
     },
     {
       "name": "Enterprise Setup",
-      "price": "$750",
+      "price": "$290",
       "features": [
-        "Multi-company setup",
-        "Advanced customizations",
-        "API integrations",
-        "Advanced reporting",
-        "Security hardening",
-        "Migration from existing system"
+        "Multi-company/multi-brand setup",
+        "Advanced custom theme development",
+        "API integrations (accounting software, CRM)",
+        "Advanced reporting & analytics dashboard",
+        "Security hardening (2FA, IP whitelisting)",
+        "Complete data migration from existing system",
+        "Webhook configuration for automations",
+        "Custom workflow automation",
+        "Role-based access control (RBAC)",
+        "Advanced tax rules & compliance settings",
+        "Credit note & refund management",
+        "White-label client portal",
+        "Automated payment reminders & late fees",
+        "Comprehensive training & documentation",
+        "60 days priority support"
       ],
       "deliveryTime": "5-7 days"
     }
@@ -56,11 +77,16 @@
     { "icon": "fas fa-chart-bar", "text": "Reporting dashboard configured" }
   ],
   "extras": [
-    { "name": "Additional payment gateway", "price": "$100", "description": "Configure extra payment method (PayPal, Stripe, etc.)" },
-    { "name": "Custom invoice template", "price": "$150", "description": "Design custom invoice template matching your brand" },
-    { "name": "API integration", "price": "$200", "description": "Connect with external accounting software" },
-    { "name": "Multi-language setup", "price": "$125", "description": "Configure multiple language support" },
-    { "name": "Advanced reporting", "price": "$175", "description": "Custom reports and analytics dashboard" }
+    { "name": "Additional payment gateway", "price": "$35", "description": "Configure extra payment method (PayPal, Stripe, Authorize.net, etc.)" },
+    { "name": "Custom invoice template", "price": "$55", "description": "Professional custom invoice template matching your brand identity" },
+    { "name": "API integration", "price": "$75", "description": "Connect with external accounting software (QuickBooks, Xero, etc.)" },
+    { "name": "Multi-language setup", "price": "$45", "description": "Configure multiple language support with translations" },
+    { "name": "Advanced reporting", "price": "$65", "description": "Custom reports, KPIs, and analytics dashboard" },
+    { "name": "SMS notifications", "price": "$40", "description": "SMS alerts for invoices and payments via Twilio" },
+    { "name": "Time tracking module", "price": "$60", "description": "Time tracking integration for hourly billing" },
+    { "name": "Inventory management", "price": "$70", "description": "Product inventory tracking and management" },
+    { "name": "Client portal customization", "price": "$50", "description": "Branded client portal with custom domain" },
+    { "name": "Data migration", "price": "$90", "description": "Migrate invoices and clients from another system" }
   ],
   "meta": {
     "deliveryTime": "1-3 days",
