@@ -1,0 +1,167 @@
+---
+// src/components/common/SEO.astro
+// Centralized SEO component for meta tags and structured data
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: "website" | "article" | "profile";
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    tags?: string[];
+  };
+  noindex?: boolean;
+  nofollow?: boolean;
+}
+
+const {
+  title = "Portfolio — Killian Chandeze",
+  description = "Software Engineer specializing in C#/.NET, backend architecture, and scalable systems. Explore my projects, experience, and technical expertise.",
+  canonical = Astro.url.href,
+  ogImage = "https://kchndz.dev/img/og-image.jpg",
+  ogType = "website",
+  article,
+  noindex = false,
+  nofollow = false,
+}: Props = Astro.props;
+
+// Robots meta tag
+const robotsContent = [
+  noindex ? "noindex" : "index",
+  nofollow ? "nofollow" : "follow",
+].join(", ");
+
+// Structured Data (JSON-LD) for Person/Developer
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Killian Chandeze",
+  url: "https://kchndz.dev",
+  image: "https://kchndz.dev/img/og-image.jpg",
+  jobTitle: "Software Engineer",
+  worksFor: {
+    "@type": "Organization",
+    name: "Astrumia",
+  },
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "Auvergne University",
+  },
+  sameAs: [
+    "https://github.com/Sterbweise",
+    "https://www.linkedin.com/in/killian-chandeze",
+    "https://leetcode.com/u/sterbweise/",
+  ],
+  knowsAbout: [
+    "C# / .NET",
+    "ASP.NET Core",
+    "Backend Development",
+    "Microservices",
+    "Clean Architecture",
+    "Docker",
+    "PostgreSQL",
+    "RESTful APIs",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Kuala Lumpur",
+    addressCountry: "Malaysia",
+  },
+};
+
+// Website structured data
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Killian Chandeze Portfolio",
+  url: "https://kchndz.dev",
+  description: "Professional portfolio showcasing software engineering expertise, projects, and technical skills",
+  author: {
+    "@type": "Person",
+    name: "Killian Chandeze",
+  },
+  inLanguage: "en-US",
+};
+
+// Article structured data (for blog posts)
+const articleSchema = article
+  ? {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: title,
+      description: description,
+      image: ogImage,
+      datePublished: article.publishedTime,
+      dateModified: article.modifiedTime || article.publishedTime,
+      author: {
+        "@type": "Person",
+        name: article.author || "Killian Chandeze",
+      },
+      publisher: {
+        "@type": "Person",
+        name: "Killian Chandeze",
+      },
+      keywords: article.tags?.join(", "),
+    }
+  : null;
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="robots" content={robotsContent} />
+<meta name="googlebot" content={robotsContent} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonical} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content="Killian Chandeze Portfolio" />
+<meta property="og:locale" content="en_US" />
+
+{
+  article && (
+    <>
+      <meta property="article:published_time" content={article.publishedTime} />
+      {article.modifiedTime && (
+        <meta property="article:modified_time" content={article.modifiedTime} />
+      )}
+      {article.author && (
+        <meta property="article:author" content={article.author} />
+      )}
+      {article.tags &&
+        article.tags.map((tag) => (
+          <meta property="article:tag" content={tag} />
+        ))}
+    </>
+  )
+}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonical} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+{
+  articleSchema && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(articleSchema)}
+    />
+  )
+}

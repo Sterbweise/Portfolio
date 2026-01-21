@@ -329,13 +329,13 @@ Best regards`);
         <div class="contact-modal-body">
           <p class="contact-message">Get in touch to discuss the "${packageName}" package (${price}) and receive detailed information about the project.</p>
           <div class="contact-methods">
-            <a href="mailto:chandeze.killian@proton.me?subject=Service Inquiry: ${serviceTitle} - ${packageName}&body=Hi Killian,%0A%0AI'm interested in your ${serviceTitle} service, specifically the '${packageName}' package (${price}).%0A%0ACould you please provide more details?" class="contact-method email">
+            <a href="mailto:contact@kchndz.dev?subject=Service Inquiry: ${serviceTitle} - ${packageName}&body=Hi Killian,%0A%0AI'm interested in your ${serviceTitle} service, specifically the '${packageName}' package (${price}).%0A%0ACould you please provide more details?" class="contact-method email">
               <i class="fas fa-envelope"></i>
               <span>Email</span>
             </a>
-            <a href="https://wa.me/60182839937?text=Hi, I'm interested in your ${serviceTitle} service, specifically the ${packageName} package" class="contact-method whatsapp" target="_blank">
-              <i class="fab fa-whatsapp"></i>
-              <span>WhatsApp</span>
+            <a href="https://t.me/SG991" class="contact-method telegram" target="_blank">
+              <i class="fab fa-telegram"></i>
+              <span>Telegram</span>
             </a>
             <a href="https://t.me/SG991" class="contact-method telegram" target="_blank">
               <i class="fab fa-telegram"></i>
@@ -402,13 +402,13 @@ Best regards`);
         <div class="contact-modal-body">
           <p class="contact-message">Get in touch to discuss your project requirements and receive a custom quote.</p>
           <div class="contact-methods">
-            <a href="mailto:chandeze.killian@proton.me?subject=Service Inquiry: ${serviceTitle}&body=Hi Killian,%0A%0AI'm interested in your ${serviceTitle} service.%0A%0ACould you please provide more details?" class="contact-method email">
+            <a href="mailto:contact@kchndz.dev?subject=Service Inquiry: ${serviceTitle}&body=Hi Killian,%0A%0AI'm interested in your ${serviceTitle} service.%0A%0ACould you please provide more details?" class="contact-method email">
               <i class="fas fa-envelope"></i>
               <span>Email</span>
             </a>
-            <a href="https://wa.me/601828399337?text=Hi, I'm interested in your ${serviceTitle} service" class="contact-method whatsapp" target="_blank">
-              <i class="fab fa-whatsapp"></i>
-              <span>WhatsApp</span>
+            <a href="https://t.me/SG991" class="contact-method telegram" target="_blank">
+              <i class="fab fa-telegram"></i>
+              <span>Telegram</span>
             </a>
             <a href="https://t.me/SG991" class="contact-method telegram" target="_blank">
               <i class="fab fa-telegram"></i>

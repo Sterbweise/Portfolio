@@ -2,6 +2,7 @@
 // src/layouts/BaseLayout.astro
 // Global layout component for the entire site - Optimized for PageSpeed
 
+import SEO from "../components/common/SEO.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
@@ -32,14 +33,18 @@ const currentYear = new Date().getFullYear();
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
     <meta name="theme-color" content="#0f172a" />
     <meta name="color-scheme" content="dark light" />
     <meta name="author" content="Killian Chandeze" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- SEO - Dynamic title based on page -->
-    <title>{title}</title>
+    <!-- SEO Component - Meta tags, Open Graph, Twitter Cards, Structured Data -->
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      ogImage={ogImage}
+    />
 
     <!-- Preconnect for performance - with dns-prefetch fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -89,24 +94,6 @@ const currentYear = new Date().getFullYear();
     <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.ico" />
-
-    <!-- Open Graph / Social Media Tags -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:site_name" content="Killian Chandeze Portfolio" />
-    <meta property="og:locale" content="en_US" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href={canonical} />
 
     <!-- Critical CSS for above-the-fold content (inlined) -->
     <style is:inline>

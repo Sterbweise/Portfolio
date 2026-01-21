@@ -13,14 +13,12 @@ export const siteConfig: SiteConfig = {
     "C#/.NET Software Engineer — a clean and minimal portfolio showcasing my expertise in backend architecture, scalable systems, professional experience, technical skills, and projects.",
   url: "https://kchndz.dev",
   author: "Killian Chandeze",
-  email: "chandeze.killian@proton.me",
+  email: "contact@kchndz.dev",
   locale: "en",
   social: {
     github: "https://github.com/Sterbweise",
     linkedin: "https://www.linkedin.com/in/killian-chandeze",
     telegram: "https://t.me/SG991",
-    whatsapp: "https://wa.me/60182839937",
-    wechat: "https://i.vgy.me/uJINMz.png",
     codingame:
       "https://www.codingame.com/profile/b2ad07e79ce1bd6e95eb7f54a7cc4b8b8661204",
     leetcode: "https://leetcode.com/u/sterbweise/",
@@ -58,16 +56,16 @@ export const contactInfo: ContactInfo = {
   location: "Federal Territory of Kuala Lumpur, Malaysia",
   social: [
     {
-      platform: "WhatsApp",
-      url: "https://wa.me/60182839937",
-      label: "+60 18-283 9937",
-      icon: "fa-solid fa-phone",
+      platform: "Email",
+      url: "mailto:contact@kchndz.dev",
+      label: "contact@kchndz.dev",
+      icon: "fa-solid fa-envelope",
     },
     {
-      platform: "Email",
-      url: "mailto:chandeze.killian@proton.me",
-      label: "chandeze.killian@proton.me",
-      icon: "fa-solid fa-envelope",
+      platform: "Telegram",
+      url: "https://t.me/SG991",
+      label: "telegram/SG991",
+      icon: "fa-brands fa-telegram",
     },
     {
       platform: "LinkedIn",
@@ -114,33 +112,21 @@ export const footerSocialLinks = [
     external: true,
   },
   {
-    href: siteConfig.social.whatsapp!,
-    label: "WhatsApp",
-    icon: "fa-brands fa-whatsapp",
-    external: true,
-  },
-  {
     href: siteConfig.social.telegram!,
     label: "Telegram",
     icon: "fa-brands fa-telegram",
     external: true,
   },
   {
-    href: siteConfig.social.wechat!,
-    label: "WeChat",
-    icon: "fa-brands fa-weixin",
-    external: true,
-  },
-  {
     href: siteConfig.social.codingame!,
     label: "CodinGame",
-    icon: "fa-solid fa-gamepad",
+    icon: "fa-solid fa-code",
     external: true,
   },
   {
     href: siteConfig.social.leetcode!,
     label: "LeetCode",
-    icon: "fa-solid fa-code",
+    icon: "fa-solid fa-code-branch",
     external: true,
   },
 ];

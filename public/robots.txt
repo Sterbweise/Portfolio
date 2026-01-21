@@ -1,10 +1,63 @@
 # robots.txt for kchndz.dev
-User-agent: *
+# Privacy-focused configuration with selective bot access
+
+# Allow legitimate search engines
+User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Google Image Bot
+User-agent: Googlebot-Image
+Allow: /img/
+Allow: /assets/
+
+# Block aggressive scrapers and crawlers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+# Block email harvesters
+User-agent: EmailCollector
+Disallow: /
+
+User-agent: EmailSiphon
+Disallow: /
+
+User-agent: EmailWolf
+Disallow: /
+
+# Default rule for other bots
+User-agent: *
+Disallow: /node_modules/
+Disallow: /.astro/
+Disallow: /dist/
+Disallow: /_astro/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Crawl-delay: 2
 
 # Sitemap location
 Sitemap: https://kchndz.dev/sitemap.xml
-
-# Disallow build/dev directories (shouldn't be deployed but just in case)
-Disallow: /node_modules/
-Disallow: /.astro/
+Sitemap: https://kchndz.dev/sitemap-0.xml
