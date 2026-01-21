@@ -29,7 +29,7 @@ export const achievementsData: AchievementEntry[] = [
     title: "Baidu ERNIE AI Developer Challenge",
     organization: "Baidu x Novita AI",
     location: "Online",
-    badges: ["Rank: N/A / 1,095", "Solo", "25$ Novita Credits"],
+    badges: ["Winner: 3rd Place", "Solo", "Prize: $300"],
     description:
       "Built an AI-powered crypto whitepaper analyzer using Baidu's ERNIE 4.5 to transform whitepapers into easy-to-understand insights.",
     highlights: [
@@ -82,7 +82,7 @@ export const achievementsData: AchievementEntry[] = [
     title: "CS:GO UCA Gaming Tournament",
     organization: "UCA",
     location: "Clermont-Ferrand, France",
-    badges: ["Rank: 3rd", "Team", "Prize: In-game skins"],
+    badges: ["Winner: 3rd Place", "Team", "Prize: Knife Skin"],
     description:
       "Participated in a local CS:GO tournament as part of a competitive team.",
     highlights: [

@@ -48,6 +48,16 @@ const formattedHighlights =
     <div class="about-text">
       {introduction.length > 0 && <p class="lead">{introduction[0]}</p>}
 
+      <!-- Assembly-style Hackathon Badge -->
+      <a href="#achievements" class="asm-badge" aria-label="View achievements">
+        <span class="asm-prefix">0x</span>
+        <span class="asm-hex">48414348</span>
+        <span class="asm-separator">::</span>
+        <span class="asm-icon">🏆</span>
+        <span class="asm-label">HACKATHON_WINNER</span>
+        <span class="asm-suffix">;</span>
+      </a>
+
       {introduction.length > 1 && <p>{introduction[1]}</p>}
 
       {
@@ -154,6 +164,105 @@ const formattedHighlights =
     border-bottom-color: var(--accent);
   }
 
+  /* Assembly-style Badge - Soft theme-matched */
+  .asm-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.9rem;
+    margin: 0.75rem 0;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    text-decoration: none;
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .asm-badge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--accent) 10%, transparent),
+      transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .asm-badge:hover::before {
+    transform: translateX(100%);
+  }
+
+  .asm-badge:hover {
+    border-color: var(--accent);
+    background: color-mix(in oklab, var(--accent) 5%, var(--bg-elev));
+    box-shadow: 0 2px 12px color-mix(in oklab, var(--accent) 15%, transparent);
+    transform: translateX(2px);
+  }
+
+  .asm-badge:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .asm-prefix {
+    color: var(--muted);
+    font-weight: 700;
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+
+  .asm-hex {
+    color: color-mix(in oklab, var(--accent) 70%, var(--text));
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .asm-separator {
+    color: var(--muted);
+    font-weight: 700;
+    margin: 0 0.1rem;
+  }
+
+  .asm-icon {
+    font-size: 0.9rem;
+  }
+
+  .asm-label {
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .asm-suffix {
+    color: var(--muted);
+    font-weight: 400;
+    opacity: 0.6;
+  }
+
+  .asm-badge:hover .asm-label {
+    color: color-mix(in oklab, var(--accent) 120%, var(--text));
+  }
+
+  .asm-badge:hover .asm-hex {
+    color: var(--accent);
+  }
+
+  .asm-badge:hover .asm-prefix,
+  .asm-badge:hover .asm-suffix {
+    opacity: 1;
+  }
+
   /* Strengths section */
   .about-strengths {
     margin-top: 0.5rem;
@@ -227,6 +336,16 @@ const formattedHighlights =
     );
   }
 
+  :global([data-theme="light"]) .asm-badge {
+    background: var(--card);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  :global([data-theme="light"]) .asm-badge:hover {
+    background: color-mix(in oklab, var(--accent) 5%, var(--card));
+    box-shadow: 0 2px 8px color-mix(in oklab, var(--accent) 15%, transparent);
+  }
+
   /* Responsive adjustments */
   @media (max-width: 900px) {
     .about-grid {
@@ -254,6 +373,14 @@ const formattedHighlights =
     }
   }
 
+  @media (max-width: 768px) {
+    .asm-badge {
+      font-size: 0.75rem;
+      padding: 0.45rem 0.8rem;
+      gap: 0.35rem;
+    }
+  }
+
   @media (max-width: 480px) {
     .about-strengths-title {
       font-size: 0.8rem;
@@ -261,6 +388,37 @@ const formattedHighlights =
 
     .about-strengths .kw-list {
       gap: 0.4rem;
+    }
+
+    .asm-badge {
+      font-size: 0.7rem;
+      padding: 0.4rem 0.7rem;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+    }
+
+    .asm-prefix,
+    .asm-hex {
+      font-size: 0.7rem;
+    }
+
+    .asm-icon {
+      font-size: 0.85rem;
+    }
+
+    .asm-label {
+      font-size: 0.7rem;
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .asm-badge:hover {
+      transform: none;
+    }
+
+    .asm-badge::before {
+      transition: none;
     }
   }
 </style>
