@@ -200,7 +200,9 @@ FZye//VYAPsGpGsGgniFdCcaWY0A6yDoiLi2VY1cmVb9cQ32CrlBAw==
       const hours = String(malaysiaTime.getHours()).padStart(2, '0');
       const minutes = String(malaysiaTime.getMinutes()).padStart(2, '0');
       
-      timeText.textContent = `${hours}:${minutes} GMT+8`;
+      if (timeText) {
+        timeText.textContent = `${hours}:${minutes} GMT+8`;
+      }
     }
 
     // Update immediately
