@@ -133,6 +133,7 @@ const {
     border: 1px solid var(--border);
     background: var(--card);
     padding: 1rem;
+    border-radius: 6px;
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
@@ -146,13 +147,17 @@ const {
 
   .project-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.33);
-    border-color: var(--text);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    border-color: var(--border-hover);
   }
 
   .project-card:focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--text);
     outline-offset: 2px;
+  }
+
+  :global([data-theme="light"]) .project-card:hover {
+    border-color: var(--text);
   }
 
   /* Card content */
@@ -202,14 +207,14 @@ const {
   }
 
   .tile-foot .link {
-    color: var(--accent);
+    color: var(--muted);
     font-size: 0.9rem;
     font-weight: 500;
     transition: color 0.2s ease;
   }
 
   .project-card:hover .tile-foot .link {
-    color: var(--muted);
+    color: var(--text);
   }
 
   /* Project stats in footer */

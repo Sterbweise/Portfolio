@@ -264,12 +264,17 @@ FZye//VYAPsGpGsGgniFdCcaWY0A6yDoiLi2VY1cmVb9cQ32CrlBAw==
   .contact-card {
     background: var(--card);
     border: 1px solid var(--border);
+    border-radius: 6px;
     padding: 1rem 1.25rem;
     transition: border-color 0.25s ease;
   }
 
   .contact-card:hover {
     border-color: var(--border-hover);
+  }
+
+  :global([data-theme="light"]) .contact-card:hover {
+    border-color: var(--text);
   }
 
   /* Contact list styling */
