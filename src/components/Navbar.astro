@@ -77,25 +77,33 @@ const navItems = [
     padding: 0;
   }
 
-  /* Navigation links */
+  /* Navigation links - same color family as brand */
   .nav-link {
     display: inline-flex;
     align-items: center;
-    padding: 0.5rem 0.75rem;
-    color: var(--muted);
+    padding: 0.45rem 0.7rem;
+    color: var(--text);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     font-weight: 500;
-    letter-spacing: 0.01em;
-    border-radius: 0;
+    letter-spacing: -0.01em;
+    border-radius: 4px;
+    opacity: 0.85;
     transition:
-      color 0.2s ease,
-      background-color 0.2s ease;
+      color 0.25s ease,
+      background-color 0.25s ease,
+      opacity 0.25s ease;
   }
 
   .nav-link:hover {
     color: var(--text);
-    background: var(--bg-elev);
+    background: var(--accent-muted);
+    opacity: 1;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    opacity: 1;
   }
 
   .nav-link:focus-visible {
@@ -105,9 +113,10 @@ const navItems = [
 
   .nav-link.active {
     color: var(--text);
+    background: var(--accent-muted);
   }
 
-  /* Nav actions (theme toggle, etc.) */
+  /* Nav actions - theme toggle */
   .nav-actions {
     display: flex;
     align-items: center;
@@ -126,15 +135,18 @@ const navItems = [
     padding: 0;
     background: transparent;
     border: 1px solid var(--border);
-    color: var(--muted);
+    color: var(--text);
     cursor: pointer;
-    transition: all 0.2s ease;
+    border-radius: 6px;
+    opacity: 0.9;
+    transition: all 0.25s ease;
   }
 
   .nav-action-btn:hover {
     color: var(--text);
-    border-color: var(--text);
-    background: transparent;
+    border-color: var(--border-hover);
+    background: var(--accent-muted);
+    opacity: 1;
   }
 
   .nav-action-btn:focus-visible {
@@ -195,13 +207,14 @@ const navItems = [
     transform: rotate(-45deg) translate(4px, -4px);
   }
 
-  /* Light theme adjustments */
-  :global([data-theme="light"]) .nav-link:hover {
-    background: var(--bg-elev);
+  :global([data-theme="light"]) .nav-link:hover,
+  :global([data-theme="light"]) .nav-link.active {
+    background: var(--accent-muted);
   }
 
   :global([data-theme="light"]) .nav-action-btn:hover {
-    background: var(--bg-elev);
+    background: var(--accent-muted);
+    border-color: var(--border-hover);
   }
 
   /* Mobile styles */

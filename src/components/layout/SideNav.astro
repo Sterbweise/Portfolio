@@ -93,7 +93,7 @@ const {
 
   .side-nav__link:hover {
     color: var(--text);
-    background: var(--bg-elev);
+    background: var(--accent-muted);
   }
 
   .side-nav__link:focus-visible {
@@ -101,7 +101,6 @@ const {
     outline-offset: -2px;
   }
 
-  /* Indicator dot/line */
   .side-nav__indicator {
     width: 6px;
     height: 6px;
@@ -111,18 +110,13 @@ const {
     flex-shrink: 0;
   }
 
-  .side-nav__link:hover .side-nav__indicator {
-    background: var(--text);
-  }
-
-  /* Active state */
-  .side-nav__link.active {
-    color: var(--text);
-  }
-
+  .side-nav__link:hover .side-nav__indicator,
   .side-nav__link.active .side-nav__indicator {
     background: var(--text);
-    box-shadow: none;
+  }
+
+  .side-nav__link.active {
+    color: var(--text);
   }
 
   .side-nav__label {
@@ -142,7 +136,7 @@ const {
   }
 
   :global([data-theme="light"]) .side-nav__link:hover {
-    background: var(--bg-elev);
+    background: var(--accent-muted);
   }
 
   /* Hide on smaller screens and when not on index page */

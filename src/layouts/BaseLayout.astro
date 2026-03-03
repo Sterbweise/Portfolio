@@ -33,7 +33,8 @@ const currentYear = new Date().getFullYear();
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0f172a" />
+    <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
     <meta name="color-scheme" content="dark light" />
     <meta name="author" content="Killian Chandeze" />
     <meta name="generator" content={Astro.generator} />
@@ -53,25 +54,16 @@ const currentYear = new Date().getFullYear();
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
 
-    <!-- Preload critical font weights (Inter 400, 600, 700) -->
+    <!-- Fonts - Plus Jakarta Sans (modern, geometric) -->
     <link
-      rel="preload"
-      href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-
-    <!-- Fonts - Inter with display=swap for better LCP -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet"
       />
     </noscript>
@@ -99,17 +91,17 @@ const currentYear = new Date().getFullYear();
     <style is:inline>
       /* Critical CSS - Prevents Flash of Unstyled Content */
       :root {
-        --bg: #0b0c0e;
-        --text: #e8e9ea;
-        --muted: #9aa0a7;
-        --border: #1e2329;
-        --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+        --bg: #09090b;
+        --text: #fafafa;
+        --muted: #a1a1aa;
+        --border: #27272a;
+        --font-sans: "Plus Jakarta Sans", sans-serif;
       }
       [data-theme="light"] {
-        --bg: #ffffff;
-        --text: #0f172a;
-        --muted: #475569;
-        --border: #e5e7eb;
+        --bg: #fafafa;
+        --text: #18181b;
+        --muted: #71717a;
+        --border: #e4e4e7;
       }
       *,
       *::before,
@@ -246,8 +238,10 @@ const currentYear = new Date().getFullYear();
       }
 
       // Reveal animations on scroll - using Intersection Observer
+      // Exclude .hero .reveal - Hero handles those with its own staggered script
       function initRevealAnimations() {
-        const reveals = document.querySelectorAll(".reveal:not(.in)");
+        const allReveals = document.querySelectorAll(".reveal:not(.in)");
+        const reveals = Array.from(allReveals).filter((el) => !el.closest(".hero"));
 
         if (reveals.length === 0) return;
 

@@ -106,7 +106,9 @@ const ariaProps = {
   /* Section title styling */
   .section-title {
     font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
-    margin: 0 0 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
     position: relative;
   }
 
@@ -114,19 +116,19 @@ const ariaProps = {
     content: "";
     position: absolute;
     left: 0;
-    bottom: -6px;
-    width: 36px;
-    height: 2px;
-    background: var(--border);
+    bottom: -8px;
+    width: 40px;
+    height: 3px;
+    background: var(--text);
+    opacity: 0.6;
     transition:
-      background-color 0.25s ease,
-      width 0.25s ease;
+      opacity 0.35s ease,
+      width 0.35s ease;
   }
 
-  /* Section hover effect on title underline */
   .section:hover .section-title::after {
-    background: var(--accent);
-    width: 56px;
+    width: 64px;
+    opacity: 1;
   }
 
   /* Container width */
@@ -179,9 +181,8 @@ const ariaProps = {
     }
   }
 
-  /* Focus within section for accessibility */
   .section:focus-within .section-title::after {
-    background: var(--accent);
-    width: 56px;
+    width: 64px;
+    opacity: 1;
   }
 </style>

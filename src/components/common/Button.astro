@@ -112,15 +112,16 @@ const buttonProps = !isLink
     gap: 0.5rem;
     font-weight: 600;
     text-decoration: none;
-    border-radius: 0;
+    border-radius: 2px;
     cursor: pointer;
+    letter-spacing: 0.02em;
     transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease,
-      opacity 0.2s ease,
-      background-color 0.2s ease,
-      border-color 0.2s ease,
-      color 0.2s ease;
+      transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+      box-shadow 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+      opacity 0.35s ease,
+      background-color 0.35s ease,
+      border-color 0.35s ease,
+      color 0.35s ease;
   }
 
   /* Size variants */
@@ -142,21 +143,24 @@ const buttonProps = !isLink
     min-height: 52px;
   }
 
-  /* Primary variant - invert on hover */
+  /* Primary variant - inverted (text color) */
   .btn-primary {
     background: var(--text);
     color: var(--bg);
     border: 1px solid var(--text);
+    box-shadow: 0 2px 0 color-mix(in oklab, var(--text) 30%, transparent);
   }
 
   .btn-primary:hover {
     background: transparent;
     color: var(--text);
     transform: translateY(-2px);
+    box-shadow: 0 4px 16px color-mix(in oklab, var(--text) 12%, transparent);
   }
 
   .btn-primary:active {
     transform: translateY(0);
+    box-shadow: 0 2px 0 color-mix(in oklab, var(--text) 30%, transparent);
   }
 
   /* Secondary variant */
@@ -169,13 +173,15 @@ const buttonProps = !isLink
   .btn-secondary:hover {
     transform: translateY(-2px);
     border-color: var(--text);
+    color: var(--text);
+    box-shadow: 0 4px 12px var(--accent-muted);
   }
 
   .btn-secondary:active {
     transform: translateY(0);
   }
 
-  /* Ghost variant - invert on hover */
+  /* Ghost variant */
   .btn-ghost {
     background: transparent;
     color: var(--text);
@@ -183,10 +189,11 @@ const buttonProps = !isLink
   }
 
   .btn-ghost:hover {
-    background: var(--text);
-    color: var(--bg);
+    background: var(--accent-muted);
+    color: var(--text);
     border-color: var(--text);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--accent-muted);
   }
 
   .btn-ghost:active {
@@ -240,7 +247,6 @@ const buttonProps = !isLink
     border-color: var(--text);
   }
 
-  /* Light theme adjustments */
   :global([data-theme="light"]) .btn-primary {
     background: var(--text);
     color: var(--bg);
@@ -252,13 +258,9 @@ const buttonProps = !isLink
     color: var(--text);
   }
 
-  :global([data-theme="light"]) .btn-ghost {
-    border-color: var(--border);
-  }
-
   :global([data-theme="light"]) .btn-ghost:hover {
-    background: var(--text);
-    color: var(--bg);
+    background: var(--accent-muted);
+    color: var(--text);
     border-color: var(--text);
   }
 

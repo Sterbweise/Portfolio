@@ -156,7 +156,7 @@
     color: inherit;
     text-decoration: none;
     border-bottom: 1px dotted transparent;
-    transition: all 0.2s ease;
+    transition: all 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
   .role-link:hover {
@@ -190,13 +190,14 @@
     background: transparent;
     color: var(--muted);
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
   .footer-social a:hover {
-    border-color: var(--text);
-    color: var(--text);
+    border-color: var(--accent);
+    color: var(--accent);
     transform: translateY(-2px);
+    box-shadow: 0 0 12px var(--accent-muted);
   }
 
   .footer-social a:focus-visible {
@@ -218,12 +219,12 @@
     letter-spacing: 0.02em;
   }
 
-  /* Matrix-style geek elements */
+  /* Matrix-style geek elements - smooth, slower animations */
   .matrix-text {
     color: #00ff41;
     font-weight: bold;
     text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
-    animation: matrix-flicker 3s infinite;
+    animation: matrix-flicker 4.5s ease-in-out infinite;
   }
 
   .code-comment {
@@ -244,7 +245,7 @@
     border-radius: 2px;
     border: 1px solid rgba(0, 217, 255, 0.2);
     cursor: help;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
   .hex-code:hover {
@@ -256,7 +257,7 @@
   .matrix-heart {
     color: #ff006e;
     font-weight: bold;
-    animation: pulse-glow 2s ease-in-out infinite;
+    animation: pulse-glow 3s ease-in-out infinite;
   }
 
   .code-operator {
@@ -266,16 +267,16 @@
 
   .matrix-coffee {
     display: inline-block;
-    animation: steam 2s ease-in-out infinite;
+    animation: steam 3s ease-in-out infinite;
   }
 
-  /* Matrix flicker animation */
+  /* Matrix flicker animation - smooth */
   @keyframes matrix-flicker {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
+    50% { opacity: 0.85; }
   }
 
-  /* Pulse glow animation for heart */
+  /* Pulse glow animation for heart - smooth */
   @keyframes pulse-glow {
     0%, 100% { 
       text-shadow: 0 0 5px rgba(255, 0, 110, 0.5);
@@ -283,19 +284,19 @@
     }
     50% { 
       text-shadow: 0 0 10px rgba(255, 0, 110, 0.8);
-      transform: scale(1.1);
+      transform: scale(1.08);
     }
   }
 
-  /* Steam animation for coffee */
+  /* Steam animation for coffee - smooth */
   @keyframes steam {
     0%, 100% { 
       transform: translateY(0) rotate(0deg);
       opacity: 1;
     }
     50% { 
-      transform: translateY(-2px) rotate(5deg);
-      opacity: 0.8;
+      transform: translateY(-2px) rotate(4deg);
+      opacity: 0.9;
     }
   }
 
