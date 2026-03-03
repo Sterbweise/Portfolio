@@ -246,9 +246,13 @@ const downloadFileName = downloadLink?.split("/").pop();
   }
 
   .scroll-down:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-    transform: translateY(2px);
+    color: var(--text);
+    border-color: var(--text);
+    transform: translateY(2px) scale(1.05);
+  }
+
+  .scroll-down:active {
+    transform: translateY(2px) scale(0.95);
   }
 
   @keyframes bounce {

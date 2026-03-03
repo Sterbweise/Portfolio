@@ -229,6 +229,7 @@ a:hover {
   text-decoration: none;
   border-bottom: 1px dashed var(--border);
   padding-bottom: 2px;
+  position: relative;
   transition:
     opacity var(--transition-base),
     border-color var(--transition-base);
@@ -238,6 +239,10 @@ a:hover {
   opacity: 1;
   border-color: var(--text);
   color: var(--text);
+}
+
+.link:active {
+  opacity: 0.9;
 }
 
 /* ====================================
@@ -314,8 +319,9 @@ select {
   color: var(--text);
   padding: var(--space-3) var(--space-4);
   transition:
-    border-color var(--transition-base),
-    box-shadow var(--transition-base);
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
 }
 
 input:focus,
@@ -323,7 +329,7 @@ textarea:focus,
 select:focus {
   outline: none;
   border-color: var(--text);
-  box-shadow: none;
+  box-shadow: 0 0 0 3px var(--accent-muted);
 }
 
 /* Prevent iOS zoom on input focus */
@@ -641,9 +647,13 @@ select:focus {
 }
 
 .kw-badge:hover {
-  transform: translateY(-1px);
+  transform: translateY(-1px) scale(1.02);
   border-color: var(--text);
   color: var(--text);
+}
+
+.kw-badge:active {
+  transform: translateY(0) scale(0.98);
 }
 
 /* Visibility badges */
@@ -716,6 +726,11 @@ select:focus {
   border-color: var(--text);
   color: var(--text);
   background: var(--accent-muted);
+  transform: translateY(-2px);
+}
+
+.to-top:active {
+  transform: translateY(0) scale(0.95);
 }
 
 .to-top.show {

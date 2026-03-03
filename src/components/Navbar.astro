@@ -61,11 +61,13 @@ const navItems = [
 </nav>
 
 <style>
-  /* Navigation container */
+  /* Navigation container - inherit header background, no shadow on desktop */
   .site-nav {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    background: transparent;
+    box-shadow: none;
   }
 
   .nav-list {
@@ -89,16 +91,36 @@ const navItems = [
     letter-spacing: -0.01em;
     border-radius: 4px;
     opacity: 0.85;
+    position: relative;
     transition:
       color 0.25s ease,
       background-color 0.25s ease,
-      opacity 0.25s ease;
+      opacity 0.25s ease,
+      transform 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.7rem;
+    right: 0.7rem;
+    height: 1px;
+    background: var(--text);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
   .nav-link:hover {
     color: var(--text);
     background: var(--accent-muted);
     opacity: 1;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    transform: scaleX(1);
   }
 
   .nav-link:hover,
@@ -156,6 +178,11 @@ const navItems = [
 
   .nav-action-btn i {
     font-size: 0.9rem;
+    transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .nav-action-btn:hover i {
+    transform: rotate(15deg);
   }
 
   /* Mobile toggle button */
@@ -210,6 +237,10 @@ const navItems = [
   :global([data-theme="light"]) .nav-link:hover,
   :global([data-theme="light"]) .nav-link.active {
     background: var(--accent-muted);
+  }
+
+  :global([data-theme="light"]) .nav-action-btn {
+    background: transparent;
   }
 
   :global([data-theme="light"]) .nav-action-btn:hover {

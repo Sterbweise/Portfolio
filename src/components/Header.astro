@@ -78,13 +78,18 @@ const { currentPage = "" } = Astro.props;
     font-weight: 700;
     font-size: 0.8rem;
     letter-spacing: -0.5px;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
   .brand:hover .brand-initials {
     background: var(--bg-elev);
     color: var(--text);
     border: 1px solid var(--border);
+    transform: scale(1.05);
+  }
+
+  .brand:active .brand-initials {
+    transform: scale(0.98);
   }
 
   .brand-name {
@@ -95,7 +100,9 @@ const { currentPage = "" } = Astro.props;
   }
 
   :global([data-theme="light"]) .site-header {
-    background: color-mix(in oklab, var(--bg) 96%, transparent);
+    background: var(--bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   :global([data-theme="light"]) .brand-initials {
