@@ -61,7 +61,7 @@ const { skills = skillsData, class: className = "" } = Astro.props;
   }
 
   .skill-card:hover {
-    background: var(--accent-muted);
+    background: rgba(250, 250, 250, 0.03);
     border-color: var(--border-hover);
   }
 
@@ -109,7 +109,7 @@ const { skills = skillsData, class: className = "" } = Astro.props;
     display: inline-flex;
     align-items: center;
     padding: 0.35rem 0.65rem;
-    background: var(--bg-elev);
+    background: var(--card);
     border: 1px solid var(--border);
     color: var(--muted);
     font-size: 0.75rem;
@@ -127,7 +127,7 @@ const { skills = skillsData, class: className = "" } = Astro.props;
   }
 
   :global([data-theme="light"]) .skill-card:hover {
-    background: var(--accent-muted);
+    background: rgba(24, 24, 27, 0.03);
     border-color: var(--border-hover);
   }
 

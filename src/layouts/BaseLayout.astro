@@ -237,8 +237,16 @@ const currentYear = new Date().getFullYear();
         }
       }
 
+      // Hero reveal animations - staggered fade-in for hero sections (Services, Work with Me, etc.)
+      function initHeroReveals() {
+        const heroReveals = document.querySelectorAll(".hero .reveal:not(.in)");
+        heroReveals.forEach((el, index) => {
+          setTimeout(() => el.classList.add("in"), index * 80 + 80);
+        });
+      }
+
       // Reveal animations on scroll - using Intersection Observer
-      // Exclude .hero .reveal - Hero handles those with its own staggered script
+      // Exclude .hero .reveal - handled by initHeroReveals
       function initRevealAnimations() {
         const allReveals = document.querySelectorAll(".reveal:not(.in)");
         const reveals = Array.from(allReveals).filter((el) => !el.closest(".hero"));
@@ -267,6 +275,7 @@ const currentYear = new Date().getFullYear();
       function init() {
         initThemeToggle();
         initBackToTop();
+        initHeroReveals();
         initRevealAnimations();
       }
 

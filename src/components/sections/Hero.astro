@@ -197,9 +197,9 @@ const downloadFileName = downloadLink?.split("/").pop();
     border-right: 2px solid var(--muted);
     white-space: nowrap;
     animation:
-      typing 4s steps(26, end) forwards,
+      typing 2.2s steps(30, end) forwards,
       blink-border 1s step-end infinite;
-    animation-delay: 0.8s, 0.8s;
+    animation-delay: 0.5s, 0.5s;
     max-width: 0;
     display: inline-block;
   }
@@ -213,7 +213,7 @@ const downloadFileName = downloadLink?.split("/").pop();
       max-width: 0;
     }
     to {
-      max-width: 26ch;
+      max-width: 30ch;
     }
   }
 
@@ -271,13 +271,13 @@ const downloadFileName = downloadLink?.split("/").pop();
     }
   }
 
-  /* Reveal animations - smooth, slower */
+  /* Reveal animations - smooth, faster */
   .reveal {
     opacity: 0;
     transform: translateY(12px);
     transition:
-      opacity 0.9s cubic-bezier(0.25, 0.1, 0.25, 1),
-      transform 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+      opacity 0.5s cubic-bezier(0.25, 0.1, 0.25, 1),
+      transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
   .reveal.in {
@@ -286,13 +286,13 @@ const downloadFileName = downloadLink?.split("/").pop();
   }
 
   .delay-1 {
-    transition-delay: 0.12s;
+    transition-delay: 0.08s;
   }
   .delay-2 {
-    transition-delay: 0.24s;
+    transition-delay: 0.16s;
   }
   .delay-3 {
-    transition-delay: 0.36s;
+    transition-delay: 0.24s;
   }
 
   /* Light theme adjustments */
@@ -363,7 +363,7 @@ const downloadFileName = downloadLink?.split("/").pop();
   function runReveals() {
     const reveals = document.querySelectorAll(".hero .reveal");
     reveals.forEach((el, index) => {
-      setTimeout(() => el.classList.add("in"), index * 120 + 150);
+      setTimeout(() => el.classList.add("in"), index * 80 + 80);
     });
   }
 
